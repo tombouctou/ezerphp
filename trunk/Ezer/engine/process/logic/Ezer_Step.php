@@ -64,8 +64,13 @@ abstract class Ezer_Step extends Ezer_Loadable
 		$this->id = $id;
 	}
 
-	public abstract function createInstance(Ezer_BusinessProcessInstance $process_instance);
+	public abstract function &createInstance(Ezer_ScopeInstance &$scope_instance);
 
+	public function getName()
+	{
+		return $this->name; 
+	}
+	
 	public function getMaxRetries()
 	{
 		return $this->max_retries; 
