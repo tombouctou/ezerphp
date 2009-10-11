@@ -15,6 +15,14 @@ class SocketCountServer extends Ezer_SocketServer
 		parent::__construct(2);
 	}
 	
+	public function taskProgressed($task, $percent)
+	{
+	}
+	
+	public function taskFailed($task, $err)
+	{
+	}
+	
 	public function taskDone($task)
 	{
 		echo "task $task done\n";
