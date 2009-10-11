@@ -1,12 +1,5 @@
 <?php
-require_once dirname(__FILE__) . '/../errors/Ezer_StepActivityClassNotFoundException.php';
-require_once dirname(__FILE__) . '/../errors/Ezer_StepClassNotActivityException.php';
-
 /**
- * Project:     PHP Ezer business process manager
- * File:        Ezer_ActivityStepInstance.php
- * Purpose:     Stores a single instance for the execution of an activity step for a specified case
- * 
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
@@ -23,7 +16,15 @@ require_once dirname(__FILE__) . '/../errors/Ezer_StepClassNotActivityException.
  *
  * For questions, help, comments, discussion, etc., please send
  * e-mail to tan-tan@simple.co.il
- *
+ */
+
+
+require_once dirname(__FILE__) . '/../errors/Ezer_StepActivityClassNotFoundException.php';
+require_once dirname(__FILE__) . '/../errors/Ezer_StepClassNotActivityException.php';
+
+
+/**
+ * Purpose:     Stores a single instance for the execution of an activity step for a specified case
  * @author Tan-Tan
  * @package Engine
  * @subpackage Process.Case

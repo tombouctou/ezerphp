@@ -1,11 +1,5 @@
 <?php
-require_once 'Ezer_StepContainerInstance.php';
-
 /**
- * Project:     PHP Ezer business process manager
- * File:        Ezer_SequenceInstance.php
- * Purpose:     Stores a single instance for the execution of a sequence for a specified case
- * 
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
@@ -22,7 +16,13 @@ require_once 'Ezer_StepContainerInstance.php';
  *
  * For questions, help, comments, discussion, etc., please send
  * e-mail to tan-tan@simple.co.il
- *
+ */
+
+require_once 'Ezer_StepContainerInstance.php';
+
+
+/**
+ * Purpose:     Stores a single instance for the execution of a sequence for a specified case
  * @author Tan-Tan
  * @package Engine
  * @subpackage Process.Case

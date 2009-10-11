@@ -1,10 +1,6 @@
 <?php
 
 /**
- * Project:     PHP Ezer business process manager
- * File:        Ezer_XsdClasses.php
- * Purpose:     Generates php classes based on an XSD file
- * 
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
@@ -21,7 +17,11 @@
  *
  * For questions, help, comments, discussion, etc., please send
  * e-mail to tan-tan@simple.co.il
- *
+ */
+
+
+/**
+ * Purpose:     Generates a single php class file
  * @author Tan-Tan
  * @package Schema
  * @subpackage Util
@@ -126,6 +126,12 @@ $functions_str
 	}
 }
 
+/**
+ * Purpose:     Generates php classes based on an XSD file
+ * @author Tan-Tan
+ * @package Schema
+ * @subpackage Util
+ */
 class Ezer_XsdClasses
 {
 	private $prefix = '';

@@ -1,18 +1,6 @@
 <?php
-require_once 'Ezer_ProcessLogicPersistance.php';
-require_once 'Ezer_BusinessProcess.php';
-require_once 'Ezer_ActivityStep.php';
-require_once 'Ezer_Array.php';
-require_once 'Ezer_AssignStep.php';
-require_once 'Ezer_Sequence.php';
-require_once 'Ezer_Variable.php';
-
 
 /**
- * Project:     PHP Ezer business process manager
- * File:        Ezer_XmlLogicPersistance.php
- * Purpose:     Load business process definitions from xml file
- * 
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
@@ -29,7 +17,20 @@ require_once 'Ezer_Variable.php';
  *
  * For questions, help, comments, discussion, etc., please send
  * e-mail to tan-tan@simple.co.il
- *
+ */
+
+
+require_once 'Ezer_ProcessLogicPersistance.php';
+require_once 'Ezer_BusinessProcess.php';
+require_once 'Ezer_ActivityStep.php';
+require_once 'Ezer_Array.php';
+require_once 'Ezer_AssignStep.php';
+require_once 'Ezer_Sequence.php';
+require_once 'Ezer_Variable.php';
+
+
+/**
+ * Purpose:     Load business process definitions from xml file
  * @author Tan-Tan
  * @package Engine
  * @subpackage Process.Logic

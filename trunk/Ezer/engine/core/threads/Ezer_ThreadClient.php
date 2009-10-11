@@ -2,10 +2,6 @@
 
 
 /**
- * Project:     PHP Ezer business process manager
- * File:        Ezer_ThreadClient.php
- * Purpose:     Represents a single process on the server
- * 
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
@@ -22,7 +18,12 @@
  *
  * For questions, help, comments, discussion, etc., please send
  * e-mail to tan-tan@simple.co.il
- *
+ */
+
+
+
+/**
+ * Purpose:     Represents a single process on the server
  * @author Tan-Tan
  * @package Engine
  * @subpackage Core.Threads

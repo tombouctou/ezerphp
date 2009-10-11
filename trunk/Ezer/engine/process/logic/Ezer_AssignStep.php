@@ -1,11 +1,5 @@
 <?php
-require_once dirname(__FILE__) . '/../case/Ezer_AssignStepInstance.php';
-
 /**
- * Project:     PHP Ezer business process manager
- * File:        Ezer_AssignStep.php
- * Purpose:     Store in the memory the definitions of an assign step
- * 
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
@@ -22,7 +16,13 @@ require_once dirname(__FILE__) . '/../case/Ezer_AssignStepInstance.php';
  *
  * For questions, help, comments, discussion, etc., please send
  * e-mail to tan-tan@simple.co.il
- *
+ */
+
+require_once dirname(__FILE__) . '/../case/Ezer_AssignStepInstance.php';
+
+
+/**
+ * Purpose:     Store in the memory the definitions of a copy attribute
  * @author Tan-Tan
  * @package Engine
  * @subpackage Process.Logic
@@ -49,6 +49,7 @@ class Ezer_AssignStepCopyAttribute extends Ezer_Loadable
 }
 
 /**
+ * Purpose:     Store in the memory the definitions of a copy assignment
  * @author Tan-Tan
  * @package Engine
  * @subpackage Process.Logic
@@ -64,6 +65,7 @@ class Ezer_AssignStepCopy extends Ezer_Loadable
 }
 
 /**
+ * Purpose:     Store in the memory the definitions of an assign step
  * @author Tan-Tan
  * @package Engine
  * @subpackage Process.Logic

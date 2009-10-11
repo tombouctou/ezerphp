@@ -1,11 +1,5 @@
 <?php
-require_once 'Ezer_Thread.php';
-
 /**
- * Project:     PHP Ezer business process manager
- * File:        Ezer_ThreadServer.php
- * Purpose:     Serve as a base multi process server
- * 
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
@@ -22,7 +16,13 @@ require_once 'Ezer_Thread.php';
  *
  * For questions, help, comments, discussion, etc., please send
  * e-mail to tan-tan@simple.co.il
- *
+ */
+
+
+require_once 'Ezer_Thread.php';
+
+/**
+ * Purpose:     Serve as a base multi process server
  * @author Tan-Tan
  * @package Engine
  * @subpackage Core.Threads
