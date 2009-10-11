@@ -44,8 +44,8 @@ class Ezer_StepInstanceStatus
  */
 abstract class Ezer_StepInstance
 {
-	public $debug = 0;
-	protected $process_instance;
+	protected $progress = 0;
+	protected $scope_instance;
 	protected $step;
 	protected $status;
 	protected $max_retries;
@@ -53,15 +53,22 @@ abstract class Ezer_StepInstance
 	protected $flowed_in = array();
 	
 	public abstract function shouldRunOnServer();
+
+	public function getWorkerAndStart()
+	{
+		return null;
+	}
 	
-	public function __construct(Ezer_BusinessProcessInstance &$process_instance, Ezer_Step $step)
+	public function __construct(Ezer_StepContainerInstance &$scope_instance, Ezer_Step $step)
 	{
 		$this->status = Ezer_StepInstanceStatus::LOADED;
 		$this->max_retries = $step->getMaxRetries();
 		$this->attempts = 0;
 		$this->step = $step;
-		$this->process_instance = &$process_instance;
-		$this->process_instance->steps[] = &$this;
+		$this->scope_instance = &$scope_instance;
+		
+		if($this !== $scope_instance)
+			$this->scope_instance->step_instances[] = &$this;
 	}
 	
 	public function getStatus()
@@ -83,14 +90,19 @@ abstract class Ezer_StepInstance
 		}
 
 		if(!isset($this->step->in_flows[$step_id]))
+		{
 			return false;
+		}
 			
 		$this->flowed_in[$step_id] = true;
 		if($this->status != Ezer_StepInstanceStatus::LOADED)
+		{
 			return true;
+		}
 			
 		if($this->step->getJoinPolicy() == Ezer_StepJoinPolicy::JOIN_OR || count($this->flowed_in) >= count($this->step->in_flows))
 		{
+//			echo get_class($this) . "(" . $this->getName() . ") is available\n";
 			$this->status = Ezer_StepInstanceStatus::AVAILABLE;
 			return true;
 		}
@@ -104,6 +116,17 @@ abstract class Ezer_StepInstance
 			$this->status = Ezer_StepInstanceStatus::FAILED;
 		else
 			$this->status = Ezer_StepInstanceStatus::AVAILABLE;
+	}
+	
+	public function getProgress()
+	{
+		return $this->progress;
+	}
+	
+	public function setProgress($percent)
+	{
+//		echo "Ezer_StepInstance::setProgress($percent%)\n";
+		$this->progress = $percent;
 	}
 	
 	public function isAvailable()
@@ -135,9 +158,20 @@ abstract class Ezer_StepInstance
 		$this->attempts++;
 	}
 	
+	public function getName()
+	{
+		return $this->step->getName();
+	}
+	
+	public function failed($err)
+	{
+//		echo get_class($this) . " failed($err)\n";
+		$this->status = Ezer_StepInstanceStatus::FAILED;
+	}
+	
 	public function done()
 	{
-//		echo get_class($this) . " is done\n";
+//		echo get_class($this) . "(" . $this->getName() . ") now done\n";
 		$this->status = Ezer_StepInstanceStatus::DONE;
 	}
 }
