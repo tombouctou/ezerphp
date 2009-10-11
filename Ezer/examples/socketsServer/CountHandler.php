@@ -1,7 +1,7 @@
 <?php
 ini_set('max_execution_time', 0);
 
-require_once '../../engine/core/threads/Ezer_ThreadInstance.php';
+require_once '../../engine/core/threads/Ezer_Process.php';
 
 /**
  * @author Tan-Tan
