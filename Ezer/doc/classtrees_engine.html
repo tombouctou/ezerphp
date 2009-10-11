@@ -27,15 +27,19 @@
 
 <h2>Root class Ezer_AsynchronousActivity</h2>
 <ul>
-<li><a href="Engine/Process-Case/Ezer_AsynchronousActivity.html">Ezer_AsynchronousActivity</a></li></ul>
+<li><a href="Engine/Process-Case/Ezer_AsynchronousActivity.html">Ezer_AsynchronousActivity</a> (implements )<ul>
+<li><a href="Examples/Process/CountActivity.html">CountActivity</a></li><li><a href="Engine/Process-Case/Ezer_CpuActivity.html">Ezer_CpuActivity</a></li><li><a href="Engine/Process-Case/Ezer_DbActivity.html">Ezer_DbActivity</a></li><li><a href="Engine/Process-Case/Ezer_FileSystemActivity.html">Ezer_FileSystemActivity</a></li><li><a href="Engine/Process-Case/Ezer_NetworkActivity.html">Ezer_NetworkActivity</a></li></ul></li>
+</ul>
 
-<h2>Root class Ezer_BusinessProcessInstance</h2>
+<h2>Root class Ezer_BusinessProcessHandlerMessages</h2>
 <ul>
-<li><a href="Engine/Process-Case/Ezer_BusinessProcessInstance.html">Ezer_BusinessProcessInstance</a></li></ul>
+<li><a href="Engine/Process/Ezer_BusinessProcessHandlerMessages.html">Ezer_BusinessProcessHandlerMessages</a></li></ul>
 
-<h2>Root class Ezer_BusinessProcessTask</h2>
+<h2>Root class Ezer_BusinessProcessServerTask</h2>
 <ul>
-<li><a href="Engine/Process/Ezer_BusinessProcessTask.html">Ezer_BusinessProcessTask</a></li></ul>
+<li><a href="Engine/Process/Ezer_BusinessProcessServerTask.html">Ezer_BusinessProcessServerTask</a><ul>
+<li><a href="Engine/Process/Ezer_BusinessProcessWorkerTask.html">Ezer_BusinessProcessWorkerTask</a></li></ul></li>
+</ul>
 
 <h2>Root class Ezer_Case</h2>
 <ul>
@@ -48,8 +52,10 @@
 <h2>Root class Ezer_Loadable</h2>
 <ul>
 <li><a href="Engine/Process-Logic/Ezer_Loadable.html">Ezer_Loadable</a><ul>
-<li><a href="Engine/Process-Logic/Ezer_AssignStepCopy.html">Ezer_AssignStepCopy</a></li><li><a href="Engine/Process-Logic/Ezer_AssignStepCopyAttribute.html">Ezer_AssignStepCopyAttribute</a></li><li><a href="Engine/Process-Logic/Ezer_BusinessProcess.html">Ezer_BusinessProcess</a></li><li><a href="Engine/Process-Logic/Ezer_Step.html">Ezer_Step</a><ul>
+<li><a href="Engine/Process-Logic/Ezer_AssignStepCopy.html">Ezer_AssignStepCopy</a></li><li><a href="Engine/Process-Logic/Ezer_AssignStepCopyAttribute.html">Ezer_AssignStepCopyAttribute</a></li><li><a href="Engine/Process-Logic/Ezer_Step.html">Ezer_Step</a><ul>
 <li><a href="Engine/Process-Logic/Ezer_ActivityStep.html">Ezer_ActivityStep</a></li><li><a href="Engine/Process-Logic/Ezer_AssignStep.html">Ezer_AssignStep</a></li><li><a href="Engine/Process-Logic/Ezer_StepContainer.html">Ezer_StepContainer</a><ul>
+<li><a href="Engine/Process-Logic/Ezer_Scope.html">Ezer_Scope</a><ul>
+<li><a href="Engine/Process-Logic/Ezer_BusinessProcess.html">Ezer_BusinessProcess</a></li></ul></li>
 <li><a href="Engine/Process-Logic/Ezer_Sequence.html">Ezer_Sequence</a></li></ul></li>
 </ul></li>
 <li><a href="Engine/Process-Logic/Ezer_Variable.html">Ezer_Variable</a></li></ul></li>
@@ -58,7 +64,7 @@
 <h2>Root class Ezer_Process</h2>
 <ul>
 <li><a href="Engine/Core-Threads/Ezer_Process.html">Ezer_Process</a><ul>
-<li><a href="Examples/Sockets/SocketCountHandler.html">SocketCountHandler</a></li><li><a href="Examples/Threads/ThreadCountHandler.html">ThreadCountHandler</a></li></ul></li>
+<li><a href="Engine/Process/Ezer_BusinessProcessHandler.html">Ezer_BusinessProcessHandler</a></li><li><a href="Examples/Sockets/SocketCountHandler.html">SocketCountHandler</a></li><li><a href="Examples/Threads/ThreadCountHandler.html">ThreadCountHandler</a></li></ul></li>
 </ul>
 
 <h2>Root class Ezer_SocketClient</h2>
@@ -69,6 +75,8 @@
 <ul>
 <li><a href="Engine/Process-Case/Ezer_StepInstance.html">Ezer_StepInstance</a><ul>
 <li><a href="Engine/Process-Case/Ezer_ActivityStepInstance.html">Ezer_ActivityStepInstance</a></li><li><a href="Engine/Process-Case/Ezer_AssignStepInstance.html">Ezer_AssignStepInstance</a></li><li><a href="Engine/Process-Case/Ezer_StepContainerInstance.html">Ezer_StepContainerInstance</a><ul>
+<li><a href="Engine/Process-Case/Ezer_ScopeInstance.html">Ezer_ScopeInstance</a><ul>
+<li><a href="Engine/Process-Case/Ezer_BusinessProcessInstance.html">Ezer_BusinessProcessInstance</a></li></ul></li>
 <li><a href="Engine/Process-Case/Ezer_SequenceInstance.html">Ezer_SequenceInstance</a></li></ul></li>
 </ul></li>
 </ul>
@@ -120,7 +128,7 @@
 <li><a href="Engine/Process-Logic-errors/Ezer_ProcessLogicNotFound.html">Ezer_ProcessLogicNotFound</a></li><li><a href="Engine/Process-Logic-errors/Ezer_StepActivityClassNotFoundException.html">Ezer_StepActivityClassNotFoundException</a></li><li><a href="Engine/Process-Logic-errors/Ezer_StepClassNotActivityException.html">Ezer_StepClassNotActivityException</a></li><li><a href="Engine/Process-Logic-errors/Ezer_XmlPersistanceElementNotMappedException.html">Ezer_XmlPersistanceElementNotMappedException</a></li><li><a href="Engine/Process-Logic-errors/Ezer_XmlPersistanceMissingAttributeException.html">Ezer_XmlPersistanceMissingAttributeException</a></li><li><a href="Engine/Process-Logic-errors/Ezer_XmlPersistanceMissingClassException.html">Ezer_XmlPersistanceMissingClassException</a></li></ul>
 
 	<p class="notes" id="credit">
-		Documentation generated on Sun, 11 Oct 2009 13:40:00 +0300 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+		Documentation generated on Mon, 12 Oct 2009 01:30:28 +0300 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
 	</p>
 	</body>
 </html>
