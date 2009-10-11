@@ -20,6 +20,7 @@
  */
 
 
+require_once 'Ezer_ScopeInstance.php';
 
 /**
  * Purpose:     Stores a single instance for the execution of a business process for a specified case
@@ -27,38 +28,19 @@
  * @package Engine
  * @subpackage Process.Case
  */
-class Ezer_BusinessProcessInstance
+class Ezer_BusinessProcessInstance extends Ezer_ScopeInstance
 {
-	public $variables = array();
 	public $process;
-	public $sequence_instance;
-	public $steps = array();
 	
 	public function __construct(array $variables, Ezer_BusinessProcess $process)
 	{
-		$this->variables = $variables;
+		parent::__construct($variables, $this, $process);
 		$this->process = $process;
-		$this->sequence_instance = $process->getSequence()->createInstance($this);
 		$this->start();
 	}
 	
-	public function getValues(Ezer_Array $args)
+	public function getImports()
 	{
-		$return = array();
-		foreach($args as $arg)
-		{
-			if(is_null($arg))
-				continue;
-				
-			if(isset($this->variables[$arg]))
-				$return[$arg] = $this->variables[$arg];
-		}
-				
-		return $return;
-	}
-	
-	public function start()
-	{
-		$this->sequence_instance->start();
+		return $this->process->getImports();
 	}
 }

@@ -33,9 +33,9 @@ class Ezer_ActivityStepInstance extends Ezer_StepInstance
 {
 	protected $activity;
 	
-	public function __construct(Ezer_BusinessProcessInstance &$process_instance, Ezer_ActivityStep $step)
+	public function __construct(Ezer_ScopeInstance &$scope_instance, Ezer_ActivityStep $step)
 	{
-		parent::__construct($process_instance, $step);
+		parent::__construct($scope_instance, $step);
 		
 		$class = $step->getClass();
 		if(!class_exists($class))
@@ -49,12 +49,19 @@ class Ezer_ActivityStepInstance extends Ezer_StepInstance
 	
 	protected function execute()
 	{
-		return $this->activity->execute($this->process_instance->getValues($this->step->getArgs()));
+		return $this->activity->execute($this->scope_instance->getValues($this->step->getArgs()));
 	}
 	
 	public function shouldRunOnServer()
 	{
 		return ($this->activity instanceof Ezer_SynchronousActivity);
+	}
+	
+	public function getWorkerAndStart()
+	{
+		$this->status = Ezer_StepInstanceStatus::STARTED;
+		$this->activity->serArgs($this->scope_instance->getValues($this->step->getArgs()));
+		return $this->activity;
 	}
 	
 	public function start()

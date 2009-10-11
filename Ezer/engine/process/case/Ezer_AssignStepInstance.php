@@ -29,9 +29,9 @@
  */
 class Ezer_AssignStepInstance extends Ezer_StepInstance
 {
-	public function __construct(Ezer_BusinessProcessInstance &$process_instance, Ezer_AssignStep $step)
+	public function __construct(Ezer_ScopeInstance  &$scope_instance, Ezer_AssignStep $step)
 	{
-		parent::__construct($process_instance, $step);
+		parent::__construct($scope_instance, $step);
 	}
 	
 	protected function execute()
@@ -42,11 +42,11 @@ class Ezer_AssignStepInstance extends Ezer_StepInstance
 		$from_variable = $from->getVariable();
 		$to_variable = $to->getVariable();
 		
-		if(!isset($this->process_instance->variables[$from_variable]))
+		if(!isset($this->scope_instance->variables[$from_variable]))
 			return false;
 			
-		$this->process_instance->variables[$from_variable] = $this->process_instance->variables[$to_variable];
-		echo "variable set\n";
+		$this->scope_instance->variables[$from_variable] = $this->scope_instance->variables[$to_variable];
+//		echo "variable set\n";
 		return true;
 	}
 	
