@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" 
+	xmlns:ezer="http://schemas.ezer.org/schema/xsd/wsbpel/" 
+	xmlns:bpws="http://docs.oasis-open.org/wsbpel/2.0/process/abstract"
+	targetNamespace="http://schemas.ezer.org/schema/xsd/wsbpel/"
+	elementFormDefault="qualified">
+
+	<import namespace="http://docs.oasis-open.org/wsbpel/2.0/process/abstract"
+		schemaLocation="http://docs.oasis-open.org/wsbpel/2.0/OS/process/abstract/ws-bpel_abstract_common_base.xsd" />
+
+	<redefine schemaLocation="http://docs.oasis-open.org/wsbpel/2.0/OS/process/abstract/ws-bpel_abstract_common_base.xsd">
+		<group name="activity">
+			<choice>
+				<element ref="bpws:assign" />
+				<element ref="bpws:compensate" />
+				<element ref="bpws:compensateScope" />
+				<element ref="bpws:empty" />
+				<element ref="bpws:exit" />
+				<element ref="bpws:extensionActivity" />
+				<element ref="bpws:flow" />
+				<element ref="bpws:forEach" />
+				<element ref="bpws:if" />
+				<element ref="bpws:invoke" />
+				<element ref="bpws:pick" />
+				<element ref="bpws:receive" />
+				<element ref="bpws:repeatUntil" />
+				<element ref="bpws:reply" />
+				<element ref="bpws:rethrow" />
+				<element ref="bpws:scope" />
+				<element ref="bpws:sequence" />
+				<element ref="bpws:throw" />
+				<element ref="bpws:validate" />
+				<element ref="bpws:wait" />
+				<element ref="bpws:while" />
+				<element ref="bpws:opaqueActivity" />
+				<element ref="ezer:php" />
+			</choice>
+		</group>
+	</redefine>
+	
+	<element name="php" type="ezer:tPhp" /> 
+	<complexType name="tPhp">
+		<complexContent>
+			<extension base="bpws:tActivity">
+				<sequence>
+					<element name="correlations" type="bpws:tCorrelations"
+						minOccurs="0" />
+				</sequence>
+				<attribute name="partnerLink" type="NCName" use="required" />
+				<attribute name="portType" type="QName" use="required" />
+				<attribute name="operation" type="NCName" use="required" />
+				<attribute name="variable" type="NCName" use="optional" />
+				<attribute name="createInstance" type="bpws:tBoolean"
+					default="no" />
+			</extension>
+		</complexContent>
+	</complexType>
+
+</schema>

@@ -1,0 +1,31 @@
+<process name="HelloWorld">
+
+	<import>C:\My\Projects\Ezer\examples\simpleProcess\activities\SayActivity.php</import>
+	
+	<variables>
+		<!-- type is not mandatory -->
+		<variable name="hello" type="string" />
+		<variable name="bye" />
+	</variables>
+
+	<sequence name="main">
+	
+		<activity name="Hello World" class="SayActivity" args="hello" />
+		
+		<assign name="Assign">
+			<copy>
+				<from variable="hello"></from>
+				<to variable="bye"></to>
+			</copy>
+		</assign>
+
+		<activity name="Googbye" class="SayActivity">
+			<args>
+				<arg>hello</arg>
+				<arg>bye</arg>
+			</args>
+		</activity>
+
+	</sequence>
+</process>
+

@@ -1,0 +1,40 @@
+<config>
+    <!-- You can add comments as well  -->
+    <rootDirectory>/home/user/projects/myProject</rootDirectory>
+    <database>
+        <primary>
+            <host>myDbServer1</host>
+            <username>user2</username>
+            <password type="string">letmein</password>
+            <timeout>10</timeout>
+            <portNo />
+        </primary>
+        <secondary>
+            <host>myDbServer2</host>
+            <username>user2</username>
+            <password></password> <!-- null value  -->
+            <timeout type="int">25</timeout>
+            <portNo type="string" /> <!-- null value cast as string -->
+        </secondary>
+    </database>
+    <web>
+        <cardTypes type="array">
+            <item value="Maestro" />
+            <item value="UK Visa Debit" />
+            <item type="string" index="V" value="Visa" />
+            <item type="int" index="N" />
+            <item index="M" value="Mastercard" />
+            <item /> <!-- null value added with numeric index -->
+            <item></item> <!-- null value with numeric index -->
+            <item value="" /> <!-- blank string with numeric index -->
+            <item index="D">Debit</item>
+            <item type="string" /> <!-- null value cast as string -->
+        </cardTypes>
+    </web>
+    <test>
+        <test1 value="david">Wainwright</test1> <!-- Should populate with 'david'  -->
+        <test2 /> <!-- populates with null value and no cast -->
+        <test3 value="12" type="string" /> <!-- Should populate with "12" -->
+        <test4 type="string">12</test4> <!-- Should populate with "12" -->
+    </test>
+</config>
