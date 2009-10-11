@@ -46,7 +46,7 @@ class Ezer_XmlCasePersistance implements Ezer_ProcessCasePersistance
 		$files = array();
 		while (false !== ($entry = $dir->read())) 
 		{
-			if($entry == '.' || $entry == '..')
+			if($entry == '.' || $entry == '..' || $entry == '.svn')
 				continue;
 
 			if(is_dir("$path/$entry"))

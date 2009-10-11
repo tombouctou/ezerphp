@@ -30,12 +30,11 @@ require_once 'Ezer_StepInstance.php';
  */
 class Ezer_StepContainerInstance extends Ezer_StepInstance
 {
-	protected $step_instances;
-	protected $available_instances;
+	public $step_instances;
 	
-	public function __construct(Ezer_BusinessProcessInstance &$process_instance, Ezer_StepContainer $step)
+	public function __construct(Ezer_ScopeInstance &$scope_instance, Ezer_StepContainer $step_container)
 	{
-		parent::__construct($process_instance, $step);
+		parent::__construct($scope_instance, $step_container);
 	}
 	
 	public function shouldRunOnServer()
@@ -47,10 +46,10 @@ class Ezer_StepContainerInstance extends Ezer_StepInstance
 	{
 		parent::start();
 		
-		foreach($this->step->steps as $step)
+		foreach($this->step->steps as &$step)
 		{
-			$step_instance = $step->createInstance($this->process_instance);
-			$this->step_instances[] = $step_instance;
+			$step_instance = &$step->createInstance($this->scope_instance);
+			$this->step_instances[] = &$step_instance;
 			
 			if(count($step->in_flows))
 				continue;

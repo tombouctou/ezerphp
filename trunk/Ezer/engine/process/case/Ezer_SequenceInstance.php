@@ -19,6 +19,7 @@
  */
 
 require_once 'Ezer_StepContainerInstance.php';
+require_once 'Ezer_ScopeInstance.php';
 
 
 /**
@@ -29,9 +30,9 @@ require_once 'Ezer_StepContainerInstance.php';
  */
 class Ezer_SequenceInstance extends Ezer_StepContainerInstance
 {
-	public function __construct(Ezer_BusinessProcessInstance &$process_instance, Ezer_Sequence $step)
+	public function __construct(Ezer_ScopeInstance &$scope_instance, Ezer_Sequence $step)
 	{
-		parent::__construct($process_instance, $step);
+		parent::__construct($scope_instance, $step);
 	}
 	
 	public function start()
@@ -49,6 +50,7 @@ class Ezer_SequenceInstance extends Ezer_StepContainerInstance
 			if(!$step_instance->isDone())
 				break;
 				
+//			echo get_class($step_instance) . "(" . $step_instance->getName() . ") is done\n";
 			$index++;
 			if(count($this->step_instances) <= $index)
 			{
@@ -64,3 +66,5 @@ class Ezer_SequenceInstance extends Ezer_StepContainerInstance
 		return false;
 	}
 }
+
+?>
