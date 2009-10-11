@@ -49,9 +49,9 @@ class Ezer_ActivityStep extends Ezer_Step
 		parent::__set($name, $value);
 	}
 	
-	public function createInstance(Ezer_BusinessProcessInstance $process_instance)
+	public function &createInstance(Ezer_ScopeInstance &$scope_instance)
 	{
-		return new Ezer_ActivityStepInstance($process_instance, $this);
+		return new Ezer_ActivityStepInstance($scope_instance, $this);
 	}
 	
 	public function getClass()
