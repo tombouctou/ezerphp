@@ -54,7 +54,7 @@
 		</div>
 		<div class="info-box-body">			
 			<div class="method-summary">
-																																																																				
+																																																																																				
 												<div class="method-definition">
 											<span class="method-result">SocketCountServer</span>
 										<a href="#__construct" title="details" class="method-name">__construct</a>
@@ -84,6 +84,16 @@
 											<span class="method-result">void</span>
 										<a href="#taskDone" title="details" class="method-name">taskDone</a>
 											(<span class="var-type"></span>&nbsp;<span class="var-name">$task</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#taskFailed" title="details" class="method-name">taskFailed</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$task</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$err</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#taskProgressed" title="details" class="method-name">taskProgressed</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$task</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$percent</span>)
 									</div>
 																<div class="method-definition">
 											<span class="method-result">void</span>
@@ -168,7 +178,7 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">addThreadClient</span> (line <span class="line-number">38</span>)
+		<span class="method-title">addThreadClient</span> (line <span class="line-number">46</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -202,7 +212,7 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">getNewSocketClient</span> (line <span class="line-number">45</span>)
+		<span class="method-title">getNewSocketClient</span> (line <span class="line-number">53</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -235,7 +245,7 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">isAlive</span> (line <span class="line-number">33</span>)
+		<span class="method-title">isAlive</span> (line <span class="line-number">41</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -264,7 +274,7 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">kick</span> (line <span class="line-number">28</span>)
+		<span class="method-title">kick</span> (line <span class="line-number">36</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -293,7 +303,7 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">taskDone</span> (line <span class="line-number">18</span>)
+		<span class="method-title">taskDone</span> (line <span class="line-number">26</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -323,11 +333,83 @@
 					</dl>
 			
 	</div>
+<a name="methodtaskFailed" id="taskFailed"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">taskFailed</span> (line <span class="line-number">22</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			taskFailed
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$task</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$err</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$task</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$err</span>			</li>
+				</ul>
+		
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../../Engine/Core-Threads/Ezer_ThreadServer.html#methodtaskFailed">Ezer_ThreadServer::taskFailed()</a></dt>
+					</dl>
+			
+	</div>
+<a name="methodtaskProgressed" id="taskProgressed"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">taskProgressed</span> (line <span class="line-number">18</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			taskProgressed
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$task</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$percent</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$task</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$percent</span>			</li>
+				</ul>
+		
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../../Engine/Core-Threads/Ezer_ThreadServer.html#methodtaskProgressed">Ezer_ThreadServer::taskProgressed()</a></dt>
+					</dl>
+			
+	</div>
 <a name="methodupdateTasks" id="updateTasks"><!-- --></a>
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">updateTasks</span> (line <span class="line-number">23</span>)
+		<span class="method-title">updateTasks</span> (line <span class="line-number">31</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -356,7 +438,7 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">writeToAll</span> (line <span class="line-number">51</span>)
+		<span class="method-title">writeToAll</span> (line <span class="line-number">59</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -409,8 +491,11 @@
 													<span class="method-name"><a href="../../Engine/Core-Threads/Ezer_ThreadServer.html#methodisAlive">Ezer_ThreadServer::isAlive()</a></span><br>
 													<span class="method-name"><a href="../../Engine/Core-Threads/Ezer_ThreadServer.html#methodkick">Ezer_ThreadServer::kick()</a></span><br>
 													<span class="method-name"><a href="../../Engine/Core-Threads/Ezer_ThreadServer.html#methodlistenToThreadClients">Ezer_ThreadServer::listenToThreadClients()</a></span><br>
+													<span class="method-name"><a href="../../Engine/Core-Threads/Ezer_ThreadServer.html#methodremoveThreadClient">Ezer_ThreadServer::removeThreadClient()</a></span><br>
 													<span class="method-name"><a href="../../Engine/Core-Threads/Ezer_ThreadServer.html#methodrun">Ezer_ThreadServer::run()</a></span><br>
 													<span class="method-name"><a href="../../Engine/Core-Threads/Ezer_ThreadServer.html#methodtaskDone">Ezer_ThreadServer::taskDone()</a></span><br>
+													<span class="method-name"><a href="../../Engine/Core-Threads/Ezer_ThreadServer.html#methodtaskFailed">Ezer_ThreadServer::taskFailed()</a></span><br>
+													<span class="method-name"><a href="../../Engine/Core-Threads/Ezer_ThreadServer.html#methodtaskProgressed">Ezer_ThreadServer::taskProgressed()</a></span><br>
 													<span class="method-name"><a href="../../Engine/Core-Threads/Ezer_ThreadServer.html#methodupdateTasks">Ezer_ThreadServer::updateTasks()</a></span><br>
 											</blockquote>
 										
@@ -419,7 +504,7 @@
 
 
 	<p class="notes" id="credit">
-		Documentation generated on Sun, 11 Oct 2009 13:40:04 +0300 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+		Documentation generated on Mon, 12 Oct 2009 01:30:33 +0300 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
 	</p>
 	</div></body>
 </html>
