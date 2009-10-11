@@ -36,6 +36,8 @@ abstract class Ezer_ThreadServer
 	private $sleep_time;
 	protected $tasks;
 	
+	protected abstract function taskProgressed($task, $percent);
+	protected abstract function taskFailed($task, $err);
 	
 	/**
 	 * Generates array list of tasks to send to child processes.
@@ -156,7 +158,7 @@ abstract class Ezer_ThreadServer
 		
 		while ($this->isAlive())
 		{
-			if(!count($this->tasks))
+			if(!$task || !count($this->tasks))
 			{
 				$this->updateTasks();
 				if(is_array($this->tasks))
@@ -211,6 +213,14 @@ abstract class Ezer_ThreadServer
 	public function addThreadClient(Ezer_ThreadClient $client)
 	{
 		$this->thread_clients[$client->getPid()] = $client; 
+	}
+	
+	/**
+	 * Removes a single client process from the server
+	 */
+	protected function removeThreadClient(Ezer_ThreadClient $client)
+	{
+		unset($this->thread_clients[$client->getPid()]);
 	}
 }
 
