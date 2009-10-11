@@ -21,6 +21,7 @@
  */
 
 
+require_once dirname(__FILE__) . '/Ezer_Thread.php';
 
 /**
  * Purpose:     Represents a single process on the server
@@ -62,6 +63,27 @@ abstract class Ezer_ThreadClient extends Ezer_Thread
 		$this->status = Ezer_ThreadClient::STATUS_DONE;
 		
 		return $this->server->taskDone($this->current_task);
+	}
+	
+	public function kill()
+	{
+		return $this->server->removeThreadClient($this);
+	}
+	
+	public function progress($percent)
+	{
+		$this->progress = $percent;
+		
+		return $this->server->taskProgressed($this->current_task, $percent);
+	}
+	
+	public function failed($err)
+	{
+		$this->busy = false;
+		$this->progress = 0;
+		$this->status = Ezer_ThreadClient::STATUS_DONE;
+		
+		return $this->server->taskFailed($this->current_task, $err);
 	}
 	
 	public function request($task)

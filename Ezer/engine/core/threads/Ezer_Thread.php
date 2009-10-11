@@ -19,7 +19,7 @@
  */
 
 
-require_once 'Ezer_ThreadInstance.php';
+require_once 'Ezer_Process.php';
 
 
 /**
@@ -52,6 +52,21 @@ class Ezer_Thread
 								Ezer_Thread::STREAM_STD_ERR => array ('pipe', 'w')
 							);
 
+		if(!file_exists($php_exe))
+		{
+			echo "$php_exe not found\n";
+			exit;
+		}
+	
+		if(!file_exists($url))
+		{
+			echo "$url not found\n";
+//			$trace = debug_backtrace(false);
+//			foreach($trace as $tr)
+//				echo $tr['file'] . ': ' . $tr['line'] . ': ' . $tr['function'] . "\n";
+				
+			exit;
+		}
 		$this->pref = proc_open("$php_exe $url", $descriptor, $pipes, null);
 		if(!$this->pref)
 			return null;
