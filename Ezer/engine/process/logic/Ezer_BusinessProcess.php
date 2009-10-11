@@ -1,12 +1,5 @@
 <?php
-require_once dirname(__FILE__) . '/../case/Ezer_BusinessProcessInstance.php';
-require_once 'Ezer_Sequence.php';
-
 /**
- * Project:     PHP Ezer business process manager
- * File:        Ezer_BusinessProcess.php
- * Purpose:     Store in the memory the definitions of a business process
- * 
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
@@ -23,7 +16,14 @@ require_once 'Ezer_Sequence.php';
  *
  * For questions, help, comments, discussion, etc., please send
  * e-mail to tan-tan@simple.co.il
- *
+ */
+
+require_once dirname(__FILE__) . '/../case/Ezer_BusinessProcessInstance.php';
+require_once 'Ezer_Sequence.php';
+
+
+/**
+ * Purpose:     Store in the memory the definitions of a business process
  * @author Tan-Tan
  * @package Engine
  * @subpackage Process.Logic

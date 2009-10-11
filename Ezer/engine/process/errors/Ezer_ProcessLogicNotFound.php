@@ -1,8 +1,6 @@
 <?php
 
 /**
- * Project:     PHP Ezer business process manager
- * File:        Ezer_ProcessLogicNotFound.php
  * Purpose:     Thrown when an trying to start a case of unknown business process
  * 
  * This library is free software; you can redistribute it and/or
@@ -21,7 +19,12 @@
  *
  * For questions, help, comments, discussion, etc., please send
  * e-mail to tan-tan@simple.co.il
- *
+ */
+
+
+
+/**
+ * Purpose:     Thrown when an trying to start a case of unknown business process
  * @author Tan-Tan
  * @package Engine
  * @subpackage Process.Logic.errors

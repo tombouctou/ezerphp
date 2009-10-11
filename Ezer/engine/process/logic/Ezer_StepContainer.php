@@ -1,12 +1,5 @@
 <?php
-require_once dirname(__FILE__) . '/../case/Ezer_StepContainerInstance.php';
-require_once 'Ezer_Step.php';
-
 /**
- * Project:     PHP Ezer business process manager
- * File:        Ezer_StepContainer.php
- * Purpose:     Store in the memory the definitions of a steps container such as sequence, flow or scope
- * 
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
@@ -23,7 +16,15 @@ require_once 'Ezer_Step.php';
  *
  * For questions, help, comments, discussion, etc., please send
  * e-mail to tan-tan@simple.co.il
- *
+ */
+
+
+require_once dirname(__FILE__) . '/../case/Ezer_StepContainerInstance.php';
+require_once 'Ezer_Step.php';
+
+
+/**
+ * Purpose:     Store in the memory the definitions of a steps container such as sequence, flow or scope
  * @author Tan-Tan
  * @package Engine
  * @subpackage Process.Logic

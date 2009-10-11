@@ -1,12 +1,5 @@
 <?php
-require_once dirname(__FILE__) . '/../case/Ezer_StepInstance.php';
-require_once 'Ezer_Loadable.php';
-
 /**
- * Project:     PHP Ezer business process manager
- * File:        Ezer_Step.php
- * Purpose:     Store in the memory the definitions of a step
- * 
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
@@ -23,7 +16,15 @@ require_once 'Ezer_Loadable.php';
  *
  * For questions, help, comments, discussion, etc., please send
  * e-mail to tan-tan@simple.co.il
- *
+ */
+
+
+require_once dirname(__FILE__) . '/../case/Ezer_StepInstance.php';
+require_once 'Ezer_Loadable.php';
+
+
+/**
+ * Purpose:     Enum for join policies
  * @author Tan-Tan
  * @package Engine
  * @subpackage Process.Logic
@@ -35,6 +36,7 @@ class Ezer_StepJoinPolicy
 }
 
 /**
+ * Purpose:     Store in the memory the definitions of a step
  * @author Tan-Tan
  * @package Engine
  * @subpackage Process.Logic

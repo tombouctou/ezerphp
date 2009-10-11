@@ -1,10 +1,6 @@
 <?php
 
 /**
- * Project:     PHP Ezer business process manager
- * File:        Ezer_Activity.php
- * Purpose:     Is the base interface for all php activities
- * 
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
@@ -21,7 +17,12 @@
  *
  * For questions, help, comments, discussion, etc., please send
  * e-mail to tan-tan@simple.co.il
- *
+ */
+
+
+
+/**
+ * Purpose:     Is the base interface for all php activities
  * @author Tan-Tan
  * @package Engine
  * @subpackage Process.Case
@@ -32,6 +33,7 @@ interface Ezer_Activity
 }
 
 /**
+ * Purpose:     Is the base activity for activities that will be executed by the worker processes
  * @author Tan-Tan
  * @package Engine
  * @subpackage Process.Case
@@ -41,6 +43,7 @@ abstract class Ezer_AsynchronousActivity implements Ezer_Activity
 }
 
 /**
+ * Purpose:     Is the base activity for activities that will be executed by the server parent process
  * @author Tan-Tan
  * @package Engine
  * @subpackage Process.Case
