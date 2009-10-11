@@ -1,28 +1,25 @@
 <process name="HelloWorld">
 
-	<import>C:\My\Projects\Ezer\examples\simpleProcess\activities\SayActivity.php</import>
+	<import>C:\My\Projects\Ezer\examples\asyncProcess\activities\CountActivity.php</import>
 	
 	<variables>
 		<!-- type is not mandatory -->
-		<variable name="hello" type="string" />
-		<variable name="bye" />
+		<variable name="firstCount" />
+		<variable name="secondCount" />
+		<variable name="message" />
 	</variables>
 
 	<sequence name="main">
 	
-		<activity name="Hello World" class="SayActivity" args="hello" />
+		<activity name="First Count" class="CountActivity" args="firstCount" />
 		
-		<assign name="Assign">
-			<copy>
-				<from variable="hello"></from>
-				<to variable="bye"></to>
-			</copy>
-		</assign>
-
-		<activity name="Googbye" class="SayActivity">
+		<activity name="Second Count" class="CountActivity" args="secondCount" />
+		
+		<activity name="Message Count" class="CountActivity">
 			<args>
-				<arg>hello</arg>
-				<arg>bye</arg>
+				<arg>message</arg>
+				<arg>firstCount</arg>
+				<arg>secondCount</arg>
 			</args>
 		</activity>
 
