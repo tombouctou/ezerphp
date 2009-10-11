@@ -40,6 +40,31 @@ interface Ezer_Activity
  */
 abstract class Ezer_AsynchronousActivity implements Ezer_Activity
 {
+	private $args;
+	private $worker = null;
+
+	public function serArgs(array $args)
+	{
+		$this->args = $args;
+	}
+	
+	protected function progress($percent)
+	{
+		if($this->worker)
+			$this->worker->progress($percent);
+	}
+	
+	protected function log($text)
+	{
+		if($this->worker)
+			$this->worker->log($text);
+	}
+	
+	public function executeOnWorker(Ezer_BusinessProcessHandler $process_worker)
+	{
+		$this->worker = $process_worker;
+		$this->execute($this->args);
+	}
 }
 
 /**
@@ -49,6 +74,50 @@ abstract class Ezer_AsynchronousActivity implements Ezer_Activity
  * @subpackage Process.Case
  */
 abstract class Ezer_SynchronousActivity implements Ezer_Activity
+{
+}
+
+/**
+ * Purpose:     Is the base activity for activities that uses the DB resource
+ * Created to enable control on the number of concurrent activities that uses the same resource
+ * @author Tan-Tan
+ * @package Engine
+ * @subpackage Process.Case
+ */
+abstract class Ezer_DbActivity extends Ezer_AsynchronousActivity
+{
+}
+
+/**
+ * Purpose:     Is the base activity for activities that uses the File System resource
+ * Created to enable control on the number of concurrent activities that uses the same resource
+ * @author Tan-Tan
+ * @package Engine
+ * @subpackage Process.Case
+ */
+abstract class Ezer_FileSystemActivity extends Ezer_AsynchronousActivity
+{
+}
+
+/**
+ * Purpose:     Is the base activity for activities that uses the Network resource
+ * Created to enable control on the number of concurrent activities that uses the same resource
+ * @author Tan-Tan
+ * @package Engine
+ * @subpackage Process.Case
+ */
+abstract class Ezer_NetworkActivity extends Ezer_AsynchronousActivity
+{
+}
+
+/**
+ * Purpose:     Is the base activity for activities that uses the CPU resource
+ * Created to enable control on the number of concurrent activities that uses the same resource
+ * @author Tan-Tan
+ * @package Engine
+ * @subpackage Process.Case
+ */
+abstract class Ezer_CpuActivity extends Ezer_AsynchronousActivity
 {
 }
 
