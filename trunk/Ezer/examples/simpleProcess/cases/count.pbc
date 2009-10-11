@@ -1,0 +1,8 @@
+<process identifier="HelloWorld">
+	<variables>
+		<variable name="firstCount" value="2" />
+		<variable name="secondCount" value="5" />
+		<variable name="message" value="Counting bla bla bla" />
+	</variables>
+</process>
+
