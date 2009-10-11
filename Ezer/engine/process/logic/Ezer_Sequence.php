@@ -30,9 +30,9 @@ require_once 'Ezer_StepContainer.php';
  */
 class Ezer_Sequence extends Ezer_StepContainer
 {
-	public function createInstance(Ezer_BusinessProcessInstance $process_instance)
+	public function &createInstance(Ezer_ScopeInstance &$scope_instance)
 	{
-		return new Ezer_SequenceInstance($process_instance, $this);
+		return new Ezer_SequenceInstance($scope_instance, $this);
 	}
 	
 	public function add(Ezer_Step $step)

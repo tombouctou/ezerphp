@@ -65,7 +65,7 @@ class Ezer_XmlLogicPersistance implements Ezer_ProcessLogicPersistance
 		
 		while (false !== ($entry = $dir->read())) 
 		{
-			if($entry == '.' || $entry == '..')
+			if($entry == '.' || $entry == '..' || $entry == '.svn')
 				continue;
 
 			if(is_dir("$path/$entry"))
