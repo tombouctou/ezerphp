@@ -19,7 +19,7 @@
  */
 
 require_once dirname(__FILE__) . '/../case/Ezer_BusinessProcessInstance.php';
-require_once 'Ezer_Sequence.php';
+require_once 'Ezer_Scope.php';
 
 
 /**
@@ -28,20 +28,21 @@ require_once 'Ezer_Sequence.php';
  * @package Engine
  * @subpackage Process.Logic
  */
-class Ezer_BusinessProcess extends Ezer_Loadable
+class Ezer_BusinessProcess extends Ezer_Scope
 {
-	public $id;
-	
-	protected $sequence;
-	protected $name;
-	protected $variables;
+	private $imports = array();
 
 	public function __set($name, $value) 
 	{
 		switch($name)
 		{
 			case 'import':
+				$this->imports[] = $value;
 				require_once $value;
+				break;
+				
+			case 'sequence':
+				$this->steps[] = $value;
 				break;
 				
 			default:
@@ -54,8 +55,13 @@ class Ezer_BusinessProcess extends Ezer_Loadable
 	{
 		$this->id = $id;
 	}
+
+	public function &createInstance(Ezer_ScopeInstance &$scope_instance)
+	{
+		throw new Exception("createBusinessProcessInstance should be used for business process");
+	}
 	
-	public function createInstance(array $variables)
+	public function &createBusinessProcessInstance(array $variables)
 	{
 		return new Ezer_BusinessProcessInstance($variables, $this);
 	}
@@ -65,9 +71,9 @@ class Ezer_BusinessProcess extends Ezer_Loadable
 		return $this->name;
 	}
 	
-	public function getSequence()
+	public function getImports()
 	{
-		return $this->sequence;
+		return $this->imports;
 	}
 }
 

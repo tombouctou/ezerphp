@@ -78,9 +78,9 @@ class Ezer_AssignStep extends Ezer_Step
 	{
 	}
 	
-	public function createInstance(Ezer_BusinessProcessInstance $process_instance)
+	public function &createInstance(Ezer_ScopeInstance &$scope_instance)
 	{
-		return new Ezer_AssignStepInstance($process_instance, $this);
+		return new Ezer_AssignStepInstance($scope_instance, $this);
 	}
 }
 
