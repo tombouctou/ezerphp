@@ -29,6 +29,10 @@ require_once 'Ezer_Sequence.php';
 require_once 'Ezer_Variable.php';
 
 
+require_once 'errors/Ezer_XmlPersistanceElementNotMappedException.php';
+require_once 'errors/Ezer_XmlPersistanceMissingAttributeException.php';
+require_once 'errors/Ezer_XmlPersistanceMissingClassException.php';
+
 /**
  * Purpose:     Load business process definitions from xml file
  * @author Tan-Tan
