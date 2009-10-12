@@ -96,10 +96,6 @@
 				</div>
 																<div class="var-title">
 					<span class="var-type">mixed</span>
-					<a href="#$debug" title="details" class="var-name">$debug</a>
-				</div>
-																<div class="var-title">
-					<span class="var-type">mixed</span>
 					<a href="#$flowed_in" title="details" class="var-name">$flowed_in</a>
 				</div>
 																<div class="var-title">
@@ -108,7 +104,11 @@
 				</div>
 																<div class="var-title">
 					<span class="var-type">mixed</span>
-					<a href="#$process_instance" title="details" class="var-name">$process_instance</a>
+					<a href="#$progress" title="details" class="var-name">$progress</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$scope_instance" title="details" class="var-name">$scope_instance</a>
 				</div>
 																<div class="var-title">
 					<span class="var-type">mixed</span>
@@ -135,11 +135,11 @@
 		</div>
 		<div class="info-box-body">			
 			<div class="method-summary">
-																																																																																												
+																																																																																																																																				
 												<div class="method-definition">
 											<span class="method-result">Ezer_StepInstance</span>
 										<a href="#__construct" title="details" class="method-name">__construct</a>
-											(<span class="var-type"><a href="../../Engine/Process-Case/Ezer_BusinessProcessInstance.html">Ezer_BusinessProcessInstance</a></span>&nbsp;<span class="var-name">&$process_instance</span>, <span class="var-type"><a href="../../Engine/Process-Logic/Ezer_Step.html">Ezer_Step</a></span>&nbsp;<span class="var-name">$step</span>)
+											(<span class="var-type"><a href="../../Engine/Process-Case/Ezer_StepContainerInstance.html">Ezer_StepContainerInstance</a></span>&nbsp;<span class="var-name">&$scope_instance</span>, <span class="var-type"><a href="../../Engine/Process-Logic/Ezer_Step.html">Ezer_Step</a></span>&nbsp;<span class="var-name">$step</span>)
 									</div>
 																<div class="method-definition">
 											<span class="method-result">void</span>
@@ -148,8 +148,23 @@
 									</div>
 																<div class="method-definition">
 											<span class="method-result">void</span>
+										<a href="#failed" title="details" class="method-name">failed</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$err</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
 										<a href="#flow" title="details" class="method-name">flow</a>
 											([<span class="var-type"></span>&nbsp;<span class="var-name">$step_id</span> = <span class="var-default">null</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#getName" title="details" class="method-name">getName</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#getProgress" title="details" class="method-name">getProgress</a>
+										()
 									</div>
 																<div class="method-definition">
 											<span class="method-result">void</span>
@@ -159,6 +174,11 @@
 																<div class="method-definition">
 											<span class="method-result">void</span>
 										<a href="#getStepId" title="details" class="method-name">getStepId</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#getWorkerAndStart" title="details" class="method-name">getWorkerAndStart</a>
 										()
 									</div>
 																<div class="method-definition">
@@ -180,6 +200,11 @@
 											<span class="method-result">void</span>
 										<a href="#retry" title="details" class="method-name">retry</a>
 										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setProgress" title="details" class="method-name">setProgress</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$percent</span>)
 									</div>
 																<div class="method-definition">
 											<span class="method-result">void</span>
@@ -210,7 +235,7 @@
 					</div>
 		<div class="info-box-body">
 			<a name="var$attempts" id="$attempts"><!-- --></A>
-<div class="evenrow">
+<div class="oddrow">
 
 	<div class="var-header">
 		<span class="var-title">
@@ -223,27 +248,6 @@
 	<!-- ========== Info from phpDoc block ========= -->
 	<ul class="tags">
 				<li><span class="field">access:</span> protected</li>
-			</ul>
-	
-	
-		
-		
-
-</div>
-<a name="var$debug" id="$debug"><!-- --></A>
-<div class="oddrow">
-
-	<div class="var-header">
-		<span class="var-title">
-			<span class="var-type">mixed</span>
-			<span class="var-name">$debug</span>
-			 = <span class="var-default"> 0</span>			(line <span class="line-number">47</span>)
-		</span>
-	</div>
-
-	<!-- ========== Info from phpDoc block ========= -->
-	<ul class="tags">
-				<li><span class="field">access:</span> public</li>
 			</ul>
 	
 	
@@ -293,13 +297,34 @@
 		
 
 </div>
-<a name="var$process_instance" id="$process_instance"><!-- --></A>
+<a name="var$progress" id="$progress"><!-- --></A>
 <div class="evenrow">
 
 	<div class="var-header">
 		<span class="var-title">
 			<span class="var-type">mixed</span>
-			<span class="var-name">$process_instance</span>
+			<span class="var-name">$progress</span>
+			 = <span class="var-default"> 0</span>			(line <span class="line-number">47</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$scope_instance" id="$scope_instance"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$scope_instance</span>
 						(line <span class="line-number">48</span>)
 		</span>
 	</div>
@@ -315,7 +340,7 @@
 
 </div>
 <a name="var$status" id="$status"><!-- --></A>
-<div class="oddrow">
+<div class="evenrow">
 
 	<div class="var-header">
 		<span class="var-title">
@@ -336,7 +361,7 @@
 
 </div>
 <a name="var$step" id="$step"><!-- --></A>
-<div class="evenrow">
+<div class="oddrow">
 
 	<div class="var-header">
 		<span class="var-title">
@@ -374,10 +399,10 @@
 			<A NAME='method_detail'></A>
 
 <a name="method__construct" id="__construct"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">Constructor __construct</span> (line <span class="line-number">57</span>)
+		<span class="method-title">Constructor __construct</span> (line <span class="line-number">62</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -390,13 +415,13 @@
 		<span class="method-name">
 			__construct
 		</span>
-					(<span class="var-type"><a href="../../Engine/Process-Case/Ezer_BusinessProcessInstance.html">Ezer_BusinessProcessInstance</a></span>&nbsp;<span class="var-name">&$process_instance</span>, <span class="var-type"><a href="../../Engine/Process-Logic/Ezer_Step.html">Ezer_Step</a></span>&nbsp;<span class="var-name">$step</span>)
+					(<span class="var-type"><a href="../../Engine/Process-Case/Ezer_StepContainerInstance.html">Ezer_StepContainerInstance</a></span>&nbsp;<span class="var-name">&$scope_instance</span>, <span class="var-type"><a href="../../Engine/Process-Logic/Ezer_Step.html">Ezer_Step</a></span>&nbsp;<span class="var-name">$step</span>)
 			</div>
 	
 			<ul class="parameters">
 					<li>
-				<span class="var-type"><a href="../../Engine/Process-Case/Ezer_BusinessProcessInstance.html">Ezer_BusinessProcessInstance</a></span>
-				<span class="var-name">&$process_instance</span>			</li>
+				<span class="var-type"><a href="../../Engine/Process-Case/Ezer_StepContainerInstance.html">Ezer_StepContainerInstance</a></span>
+				<span class="var-name">&$scope_instance</span>			</li>
 					<li>
 				<span class="var-type"><a href="../../Engine/Process-Logic/Ezer_Step.html">Ezer_Step</a></span>
 				<span class="var-name">$step</span>			</li>
@@ -416,15 +441,21 @@
 				<a href="../../Engine/Process-Case/Ezer_StepContainerInstance.html#method__construct">Ezer_StepContainerInstance::__construct()</a>
 							</li>
 					<li>
+				<a href="../../Engine/Process-Case/Ezer_ScopeInstance.html#method__construct">Ezer_ScopeInstance::__construct()</a>
+							</li>
+					<li>
+				<a href="../../Engine/Process-Case/Ezer_BusinessProcessInstance.html#method__construct">Ezer_BusinessProcessInstance::__construct()</a>
+							</li>
+					<li>
 				<a href="../../Engine/Process-Case/Ezer_SequenceInstance.html#method__construct">Ezer_SequenceInstance::__construct()</a>
 							</li>
 				</ul>
 	</div>
 <a name="methoddone" id="done"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">done</span> (line <span class="line-number">138</span>)
+		<span class="method-title">done</span> (line <span class="line-number">172</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -443,11 +474,39 @@
 		
 			
 	</div>
+<a name="methodfailed" id="failed"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">failed</span> (line <span class="line-number">166</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			failed
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$err</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$err</span>			</li>
+				</ul>
+		
+			
+	</div>
 <a name="methodflow" id="flow"><!-- --></a>
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">flow</span> (line <span class="line-number">77</span>)
+		<span class="method-title">flow</span> (line <span class="line-number">84</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -471,11 +530,57 @@
 		
 			
 	</div>
+<a name="methodgetName" id="getName"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getName</span> (line <span class="line-number">161</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getName
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetProgress" id="getProgress"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getProgress</span> (line <span class="line-number">121</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getProgress
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
 <a name="methodgetStatus" id="getStatus"><!-- --></a>
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">getStatus</span> (line <span class="line-number">67</span>)
+		<span class="method-title">getStatus</span> (line <span class="line-number">74</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -498,7 +603,7 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">getStepId</span> (line <span class="line-number">72</span>)
+		<span class="method-title">getStepId</span> (line <span class="line-number">79</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -517,11 +622,41 @@
 		
 			
 	</div>
-<a name="methodisAvailable" id="isAvailable"><!-- --></a>
+<a name="methodgetWorkerAndStart" id="getWorkerAndStart"><!-- --></a>
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">isAvailable</span> (line <span class="line-number">109</span>)
+		<span class="method-title">getWorkerAndStart</span> (line <span class="line-number">57</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getWorkerAndStart
+		</span>
+				()
+			</div>
+	
+		
+			
+			<hr class="separator" />
+		<div class="notes">Redefined in descendants as:</div>
+		<ul class="redefinitions">
+					<li>
+				<a href="../../Engine/Process-Case/Ezer_ActivityStepInstance.html#methodgetWorkerAndStart">Ezer_ActivityStepInstance::getWorkerAndStart()</a>
+							</li>
+				</ul>
+	</div>
+<a name="methodisAvailable" id="isAvailable"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">isAvailable</span> (line <span class="line-number">132</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -543,15 +678,18 @@
 		<div class="notes">Redefined in descendants as:</div>
 		<ul class="redefinitions">
 					<li>
+				<a href="../../Engine/Process-Case/Ezer_ScopeInstance.html#methodisAvailable">Ezer_ScopeInstance::isAvailable()</a>
+							</li>
+					<li>
 				<a href="../../Engine/Process-Case/Ezer_SequenceInstance.html#methodisAvailable">Ezer_SequenceInstance::isAvailable()</a>
 							</li>
 				</ul>
 	</div>
 <a name="methodisDone" id="isDone"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">isDone</span> (line <span class="line-number">119</span>)
+		<span class="method-title">isDone</span> (line <span class="line-number">142</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -569,12 +707,19 @@
 	
 		
 			
+			<hr class="separator" />
+		<div class="notes">Redefined in descendants as:</div>
+		<ul class="redefinitions">
+					<li>
+				<a href="../../Engine/Process-Case/Ezer_ScopeInstance.html#methodisDone">Ezer_ScopeInstance::isDone()</a>
+							</li>
+				</ul>
 	</div>
 <a name="methodisStarted" id="isStarted"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">isStarted</span> (line <span class="line-number">114</span>)
+		<span class="method-title">isStarted</span> (line <span class="line-number">137</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -594,10 +739,10 @@
 			
 	</div>
 <a name="methodretry" id="retry"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">retry</span> (line <span class="line-number">101</span>)
+		<span class="method-title">retry</span> (line <span class="line-number">113</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -613,6 +758,34 @@
 				()
 			</div>
 	
+		
+			
+	</div>
+<a name="methodsetProgress" id="setProgress"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">setProgress</span> (line <span class="line-number">126</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setProgress
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$percent</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$percent</span>			</li>
+				</ul>
 		
 			
 	</div>
@@ -657,7 +830,7 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">start</span> (line <span class="line-number">124</span>)
+		<span class="method-title">start</span> (line <span class="line-number">147</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -698,7 +871,7 @@
 
 
 	<p class="notes" id="credit">
-		Documentation generated on Sun, 11 Oct 2009 13:40:09 +0300 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+		Documentation generated on Mon, 12 Oct 2009 01:30:42 +0300 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
 	</p>
 	</div></body>
 </html>
