@@ -6,20 +6,30 @@
 		<!-- type is not mandatory -->
 		<variable name="firstCount" />
 		<variable name="secondCount" />
-		<variable name="message" />
+		<variable name="message1" />
+		<variable name="message2" />
+		<variable name="message3" />
 	</variables>
 
 	<sequence name="main">
 	
-		<activity name="First Count" class="CountActivity" args="firstCount" />
+		<activity name="First Count" class="CountActivity">
+			<args>
+				<arg>message1</arg>
+				<arg>firstCount</arg>
+			</args>
+		</activity>
 		
-		<activity name="Second Count" class="CountActivity" args="secondCount" />
+		<activity name="Second Count" class="CountActivity">
+			<args>
+				<arg>message2</arg>
+				<arg>firstCount</arg>
+			</args>
+		</activity>
 		
 		<activity name="Message Count" class="CountActivity">
 			<args>
-				<arg>message</arg>
-				<arg>firstCount</arg>
-				<arg>secondCount</arg>
+				<arg>message3</arg>
 			</args>
 		</activity>
 
