@@ -30,7 +30,7 @@ require_once 'Ezer_StepInstance.php';
  */
 class Ezer_StepContainerInstance extends Ezer_StepInstance
 {
-	public $step_instances;
+	public $step_instances = array();
 	
 	public function __construct(Ezer_ScopeInstance &$scope_instance, Ezer_StepContainer $step_container)
 	{

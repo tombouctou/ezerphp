@@ -28,16 +28,11 @@ require_once 'Ezer_ScopeInstance.php';
  * @package Engine
  * @subpackage Process.Case
  */
-class Ezer_SequenceInstance extends Ezer_StepContainerInstance
+class Ezer_ElseInstance extends Ezer_StepContainerInstance
 {
-	public function __construct(Ezer_ScopeInstance &$scope_instance, Ezer_Sequence $sequence)
+	public function __construct(Ezer_ScopeInstance &$scope_instance, Ezer_Else $else)
 	{
-		parent::__construct($scope_instance, $sequence);
-	}
-	
-	public function start()
-	{
-		parent::start();
+		parent::__construct($scope_instance, $else);
 	}
 	
 	public function isAvailable()
@@ -45,24 +40,16 @@ class Ezer_SequenceInstance extends Ezer_StepContainerInstance
 		if(!parent::isStarted())
 			return parent::isAvailable();
 			
-		foreach($this->step_instances as $index => $step_instance)
+		if(!count($this->step_instances))
 		{
-			if(!$step_instance->isDone())
-				break;
-				
-//			echo get_class($step_instance) . "(" . $step_instance->getName() . ") is done\n";
-			$index++;
-			if(count($this->step_instances) <= $index)
-			{
-				$this->done();
-			}
-			else
-			{
-				$next_step = &$this->step_instances[$index];
-				$next_step->flow($step_instance->getStepId());
-			}
+			$this->done();
+			return false;
 		}
 		
+		$step_instance = $this->step_instances[0];
+		if($step_instance->isDone())
+			$this->done();
+				
 		return false;
 	}
 }
