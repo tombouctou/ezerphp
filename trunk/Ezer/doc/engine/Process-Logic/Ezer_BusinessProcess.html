@@ -16,7 +16,7 @@
 	<div class="info-box-title">Description</div>
 	<div class="nav-bar">
 					<span class="disabled">Description</span> |
-													<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+													<a href="#sec-vars">Vars</a>
 						|											<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
 						
 					</div>
@@ -33,58 +33,33 @@
 				
 		<pre><a href="../../Engine/Process-Logic/Ezer_Loadable.html">Ezer_Loadable</a>
    |
-   --Ezer_BusinessProcess</pre>
+   --<a href="../../Engine/Process-Logic/Ezer_Step.html">Ezer_Step</a>
+      |
+      --<a href="../../Engine/Process-Logic/Ezer_StepContainer.html">Ezer_StepContainer</a>
+         |
+         --<a href="../../Engine/Process-Logic/Ezer_Scope.html">Ezer_Scope</a>
+            |
+            --Ezer_BusinessProcess</pre>
 	
 			</div>
 </div>
 
 
 
-	<a name="sec-var-summary"></a>
-	<div class="info-box">
-		<div class="info-box-title">Variable Summary</span></div>
-		<div class="nav-bar">
-			<a href="#sec-description">Description</a> |
-						<span class="disabled">Vars</span> (<a href="#sec-vars">details</a>)
-							| 
-									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
-							
-								</div>
-		<div class="info-box-body">
-			<div class="var-summary">
-																																																<div class="var-title">
-					<span class="var-type">mixed</span>
-					<a href="#$id" title="details" class="var-name">$id</a>
-				</div>
-																<div class="var-title">
-					<span class="var-type">mixed</span>
-					<a href="#$name" title="details" class="var-name">$name</a>
-				</div>
-																<div class="var-title">
-					<span class="var-type">mixed</span>
-					<a href="#$sequence" title="details" class="var-name">$sequence</a>
-				</div>
-																<div class="var-title">
-					<span class="var-type">mixed</span>
-					<a href="#$variables" title="details" class="var-name">$variables</a>
-				</div>
-											</div>
-		</div>
-	</div>
 
 	<a name="sec-method-summary"></a>
 	<div class="info-box">
 		<div class="info-box-title">Method Summary</span></div>
 		<div class="nav-bar">
 			<a href="#sec-description">Description</a> |
-																		<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+																		<a href="#sec-vars">Vars</a>
 				 
 				|
 						<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
 		</div>
 		<div class="info-box-body">			
 			<div class="method-summary">
-																																												
+																																																				
 												<div class="method-definition">
 											<span class="method-result">Ezer_BusinessProcess</span>
 										<a href="#__construct" title="details" class="method-name">__construct</a>
@@ -92,17 +67,22 @@
 									</div>
 																<div class="method-definition">
 											<span class="method-result">void</span>
-										<a href="#createInstance" title="details" class="method-name">createInstance</a>
+										<a href="#createBusinessProcessInstance" title="details" class="method-name">&amp;createBusinessProcessInstance</a>
 											(<span class="var-type"></span>&nbsp;<span class="var-name">$variables</span>)
 									</div>
 																<div class="method-definition">
 											<span class="method-result">void</span>
-										<a href="#getName" title="details" class="method-name">getName</a>
+										<a href="#createInstance" title="details" class="method-name">&amp;createInstance</a>
+											(<span class="var-type"><a href="../../Engine/Process-Case/Ezer_ScopeInstance.html">Ezer_ScopeInstance</a></span>&nbsp;<span class="var-name">&$scope_instance</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#getImports" title="details" class="method-name">getImports</a>
 										()
 									</div>
 																<div class="method-definition">
 											<span class="method-result">void</span>
-										<a href="#getSequence" title="details" class="method-name">getSequence</a>
+										<a href="#getName" title="details" class="method-name">getName</a>
 										()
 									</div>
 																<div class="method-definition">
@@ -127,91 +107,42 @@
 							
 					</div>
 		<div class="info-box-body">
-			<a name="var$id" id="$id"><!-- --></A>
-<div class="evenrow">
-
-	<div class="var-header">
-		<span class="var-title">
-			<span class="var-type">mixed</span>
-			<span class="var-name">$id</span>
-						(line <span class="line-number">33</span>)
-		</span>
-	</div>
-
-	<!-- ========== Info from phpDoc block ========= -->
-	<ul class="tags">
-				<li><span class="field">access:</span> public</li>
-			</ul>
-	
-	
-		
-		
-
-</div>
-<a name="var$name" id="$name"><!-- --></A>
-<div class="oddrow">
-
-	<div class="var-header">
-		<span class="var-title">
-			<span class="var-type">mixed</span>
-			<span class="var-name">$name</span>
-						(line <span class="line-number">36</span>)
-		</span>
-	</div>
-
-	<!-- ========== Info from phpDoc block ========= -->
-	<ul class="tags">
-				<li><span class="field">access:</span> protected</li>
-			</ul>
-	
-	
-		
-		
-
-</div>
-<a name="var$sequence" id="$sequence"><!-- --></A>
-<div class="evenrow">
-
-	<div class="var-header">
-		<span class="var-title">
-			<span class="var-type">mixed</span>
-			<span class="var-name">$sequence</span>
-						(line <span class="line-number">35</span>)
-		</span>
-	</div>
-
-	<!-- ========== Info from phpDoc block ========= -->
-	<ul class="tags">
-				<li><span class="field">access:</span> protected</li>
-			</ul>
-	
-	
-		
-		
-
-</div>
-<a name="var$variables" id="$variables"><!-- --></A>
-<div class="oddrow">
-
-	<div class="var-header">
-		<span class="var-title">
-			<span class="var-type">mixed</span>
-			<span class="var-name">$variables</span>
-						(line <span class="line-number">37</span>)
-		</span>
-	</div>
-
-	<!-- ========== Info from phpDoc block ========= -->
-	<ul class="tags">
-				<li><span class="field">access:</span> protected</li>
-			</ul>
-	
-	
-		
-		
-
-</div>
-						
+										<h4>Inherited Variables</h4>
+				<A NAME='inherited_vars'><!-- --></A>
+									<p>Inherited from <span class="classname"><a href="../../Engine/Process-Logic/Ezer_Scope.html">Ezer_Scope</a></span></p>
+					<blockquote>
+													<span class="var-title">
+								<span class="var-name"><a href="../../Engine/Process-Logic/Ezer_Scope.html#var$variables">Ezer_Scope::$variables</a></span><br>
+							</span>
+											</blockquote> 
+									<p>Inherited from <span class="classname"><a href="../../Engine/Process-Logic/Ezer_StepContainer.html">Ezer_StepContainer</a></span></p>
+					<blockquote>
+													<span class="var-title">
+								<span class="var-name"><a href="../../Engine/Process-Logic/Ezer_StepContainer.html#var$steps">Ezer_StepContainer::$steps</a></span><br>
+							</span>
+											</blockquote> 
+									<p>Inherited from <span class="classname"><a href="../../Engine/Process-Logic/Ezer_Step.html">Ezer_Step</a></span></p>
+					<blockquote>
+													<span class="var-title">
+								<span class="var-name"><a href="../../Engine/Process-Logic/Ezer_Step.html#var$id">Ezer_Step::$id</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../../Engine/Process-Logic/Ezer_Step.html#var$in_flows">Ezer_Step::$in_flows</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../../Engine/Process-Logic/Ezer_Step.html#var$join_policy">Ezer_Step::$join_policy</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../../Engine/Process-Logic/Ezer_Step.html#var$max_retries">Ezer_Step::$max_retries</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../../Engine/Process-Logic/Ezer_Step.html#var$name">Ezer_Step::$name</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../../Engine/Process-Logic/Ezer_Step.html#var$out_flows">Ezer_Step::$out_flows</a></span><br>
+							</span>
+											</blockquote> 
+										
 		</div>
 	</div>
 	
@@ -220,7 +151,7 @@
 		<div class="info-box-title">Methods</div>
 		<div class="nav-bar">
 			<a href="#sec-description">Description</a> |
-															<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+															<a href="#sec-vars">Vars</a>
 																	<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
 						
 		</div>
@@ -228,10 +159,10 @@
 			<A NAME='method_detail'></A>
 
 <a name="method__construct" id="__construct"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">Constructor __construct</span> (line <span class="line-number">53</span>)
+		<span class="method-title">Constructor __construct</span> (line <span class="line-number">54</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -253,13 +184,18 @@
 				<span class="var-name">$id</span>			</li>
 				</ul>
 		
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../../Engine/Process-Logic/Ezer_Scope.html#method__construct">Ezer_Scope::__construct()</a></dt>
+					</dl>
 			
 	</div>
-<a name="methodcreateInstance" id="createInstance"><!-- --></a>
-<div class="oddrow">
+<a name="methodcreateBusinessProcessInstance" id="createBusinessProcessInstance"><!-- --></a>
+<div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">createInstance</span> (line <span class="line-number">58</span>)
+		<span class="method-title">createBusinessProcessInstance</span> (line <span class="line-number">64</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -270,7 +206,7 @@
 	<div class="method-signature">
 		<span class="method-result">void</span>
 		<span class="method-name">
-			createInstance
+			&amp;createBusinessProcessInstance
 		</span>
 					(<span class="var-type"></span>&nbsp;<span class="var-name">$variables</span>)
 			</div>
@@ -283,11 +219,67 @@
 		
 			
 	</div>
-<a name="methodgetName" id="getName"><!-- --></a>
+<a name="methodcreateInstance" id="createInstance"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">createInstance</span> (line <span class="line-number">59</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			&amp;createInstance
+		</span>
+					(<span class="var-type"><a href="../../Engine/Process-Case/Ezer_ScopeInstance.html">Ezer_ScopeInstance</a></span>&nbsp;<span class="var-name">&$scope_instance</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../../Engine/Process-Case/Ezer_ScopeInstance.html">Ezer_ScopeInstance</a></span>
+				<span class="var-name">&$scope_instance</span>			</li>
+				</ul>
+		
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../../Engine/Process-Logic/Ezer_Scope.html#methodcreateInstance">Ezer_Scope::createInstance()</a></dt>
+					</dl>
+			
+	</div>
+<a name="methodgetImports" id="getImports"><!-- --></a>
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">getName</span> (line <span class="line-number">63</span>)
+		<span class="method-title">getImports</span> (line <span class="line-number">74</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getImports
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetName" id="getName"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getName</span> (line <span class="line-number">69</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -304,36 +296,18 @@
 			</div>
 	
 		
-			
-	</div>
-<a name="methodgetSequence" id="getSequence"><!-- --></a>
-<div class="oddrow">
-	
-	<div class="method-header">
-		<span class="method-title">getSequence</span> (line <span class="line-number">68</span>)
-	</div> 
-	
-	<!-- ========== Info from phpDoc block ========= -->
-	<ul class="tags">
-				<li><span class="field">access:</span> public</li>
-			</ul>
-	
-	<div class="method-signature">
-		<span class="method-result">void</span>
-		<span class="method-name">
-			getSequence
-		</span>
-				()
-			</div>
-	
-		
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../../Engine/Process-Logic/Ezer_Scope.html#methodgetName">Ezer_Scope::getName()</a></dt>
+					</dl>
 			
 	</div>
 <a name="method__set" id="__set"><!-- --></a>
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">__set</span> (line <span class="line-number">39</span>)
+		<span class="method-title">__set</span> (line <span class="line-number">35</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -368,6 +342,28 @@
 							<h4>Inherited Methods</h4>
 				<a name='inherited_methods'><!-- --></a>	
 									<!-- =========== Summary =========== -->
+					<p>Inherited From <span class="classname"><a href="../../Engine/Process-Logic/Ezer_Scope.html">Ezer_Scope</a></span></p>
+					<blockquote>
+													<span class="method-name"><a href="../../Engine/Process-Logic/Ezer_Scope.html#method__construct">Ezer_Scope::__construct()</a></span><br>
+													<span class="method-name"><a href="../../Engine/Process-Logic/Ezer_Scope.html#methodcreateInstance">Ezer_Scope::createInstance()</a></span><br>
+													<span class="method-name"><a href="../../Engine/Process-Logic/Ezer_Scope.html#methodcreateScopeInstance">Ezer_Scope::createScopeInstance()</a></span><br>
+													<span class="method-name"><a href="../../Engine/Process-Logic/Ezer_Scope.html#methodgetName">Ezer_Scope::getName()</a></span><br>
+											</blockquote>
+									<!-- =========== Summary =========== -->
+					<p>Inherited From <span class="classname"><a href="../../Engine/Process-Logic/Ezer_StepContainer.html">Ezer_StepContainer</a></span></p>
+					<blockquote>
+													<span class="method-name"><a href="../../Engine/Process-Logic/Ezer_StepContainer.html#methodadd">Ezer_StepContainer::add()</a></span><br>
+											</blockquote>
+									<!-- =========== Summary =========== -->
+					<p>Inherited From <span class="classname"><a href="../../Engine/Process-Logic/Ezer_Step.html">Ezer_Step</a></span></p>
+					<blockquote>
+													<span class="method-name"><a href="../../Engine/Process-Logic/Ezer_Step.html#method__construct">Ezer_Step::__construct()</a></span><br>
+													<span class="method-name"><a href="../../Engine/Process-Logic/Ezer_Step.html#methodcreateInstance">Ezer_Step::createInstance()</a></span><br>
+													<span class="method-name"><a href="../../Engine/Process-Logic/Ezer_Step.html#methodgetJoinPolicy">Ezer_Step::getJoinPolicy()</a></span><br>
+													<span class="method-name"><a href="../../Engine/Process-Logic/Ezer_Step.html#methodgetMaxRetries">Ezer_Step::getMaxRetries()</a></span><br>
+													<span class="method-name"><a href="../../Engine/Process-Logic/Ezer_Step.html#methodgetName">Ezer_Step::getName()</a></span><br>
+											</blockquote>
+									<!-- =========== Summary =========== -->
 					<p>Inherited From <span class="classname"><a href="../../Engine/Process-Logic/Ezer_Loadable.html">Ezer_Loadable</a></span></p>
 					<blockquote>
 													<span class="method-name"><a href="../../Engine/Process-Logic/Ezer_Loadable.html#methodvalidate">Ezer_Loadable::validate()</a></span><br>
@@ -379,7 +375,7 @@
 
 
 	<p class="notes" id="credit">
-		Documentation generated on Sun, 11 Oct 2009 13:40:06 +0300 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+		Documentation generated on Mon, 12 Oct 2009 01:30:35 +0300 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
 	</p>
 	</div></body>
 </html>
