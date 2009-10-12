@@ -77,6 +77,11 @@ abstract class Ezer_ThreadClient extends Ezer_Thread
 		return $this->server->taskProgressed($this->current_task, $percent);
 	}
 	
+	public function started()
+	{
+		return $this->server->asyncTaskStarted($this->current_task);
+	}
+	
 	public function failed($err)
 	{
 		$this->busy = false;
