@@ -56,6 +56,11 @@ abstract class Ezer_Step extends Ezer_Loadable
 	 */
 	protected $max_retries = 1;
 	
+	/**
+	 * @mandatory false
+	 */
+	protected $priority = 1;
+	
 	public $in_flows = array();
 	public $out_flows = array();
 	
@@ -79,6 +84,11 @@ abstract class Ezer_Step extends Ezer_Loadable
 	public function getJoinPolicy()
 	{
 		return $this->join_policy; 
+	}
+	
+	public function getPriority()
+	{
+		return $this->priority; 
 	}
 }
 

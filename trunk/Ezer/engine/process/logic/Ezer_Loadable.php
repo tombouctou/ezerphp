@@ -67,7 +67,6 @@ abstract class Ezer_Loadable
 		if(!preg_match_all('/\s*\* @(\w+) ([^\n\r]*)/', $comment, $matches))
 			return $annotations;
 		
-//		var_dump($matches);
 		foreach($matches[1] as $index => $match)
 		{
 			$value = $matches[2][$index];
