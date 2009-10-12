@@ -31,9 +31,10 @@ class Ezer_StepInstanceStatus
 {
 	const LOADED = 1;
 	const AVAILABLE = 2;
-	const STARTED = 3;
-	const DONE = 4;
-	const FAILED = 5;
+	const QUEUED = 3;
+	const STARTED = 4;
+	const DONE = 5;
+	const FAILED = 6;
 }
 
 /**
@@ -47,10 +48,10 @@ abstract class Ezer_StepInstance
 	protected $progress = 0;
 	protected $scope_instance;
 	protected $step;
-	protected $status;
 	protected $max_retries;
 	protected $attempts;
 	protected $flowed_in = array();
+	private $status;
 	
 	public abstract function shouldRunOnServer();
 
@@ -61,7 +62,6 @@ abstract class Ezer_StepInstance
 	
 	public function __construct(Ezer_StepContainerInstance &$scope_instance, Ezer_Step $step)
 	{
-		$this->status = Ezer_StepInstanceStatus::LOADED;
 		$this->max_retries = $step->getMaxRetries();
 		$this->attempts = 0;
 		$this->step = $step;
@@ -69,6 +69,25 @@ abstract class Ezer_StepInstance
 		
 		if($this !== $scope_instance)
 			$this->scope_instance->step_instances[] = &$this;
+			
+		$this->setStatus(Ezer_StepInstanceStatus::LOADED);
+	}
+	
+	public function queued()
+	{
+		$this->setStatus(Ezer_StepInstanceStatus::QUEUED);
+	}
+	
+	private function setStatus($status)
+	{
+//		if(get_class($this) == 'Ezer_SequenceInstance')
+//		{
+//			$trace = debug_backtrace(false);
+//			foreach($trace as $tr)
+//				echo $tr['file'] . ': ' . $tr['line'] . ': ' . $tr['function'] . "\n";
+//		}
+//		echo "status (" . get_class($this) . ", " . $this->getName() . ", $status)\n";
+		$this->status = $status;
 	}
 	
 	public function getStatus()
@@ -85,7 +104,7 @@ abstract class Ezer_StepInstance
 	{
 		if(is_null($step_id) && !count($this->step->in_flows))
 		{
-			$this->status = Ezer_StepInstanceStatus::AVAILABLE;
+			$this->setStatus(Ezer_StepInstanceStatus::AVAILABLE);
 			return true;
 		}
 
@@ -103,7 +122,7 @@ abstract class Ezer_StepInstance
 		if($this->step->getJoinPolicy() == Ezer_StepJoinPolicy::JOIN_OR || count($this->flowed_in) >= count($this->step->in_flows))
 		{
 //			echo get_class($this) . "(" . $this->getName() . ") is available\n";
-			$this->status = Ezer_StepInstanceStatus::AVAILABLE;
+			$this->setStatus(Ezer_StepInstanceStatus::AVAILABLE);
 			return true;
 		}
 		
@@ -113,9 +132,9 @@ abstract class Ezer_StepInstance
 	protected function retry()
 	{
 		if($this->attempts >= $this->max_retries)
-			$this->status = Ezer_StepInstanceStatus::FAILED;
+			$this->setStatus(Ezer_StepInstanceStatus::FAILED);
 		else
-			$this->status = Ezer_StepInstanceStatus::AVAILABLE;
+			$this->setStatus(Ezer_StepInstanceStatus::AVAILABLE);
 	}
 	
 	public function getProgress()
@@ -146,15 +165,12 @@ abstract class Ezer_StepInstance
 	
 	public function start()
 	{
-//		echo get_class($this) . " is started\n";
-//		if(get_class($this) == 'Ezer_SequenceInstance')
-//		{
-//			$trace = debug_backtrace(false);
-//			foreach($trace as $tr)
-//				echo $tr['file'] . ': ' . $tr['line'] . ': ' . $tr['function'] . "\n";
-//		}
-			
-		$this->status = Ezer_StepInstanceStatus::STARTED;
+		$this->started();
+	}
+	
+	public function started()
+	{
+		$this->setStatus(Ezer_StepInstanceStatus::STARTED);
 		$this->attempts++;
 	}
 	
@@ -163,15 +179,19 @@ abstract class Ezer_StepInstance
 		return $this->step->getName();
 	}
 	
+	public function getPriority()
+	{
+		return min(1, max(10, $this->step->getPriority())); 
+	}
+	
 	public function failed($err)
 	{
 //		echo get_class($this) . " failed($err)\n";
-		$this->status = Ezer_StepInstanceStatus::FAILED;
+		$this->setStatus(Ezer_StepInstanceStatus::FAILED);
 	}
 	
 	public function done()
 	{
-//		echo get_class($this) . "(" . $this->getName() . ") now done\n";
-		$this->status = Ezer_StepInstanceStatus::DONE;
+		$this->setStatus(Ezer_StepInstanceStatus::DONE);
 	}
 }
