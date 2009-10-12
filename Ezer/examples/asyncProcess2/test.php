@@ -13,8 +13,8 @@ $server = new Ezer_BusinessProcessServer(new Ezer_XmlLogicPersistance($config->l
 $server->addCasePersistance(new Ezer_XmlCasePersistance($config->casesPath));
 
 $server->addThreadClient(new Ezer_BusinessProcessClient($server, $config->phpExe));
-//$server->addThreadClient(new Ezer_BusinessProcessClient($config->phpExe));
-//$server->addThreadClient(new Ezer_BusinessProcessClient($config->phpExe));
+$server->addThreadClient(new Ezer_BusinessProcessClient($server, $config->phpExe));
+$server->addThreadClient(new Ezer_BusinessProcessClient($server, $config->phpExe));
 
 $server->run();
 ?>
