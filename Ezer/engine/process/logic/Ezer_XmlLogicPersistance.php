@@ -27,6 +27,7 @@ require_once 'Ezer_Array.php';
 require_once 'Ezer_AssignStep.php';
 require_once 'Ezer_Sequence.php';
 require_once 'Ezer_Variable.php';
+require_once 'Ezer_IfElse.php';
 
 
 require_once 'errors/Ezer_XmlPersistanceElementNotMappedException.php';
@@ -58,6 +59,10 @@ class Ezer_XmlLogicPersistance implements Ezer_ProcessLogicPersistance
 			'sequence' => Ezer_Sequence,
 			'variables' => Ezer_Array,
 			'variable' => Ezer_Variable,
+			'if' => Ezer_If,
+			'else' => Ezer_Else,
+			'elseifs' => Ezer_Array,
+			'elseif' => Ezer_If,
 		);
 		
 		$this->parseDir($path);
@@ -82,8 +87,6 @@ class Ezer_XmlLogicPersistance implements Ezer_ProcessLogicPersistance
 	
 	private function mapConfig(Ezer_Config $config)
 	{
-//		var_dump($config);
-//		exit;
 		if(!isset($this->xml_map[$config->entityName]))
 			throw new Ezer_XmlPersistanceElementNotMappedException($config->entityName);
 		
@@ -137,7 +140,6 @@ class Ezer_XmlLogicPersistance implements Ezer_ProcessLogicPersistance
 		$config = new Ezer_Config($file);
 		$process = $this->mapConfig($config);
 		$this->processes[$process->getName()] = $process;
-//		var_dump($this->processes);
 	}
 	
 	public function getProcesses()

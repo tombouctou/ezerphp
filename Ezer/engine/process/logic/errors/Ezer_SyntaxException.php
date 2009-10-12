@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -19,32 +20,18 @@
  */
 
 
-require_once dirname(__FILE__) . '/../case/Ezer_StepContainerInstance.php';
-require_once 'Ezer_Step.php';
-
 
 /**
- * Purpose:     Store in the memory the definitions of a steps container such as sequence, flow or scope
+ * Purpose:     Thrown when an unrecognized business process item tried to load
  * @author Tan-Tan
  * @package Engine
- * @subpackage Process.Logic
+ * @subpackage Process.Logic.errors
  */
-abstract class Ezer_StepContainer extends Ezer_Step
+class Ezer_SyntaxException extends Exception
 {
-	public $steps = array();
-	
-	public function __set($name, $value) 
+	public function __construct($massage)
 	{
-		if($value instanceof Ezer_Step)
-			$this->add($value);
-		else	
-			parent::__set($name, $value);
-	}
-	
-	public function add(Ezer_Step $step)
-	{
-		$this->steps[] = $step;
+		parent::__construct($massage, 0);
 	}
 }
-
 ?>
