@@ -24,7 +24,7 @@ class Ezer_BusinessProcessHandler extends Ezer_Process
 	
 	public function handle($command)
 	{
-		$this->log("handle($command)");
+//		$this->log("handle($command)");
 		
 		if($command == Ezer_BusinessProcessHandlerMessages::KILL)
 		{

@@ -114,6 +114,7 @@ class Ezer_BusinessProcessServer extends Ezer_SocketServer
 		$process_instance = &$this->process_instances[$task->process_instance_index];
 		$step_instance = &$process_instance->step_instances[$task->step_index];
 		
+//		echo "handle (" . get_class($step_instance) . ", " . $step_instance->getName() . ")\n";
 		if($step_instance->shouldRunOnServer())
 			return $this->handleSynchronousStep($task, $step_instance);
 				
@@ -143,11 +144,23 @@ class Ezer_BusinessProcessServer extends Ezer_SocketServer
 		$step_instance->setProgress($percent);
 	}
 	
+	public function asyncTaskStarted($task)
+	{
+		$process_instance = &$this->process_instances[$task->process_instance_index];
+		$step_instance = &$process_instance->step_instances[$task->step_index];
+		$step_instance->setProgress($percent);
+		
+		$step_instance->started();
+	}
+	
 	public function taskFailed($task, $err)
 	{
+		$process_instance = &$this->process_instances[$task->process_instance_index];
+		$step_instance = &$process_instance->step_instances[$task->step_index];
+		$step_instance->setProgress($percent);
+		
 		$step_instance->failed($err);
-		$name = $step_instance->getName();
-		echo "Step $name failed: $err\n";
+		echo "Step " . $step_instance->getName() . " failed: $err\n";
 	}
 	
 	public function taskDone($task)
@@ -159,7 +172,7 @@ class Ezer_BusinessProcessServer extends Ezer_SocketServer
 		if(!$step_instance->isDone())
 			$step_instance->done();
 		
-		$this->updateTasks();
+//		$this->updateTasks();
 	}
 	
 	protected function updateTasks()
@@ -177,40 +190,47 @@ class Ezer_BusinessProcessServer extends Ezer_SocketServer
 				
 				$process = $this->logic_processes[$case->process_identifier];
 				$process_instance = &$process->createBusinessProcessInstance($case->variables);
-				$this->process_instances[] = &$process_instance;
+				$this->process_instances[uniqid('case_')] = $process_instance;
 			}
 		}
 		
-		$steps_added = false;
+		$step_instances_added = false;
 		foreach($this->process_instances as $process_instance_index => $process_instance)
 		{
+//			echo "Check for steps $process_instance_index\n";
 			$steps_added_this_process = false;
-			foreach($process_instance->step_instances as $step_index => $step)
+			foreach($process_instance->step_instances as $step_instance_index => $step_instance)
 			{
-//				echo get_class($step) . "(" . $step->getName() . ") status: " . $step->getStatus() . "\n";
-				if(!$step->isAvailable())
+				if(!$step_instance->isAvailable())
 					continue;
 					
-				$steps_added = true;
-				$steps_added_this_process = true;
+				$step_instance->queued();
 				
-				$task = new Ezer_BusinessProcessServerTask($process_instance_index, $step_index);
-				$priority = time() * $step->priority;
+//				echo "Have steps $process_instance_index\n";
+				$step_instances_added = true;
+				$step_instances_added_this_process = true;
+				
+				$task = new Ezer_BusinessProcessServerTask($process_instance_index, $step_instance_index);
+				$priority = 'p_' . (microtime() * $step_instance->getPriority());
+//				echo "task ($priority, " . $step_instance->getName() . ")\n";
+				usleep(1);
 				$this->tasks[$priority] = $task;
+//				var_dump(count($this->tasks));
 			}
 			
-			if(!$steps_added_this_process && $process_instance->isDone())
+			if(!$step_instances_added_this_process && $process_instance->isDone())
 			{
 				echo "PROCESS IS DONE!!!\n";
 				unset($this->process_instances[$process_instance_index]);
 			}
 		}
 		
-		if($steps_added)
+		if($step_instances_added)
 		{
 //			echo "New Task Is Available!\n";
 			krsort($this->tasks);
 		}
+//		var_dump(count($this->tasks));
 	}
 	
 	protected function kick()

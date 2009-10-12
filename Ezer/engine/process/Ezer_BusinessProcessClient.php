@@ -107,7 +107,7 @@ class Ezer_BusinessProcessClient extends Ezer_ThreadClient
 				break;
 				
 			case STARTED:
-				echo "Async task started\n";
+				$this->started();
 				break;
 				
 			case LOG:
