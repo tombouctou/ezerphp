@@ -92,7 +92,7 @@
 								</div>
 		<div class="info-box-body">
 			<div class="var-summary">
-																																																																<div class="var-title">
+																																																																								<div class="var-title">
 					<span class="var-type">mixed</span>
 					<a href="#$id" title="details" class="var-name">$id</a>
 				</div>
@@ -116,6 +116,10 @@
 					<span class="var-type">mixed</span>
 					<a href="#$out_flows" title="details" class="var-name">$out_flows</a>
 				</div>
+																<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$priority" title="details" class="var-name">$priority</a>
+				</div>
 											</div>
 		</div>
 	</div>
@@ -133,7 +137,7 @@
 		</div>
 		<div class="info-box-body">			
 			<div class="method-summary">
-																																												
+																																																				
 												<div class="method-definition">
 											<span class="method-result">Ezer_Step</span>
 										<a href="#__construct" title="details" class="method-name">__construct</a>
@@ -157,6 +161,11 @@
 																<div class="method-definition">
 											<span class="method-result">void</span>
 										<a href="#getName" title="details" class="method-name">getName</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#getPriority" title="details" class="method-name">getPriority</a>
 										()
 									</div>
 								</div>
@@ -205,7 +214,7 @@
 		<span class="var-title">
 			<span class="var-type">mixed</span>
 			<span class="var-name">$in_flows</span>
-			 = <span class="var-default">array()</span>			(line <span class="line-number">59</span>)
+			 = <span class="var-default">array()</span>			(line <span class="line-number">64</span>)
 		</span>
 	</div>
 
@@ -279,6 +288,16 @@
 	
 	
 		
+			<hr class="separator" />
+		<div class="notes">Redefined in descendants as:</div>
+		<ul class="redefinitions">
+					<li>
+				<a href="../../Engine/Process-Logic/Ezer_Else.html#var$name">Ezer_Else::$name</a>
+							</li>
+					<li>
+				<a href="../../Engine/Process-Logic/Ezer_If.html#var$name">Ezer_If::$name</a>
+							</li>
+				</ul>
 		
 
 </div>
@@ -289,13 +308,34 @@
 		<span class="var-title">
 			<span class="var-type">mixed</span>
 			<span class="var-name">$out_flows</span>
-			 = <span class="var-default">array()</span>			(line <span class="line-number">60</span>)
+			 = <span class="var-default">array()</span>			(line <span class="line-number">65</span>)
 		</span>
 	</div>
 
 	<!-- ========== Info from phpDoc block ========= -->
 	<ul class="tags">
 				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$priority" id="$priority"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$priority</span>
+			 = <span class="var-default"> 1</span>			(line <span class="line-number">62</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
 			</ul>
 	
 	
@@ -321,10 +361,10 @@
 			<A NAME='method_detail'></A>
 
 <a name="method__construct" id="__construct"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">Constructor __construct</span> (line <span class="line-number">62</span>)
+		<span class="method-title">Constructor __construct</span> (line <span class="line-number">67</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -362,10 +402,10 @@
 				</ul>
 	</div>
 <a name="methodcreateInstance" id="createInstance"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">createInstance</span> (line <span class="line-number">67</span>)
+		<span class="method-title">createInstance</span> (line <span class="line-number">72</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -399,6 +439,12 @@
 				<a href="../../Engine/Process-Logic/Ezer_AssignStep.html#methodcreateInstance">Ezer_AssignStep::createInstance()</a>
 							</li>
 					<li>
+				<a href="../../Engine/Process-Logic/Ezer_Else.html#methodcreateInstance">Ezer_Else::createInstance()</a>
+							</li>
+					<li>
+				<a href="../../Engine/Process-Logic/Ezer_If.html#methodcreateInstance">Ezer_If::createInstance()</a>
+							</li>
+					<li>
 				<a href="../../Engine/Process-Logic/Ezer_Scope.html#methodcreateInstance">Ezer_Scope::createInstance()</a>
 							</li>
 					<li>
@@ -410,10 +456,10 @@
 				</ul>
 	</div>
 <a name="methodgetJoinPolicy" id="getJoinPolicy"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">getJoinPolicy</span> (line <span class="line-number">79</span>)
+		<span class="method-title">getJoinPolicy</span> (line <span class="line-number">84</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -433,10 +479,10 @@
 			
 	</div>
 <a name="methodgetMaxRetries" id="getMaxRetries"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">getMaxRetries</span> (line <span class="line-number">74</span>)
+		<span class="method-title">getMaxRetries</span> (line <span class="line-number">79</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -456,10 +502,10 @@
 			
 	</div>
 <a name="methodgetName" id="getName"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">getName</span> (line <span class="line-number">69</span>)
+		<span class="method-title">getName</span> (line <span class="line-number">74</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -488,6 +534,29 @@
 							</li>
 				</ul>
 	</div>
+<a name="methodgetPriority" id="getPriority"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getPriority</span> (line <span class="line-number">89</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getPriority
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
 							<h4>Inherited Methods</h4>
 				<a name='inherited_methods'><!-- --></a>	
 									<!-- =========== Summary =========== -->
@@ -502,7 +571,7 @@
 
 
 	<p class="notes" id="credit">
-		Documentation generated on Mon, 12 Oct 2009 01:30:41 +0300 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+		Documentation generated on Mon, 12 Oct 2009 21:20:55 +0300 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
 	</p>
 	</div></body>
 </html>
