@@ -27,7 +27,7 @@
 				<li><span class="field">author:</span> Tan-Tan</li>
 			</ul>
 		<p class="notes">
-			Located in <a class="field" href="_engine---process---Ezer_BusinessProcessServer.php.html">/engine/process/Ezer_BusinessProcessServer.php</a> (line <span class="field">50</span>)
+			Located in <a class="field" href="_engine---process---Ezer_BusinessProcessServer.php.html">/engine/process/Ezer_BusinessProcessServer.php</a> (line <span class="field">85</span>)
 		</p>
 		
 				
@@ -55,7 +55,7 @@
 		</div>
 		<div class="info-box-body">			
 			<div class="method-summary">
-																																																																																												
+																																																																																																																												
 												<div class="method-definition">
 											<span class="method-result">Ezer_BusinessProcessServer</span>
 										<a href="#__construct" title="details" class="method-name">__construct</a>
@@ -78,8 +78,18 @@
 									</div>
 																<div class="method-definition">
 											<span class="method-result">void</span>
+										<a href="#handleAsynchronousStep" title="details" class="method-name">handleAsynchronousStep</a>
+											(<span class="var-type"><a href="../../Engine/Process/Ezer_BusinessProcessServerTask.html">Ezer_BusinessProcessServerTask</a></span>&nbsp;<span class="var-name">$task</span>, <span class="var-type"><a href="../../Engine/Process-Case/Ezer_StepInstance.html">Ezer_StepInstance</a></span>&nbsp;<span class="var-name">$step_instance</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#handleSynchronousStep" title="details" class="method-name">handleSynchronousStep</a>
+											(<span class="var-type"><a href="../../Engine/Process/Ezer_BusinessProcessServerTask.html">Ezer_BusinessProcessServerTask</a></span>&nbsp;<span class="var-name">$task</span>, <span class="var-type"><a href="../../Engine/Process-Case/Ezer_StepInstance.html">Ezer_StepInstance</a></span>&nbsp;<span class="var-name">$step_instance</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
 										<a href="#handleTask" title="details" class="method-name">handleTask</a>
-											(<span class="var-type"><a href="../../Engine/Process/Ezer_BusinessProcessTask.html">Ezer_BusinessProcessTask</a></span>&nbsp;<span class="var-name">$task</span>)
+											(<span class="var-type"><a href="../../Engine/Process/Ezer_BusinessProcessServerTask.html">Ezer_BusinessProcessServerTask</a></span>&nbsp;<span class="var-name">$task</span>)
 									</div>
 																<div class="method-definition">
 											<span class="method-result">void</span>
@@ -100,6 +110,16 @@
 											<span class="method-result">void</span>
 										<a href="#taskDone" title="details" class="method-name">taskDone</a>
 											(<span class="var-type"></span>&nbsp;<span class="var-name">$task</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#taskFailed" title="details" class="method-name">taskFailed</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$task</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$err</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#taskProgressed" title="details" class="method-name">taskProgressed</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$task</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$percent</span>)
 									</div>
 																<div class="method-definition">
 											<span class="method-result">void</span>
@@ -153,10 +173,10 @@
 			<A NAME='method_detail'></A>
 
 <a name="method__construct" id="__construct"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">Constructor __construct</span> (line <span class="line-number">58</span>)
+		<span class="method-title">Constructor __construct</span> (line <span class="line-number">93</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -186,10 +206,10 @@
 			
 	</div>
 <a name="methodaddCasePersistance" id="addCasePersistance"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">addCasePersistance</span> (line <span class="line-number">66</span>)
+		<span class="method-title">addCasePersistance</span> (line <span class="line-number">101</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -214,10 +234,10 @@
 			
 	</div>
 <a name="methodaddThreadClient" id="addThreadClient"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">addThreadClient</span> (line <span class="line-number">148</span>)
+		<span class="method-title">addThreadClient</span> (line <span class="line-number">226</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -248,10 +268,10 @@
 			
 	</div>
 <a name="methodgetNewSocketClient" id="getNewSocketClient"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">getNewSocketClient</span> (line <span class="line-number">155</span>)
+		<span class="method-title">getNewSocketClient</span> (line <span class="line-number">233</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -280,11 +300,73 @@
 					</dl>
 			
 	</div>
-<a name="methodhandleTask" id="handleTask"><!-- --></a>
+<a name="methodhandleAsynchronousStep" id="handleAsynchronousStep"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">handleAsynchronousStep</span> (line <span class="line-number">123</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			handleAsynchronousStep
+		</span>
+					(<span class="var-type"><a href="../../Engine/Process/Ezer_BusinessProcessServerTask.html">Ezer_BusinessProcessServerTask</a></span>&nbsp;<span class="var-name">$task</span>, <span class="var-type"><a href="../../Engine/Process-Case/Ezer_StepInstance.html">Ezer_StepInstance</a></span>&nbsp;<span class="var-name">$step_instance</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../../Engine/Process/Ezer_BusinessProcessServerTask.html">Ezer_BusinessProcessServerTask</a></span>
+				<span class="var-name">$task</span>			</li>
+					<li>
+				<span class="var-type"><a href="../../Engine/Process-Case/Ezer_StepInstance.html">Ezer_StepInstance</a></span>
+				<span class="var-name">$step_instance</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodhandleSynchronousStep" id="handleSynchronousStep"><!-- --></a>
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">handleTask</span> (line <span class="line-number">76</span>)
+		<span class="method-title">handleSynchronousStep</span> (line <span class="line-number">130</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			handleSynchronousStep
+		</span>
+					(<span class="var-type"><a href="../../Engine/Process/Ezer_BusinessProcessServerTask.html">Ezer_BusinessProcessServerTask</a></span>&nbsp;<span class="var-name">$task</span>, <span class="var-type"><a href="../../Engine/Process-Case/Ezer_StepInstance.html">Ezer_StepInstance</a></span>&nbsp;<span class="var-name">$step_instance</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../../Engine/Process/Ezer_BusinessProcessServerTask.html">Ezer_BusinessProcessServerTask</a></span>
+				<span class="var-name">$task</span>			</li>
+					<li>
+				<span class="var-type"><a href="../../Engine/Process-Case/Ezer_StepInstance.html">Ezer_StepInstance</a></span>
+				<span class="var-name">$step_instance</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodhandleTask" id="handleTask"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">handleTask</span> (line <span class="line-number">111</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -297,12 +379,12 @@
 		<span class="method-name">
 			handleTask
 		</span>
-					(<span class="var-type"><a href="../../Engine/Process/Ezer_BusinessProcessTask.html">Ezer_BusinessProcessTask</a></span>&nbsp;<span class="var-name">$task</span>)
+					(<span class="var-type"><a href="../../Engine/Process/Ezer_BusinessProcessServerTask.html">Ezer_BusinessProcessServerTask</a></span>&nbsp;<span class="var-name">$task</span>)
 			</div>
 	
 			<ul class="parameters">
 					<li>
-				<span class="var-type"><a href="../../Engine/Process/Ezer_BusinessProcessTask.html">Ezer_BusinessProcessTask</a></span>
+				<span class="var-type"><a href="../../Engine/Process/Ezer_BusinessProcessServerTask.html">Ezer_BusinessProcessServerTask</a></span>
 				<span class="var-name">$task</span>			</li>
 				</ul>
 		
@@ -314,10 +396,10 @@
 			
 	</div>
 <a name="methodisAlive" id="isAlive"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">isAlive</span> (line <span class="line-number">143</span>)
+		<span class="method-title">isAlive</span> (line <span class="line-number">221</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -343,10 +425,10 @@
 			
 	</div>
 <a name="methodkick" id="kick"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">kick</span> (line <span class="line-number">138</span>)
+		<span class="method-title">kick</span> (line <span class="line-number">216</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -372,10 +454,10 @@
 			
 	</div>
 <a name="methodloadLogics" id="loadLogics"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">loadLogics</span> (line <span class="line-number">71</span>)
+		<span class="method-title">loadLogics</span> (line <span class="line-number">106</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -395,10 +477,10 @@
 			
 	</div>
 <a name="methodtaskDone" id="taskDone"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">taskDone</span> (line <span class="line-number">93</span>)
+		<span class="method-title">taskDone</span> (line <span class="line-number">153</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -428,11 +510,83 @@
 					</dl>
 			
 	</div>
-<a name="methodupdateTasks" id="updateTasks"><!-- --></a>
+<a name="methodtaskFailed" id="taskFailed"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">taskFailed</span> (line <span class="line-number">146</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			taskFailed
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$task</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$err</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$task</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$err</span>			</li>
+				</ul>
+		
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../../Engine/Core-Threads/Ezer_ThreadServer.html#methodtaskFailed">Ezer_ThreadServer::taskFailed()</a></dt>
+					</dl>
+			
+	</div>
+<a name="methodtaskProgressed" id="taskProgressed"><!-- --></a>
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">updateTasks</span> (line <span class="line-number">98</span>)
+		<span class="method-title">taskProgressed</span> (line <span class="line-number">139</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			taskProgressed
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$task</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$percent</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$task</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$percent</span>			</li>
+				</ul>
+		
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../../Engine/Core-Threads/Ezer_ThreadServer.html#methodtaskProgressed">Ezer_ThreadServer::taskProgressed()</a></dt>
+					</dl>
+			
+	</div>
+<a name="methodupdateTasks" id="updateTasks"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">updateTasks</span> (line <span class="line-number">165</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -458,10 +612,10 @@
 			
 	</div>
 <a name="methodwriteToAll" id="writeToAll"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">writeToAll</span> (line <span class="line-number">161</span>)
+		<span class="method-title">writeToAll</span> (line <span class="line-number">239</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -514,8 +668,11 @@
 													<span class="method-name"><a href="../../Engine/Core-Threads/Ezer_ThreadServer.html#methodisAlive">Ezer_ThreadServer::isAlive()</a></span><br>
 													<span class="method-name"><a href="../../Engine/Core-Threads/Ezer_ThreadServer.html#methodkick">Ezer_ThreadServer::kick()</a></span><br>
 													<span class="method-name"><a href="../../Engine/Core-Threads/Ezer_ThreadServer.html#methodlistenToThreadClients">Ezer_ThreadServer::listenToThreadClients()</a></span><br>
+													<span class="method-name"><a href="../../Engine/Core-Threads/Ezer_ThreadServer.html#methodremoveThreadClient">Ezer_ThreadServer::removeThreadClient()</a></span><br>
 													<span class="method-name"><a href="../../Engine/Core-Threads/Ezer_ThreadServer.html#methodrun">Ezer_ThreadServer::run()</a></span><br>
 													<span class="method-name"><a href="../../Engine/Core-Threads/Ezer_ThreadServer.html#methodtaskDone">Ezer_ThreadServer::taskDone()</a></span><br>
+													<span class="method-name"><a href="../../Engine/Core-Threads/Ezer_ThreadServer.html#methodtaskFailed">Ezer_ThreadServer::taskFailed()</a></span><br>
+													<span class="method-name"><a href="../../Engine/Core-Threads/Ezer_ThreadServer.html#methodtaskProgressed">Ezer_ThreadServer::taskProgressed()</a></span><br>
 													<span class="method-name"><a href="../../Engine/Core-Threads/Ezer_ThreadServer.html#methodupdateTasks">Ezer_ThreadServer::updateTasks()</a></span><br>
 											</blockquote>
 										
@@ -524,7 +681,7 @@
 
 
 	<p class="notes" id="credit">
-		Documentation generated on Sun, 11 Oct 2009 13:40:06 +0300 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+		Documentation generated on Mon, 12 Oct 2009 01:30:36 +0300 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
 	</p>
 	</div></body>
 </html>
