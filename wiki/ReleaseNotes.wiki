@@ -71,7 +71,7 @@ You can run all the cases concurrently or one by one.
 ----
 
 == Contact ==
-Please send your suggestions, bug reports and general feedback to tan-tan@simple.co.il
+Please send your suggestions, bug reports and general feedback to [mailto:tan-tan@simple.co.il tan-tan@simple.co.il]
 
 
 Enjoy,
