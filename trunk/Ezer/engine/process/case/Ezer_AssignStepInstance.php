@@ -36,18 +36,47 @@ class Ezer_AssignStepInstance extends Ezer_StepInstance
 	
 	protected function execute()
 	{
-		$from = $this->step->copy->from;
-		$to = $this->step->copy->to;
+		$all_set = true;
 		
-		$from_variable = $from->getVariable();
-		$to_variable = $to->getVariable();
-		
-		if(!isset($this->scope_instance->variables[$from_variable]))
-			return false;
+		foreach($this->step->copies as $copy)
+		{
+			$from = $copy->from;
+			$to = $copy->to;
 			
-		$this->scope_instance->variables[$from_variable] = $this->scope_instance->variables[$to_variable];
+			$value = null;
+			$should_set = false;
+			
+			if($from->hasValue())
+			{
+				$value = $from->getValue();
+				$should_set = true;
+			}
+			else
+			{
+				$from_variable = $from->getVariable();
+				
+				if($this->scope_instance->hasVariable($from))
+				{
+					$value = $this->scope_instance->getVariable($from);
+					$should_set = true;
+				}
+				else
+				{
+//					echo "scope dont have variable\n";
+					$all_set = false;
+				}
+			}
+				
+			if($should_set)
+				if(!$this->scope_instance->setVariable($to, $value))
+				{
+//					echo "set variable failed\n";
+					$all_set = false;
+				}
+		}
+		
 //		echo "variable set\n";
-		return true;
+		return $all_set;
 	}
 	
 	public function shouldRunOnServer()

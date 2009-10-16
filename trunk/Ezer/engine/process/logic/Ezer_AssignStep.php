@@ -27,24 +27,91 @@ require_once dirname(__FILE__) . '/../case/Ezer_AssignStepInstance.php';
  * @package Engine
  * @subpackage Process.Logic
  */
-class Ezer_AssignStepCopyAttribute extends Ezer_Loadable
+abstract class Ezer_AssignStepCopyAttribute extends Ezer_Loadable
 {
+	/**
+	 * @mandatory false
+	 */
 	protected $variable;
-	
 	
 	/**
 	 * @mandatory false
 	 */
-	protected $part;	
+	protected $part;
 	
 	public function getVariable()
 	{
 		return $this->variable;
 	}
 	
+	public function hasPart()
+	{
+		return !is_null($this->part);
+	}
+	
+	public function hasVariable()
+	{
+		return !is_null($this->variable);
+	}
+	
 	public function getPart()
 	{
 		return $this->part;
+	}
+}
+
+/**
+ * Purpose:     Store in the memory the definitions of a copy to attribute
+ * @author Tan-Tan
+ * @package Engine
+ * @subpackage Process.Logic
+ */
+class Ezer_AssignStepToAttribute extends Ezer_AssignStepCopyAttribute
+{
+
+	public function __set($name, $value) 
+	{
+		if($value instanceof Ezer_AssignStepToAttribute)
+			$this->part = $value;
+		else	
+			parent::__set($name, $value);
+	}
+}
+
+/**
+ * Purpose:     Store in the memory the definitions of a copy from attribute
+ * @author Tan-Tan
+ * @package Engine
+ * @subpackage Process.Logic
+ */
+class Ezer_AssignStepFromAttribute extends Ezer_AssignStepCopyAttribute
+{
+	/**
+	 * @mandatory false
+	 */
+	protected $value;
+
+	public function __set($name, $value) 
+	{
+		if($value instanceof Ezer_AssignStepFromAttribute)
+			$this->part = $value;
+		else	
+			parent::__set($name, $value);
+	}
+	
+	public function getVariable()
+	{
+		return $this->variable;
+	}
+	
+	public function hasValue()
+	{
+		return !is_null($this->value);
+	}
+	
+	public function getValue()
+	{
+		return $this->value;
 	}
 }
 
@@ -72,7 +139,7 @@ class Ezer_AssignStepCopy extends Ezer_Loadable
  */
 class Ezer_AssignStep extends Ezer_Step
 {
-	public $copy;
+	public $copies;
 	
 	public function __construct()
 	{
@@ -81,6 +148,19 @@ class Ezer_AssignStep extends Ezer_Step
 	public function &createInstance(Ezer_ScopeInstance &$scope_instance)
 	{
 		return new Ezer_AssignStepInstance($scope_instance, $this);
+	}
+
+	public function __set($name, $value) 
+	{
+		if($value instanceof Ezer_AssignStepCopy)
+			$this->add($value);
+		else	
+			parent::__set($name, $value);
+	}
+	
+	public function add(Ezer_AssignStepCopy $copy)
+	{
+		$this->copies[] = $copy;
 	}
 }
 
