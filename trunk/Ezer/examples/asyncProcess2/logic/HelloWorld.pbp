@@ -1,6 +1,6 @@
 <process name="HelloWorld">
 
-	<import>C:\My\Projects\Ezer\examples\asyncProcess2\activities\CountActivity.php</import>
+	<import>activities\CountActivity.php</import>
 	
 	<variables>
 		<!-- type is not mandatory -->
