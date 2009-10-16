@@ -41,7 +41,7 @@ class Ezer_Config extends ArrayObject
 	const CLASS_TYPE = 2;
 	
 	public $entityName;
-	public $type = CLASS_TYPE;
+	public $type = self::CLASS_TYPE;
 	private $keys;
 
 	public function __construct($xml)
