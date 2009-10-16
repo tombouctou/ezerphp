@@ -14,8 +14,8 @@
 		
 		<assign name="Assign">
 			<copy>
-				<from variable="hello"></from>
-				<to variable="bye"></to>
+				<from variable="bye"></from>
+				<to variable="hello"></to>
 			</copy>
 		</assign>
 
