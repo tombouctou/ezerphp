@@ -1,6 +1,6 @@
 <process name="If Else">
 
-	<import>C:\My\Projects\Ezer\examples\ifProcess3\activities\SayActivity.php</import>
+	<import>activities\SayActivity.php</import>
 	
 	<variables>
 		<variable name="condition" type="int" />
