@@ -65,13 +65,71 @@ class Ezer_XmlCasePersistance implements Ezer_ProcessCasePersistance
 		}
 	}
 	
+	private function addVariablePart(array &$variable, $part)
+	{
+		if(!($part instanceof Ezer_Config))
+		{
+			$variable[] = $part;
+			return;
+		}
+		
+		$value = null;
+		
+		if(isset($part['value']))
+			$value = $part['value'];
+		
+		if(isset($part['part']))
+		{
+			$value = array();
+			$this->addVariablePart($value, $part['part']);
+		}
+	
+		if($part->type == Ezer_Config::ARRAY_TYPE)
+		{
+			$value = array();
+			$arr = $part->getArrayCopy();
+			foreach($arr as $index => $part_part)
+			{
+				if(is_numeric($index))
+					$this->addVariablePart($value, $part_part);
+			}
+		}
+		
+		if(isset($part['name']))
+			$variable[$part['name']] = $value;
+		else
+			$variable[] = $value;
+	}
+	
 	private function mapConfig(Ezer_Config $config)
 	{
 		$case = new Ezer_Case($config->identifier);
 		$case->priority = $config->priority;
 		
 		foreach($config->variables as $variable)
-			$case->variables[$variable->name] = $variable->value;
+		{
+			$value = null;
+			if(isset($variable['value']))
+				$value = $variable['value'];
+			
+			if(isset($variable['part']))
+			{
+				$value = array();
+				$this->addVariablePart($value, $variable['part']);
+			}
+			if($variable->type == Ezer_Config::ARRAY_TYPE)
+			{
+				$value = array();
+				$arr = $variable->getArrayCopy();
+				foreach($arr as $index => $part)
+				{
+					if(is_numeric($index))
+						$this->addVariablePart($value, $part);
+				}
+			}
+				
+			$case->variables[$variable->name] = $value;
+		}
 			
 		return $case;
 	}

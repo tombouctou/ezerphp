@@ -55,6 +55,81 @@ class Ezer_ScopeInstance extends Ezer_StepContainerInstance
 		return $return;
 	}
 	
+	public function hasVariable(Ezer_AssignStepFromAttribute $from)
+	{
+		if(!isset($this->variables[$from->getVariable()]))
+			return false;
+			
+		// TODO - check for from part
+		return true;
+	}
+	
+	public function getVariable(Ezer_AssignStepFromAttribute $from)
+	{
+		if(!isset($this->variables[$from->getVariable()]))
+			return null;
+			
+		// TODO - check for from part
+		return $this->variables[$from->getVariable()];
+	}
+	
+	private function setValue(&$var, Ezer_AssignStepToAttribute $to, $value)
+	{
+		$variable = $to->getVariable();
+	
+		if($to->hasPart())
+		{
+			$part = $to->getPart();
+			
+			if($part->hasVariable())
+			{
+				$variable = $part->getVariable();
+				
+//				echo $to->getVariable() .  " has part " . $part->getVariable() . "\n";
+				
+				if(!isset($var[$variable]))
+				{
+//					echo "couldnt find part $variable\n";
+					return false;
+				}
+					
+				return $this->setValue($var[$variable], $part, $value);
+			}
+			elseif($part->hasPart() && is_array($var))
+			{
+				$all_set = true;
+//				$part_part = $part->getPart();
+//				echo "array part has part " . $part_part->getVariable() . "\n";
+				
+				foreach($var as &$set_var)
+					if(!$this->setValue($set_var, $part, $value))
+						$all_set = false;
+						
+				return $all_set;
+			}
+		}
+			
+		$var = $value;
+		return true;
+	}
+	
+	public function setVariable(Ezer_AssignStepToAttribute $to, $value)
+	{
+		$variable = $to->getVariable();
+		if(!isset($this->variables[$variable]))
+			return false;
+			
+//		echo "before set\n";
+//		var_dump($this->variables[$variable]);
+		
+		$ret = $this->setValue($this->variables[$variable], $to, $value);
+		
+//		echo "after set\n";
+//		var_dump($this->variables[$variable]);
+		
+		return $ret;
+	}
+	
 	public function isAvailable()
 	{
 		foreach($this->step_instances as $index => $step_instance)

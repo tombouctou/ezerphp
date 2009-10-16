@@ -23,6 +23,20 @@
 require_once 'Ezer_Sequence.php';
 
 /**
+ * Purpose:     Store in the memory the definitions of a process variable part, used for complex variables
+ * @author Tan-Tan
+ * @package Engine
+ * @subpackage Process.Logic
+ */
+class Ezer_VariablePart extends Ezer_Variable
+{
+	/**
+	 * @mandatory false
+	 */
+	protected $name;
+}
+
+/**
  * Purpose:     Store in the memory the definitions of a process variable
  * @author Tan-Tan
  * @package Engine
@@ -31,6 +45,8 @@ require_once 'Ezer_Sequence.php';
 class Ezer_Variable extends Ezer_Loadable
 {
 	public $id;
+	public $parts = array();
+	
 	protected $name;
 	
 	/**
@@ -41,6 +57,19 @@ class Ezer_Variable extends Ezer_Loadable
 	public function __construct($id)
 	{
 		$this->id = $id;
+	}
+	
+	public function add(Ezer_VariablePart $part)
+	{
+		if($part->getName())
+			$this->parts[$part->getName()] = $part;
+		else
+			$this->parts[] = $part;
+	}
+	
+	public function getName()
+	{
+		return $this->name;
 	}
 }
 
