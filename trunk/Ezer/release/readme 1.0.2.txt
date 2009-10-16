@@ -41,7 +41,7 @@ _______________________
 2. System Requirements
 _______________________
 
-PHP 5.x
+All you need is love and PHP 5.x
 
 ______________
 
