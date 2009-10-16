@@ -2,7 +2,7 @@
 = PHP Ezer Process manager - Version 1.0.2 =
 
 == CONTENTS ==
-  # Product Description
+  # [Product_Description Product Description]
   # System Requirements
   # How to use
   # Contact
