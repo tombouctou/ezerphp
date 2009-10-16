@@ -17,10 +17,10 @@ all of them offering important modules on the way to well orgenized PHP applicat
   * Sockets and clients management
   * Business Process managemt
 
-Since 1.0.1
+=== Since 1.0.1 ===
   * Support for asyncronous activity steps
 
-Since 1.0.2
+=== Since 1.0.2 ===
   * Support for if/else/ifelse flows
 
 I tried to supply an extendable core framework with simple examples.
@@ -36,22 +36,22 @@ All you need is love and PHP 5.x
 You can find usage examples in the examples folder.
 All test.php files should be running using CLI.
 
-  # Config example
+=== Config example ===
 Demonstrate the config lib usage, simply var_dumping the Ezer_Config object, containing all the data in the XML.
 Try to modify the XML and see the resulted dump.
 
-  # Thread server example
+=== Thread server example ===
 Demonstrate the multi process application server usage.
 ThreadCountServer – extends the base Ezer_ThreadServer and supply simple array of tasks.
 ThreadCountClient – extends the base Ezer_ThreadClient and supply printing functionality that reports the child process output.
 ThreadCountHandler – extends the base Ezer_Process and just counting numbers according to the supplied number, to demonstrate some PHP logic.
 
-  # Sockets server example
+=== Sockets server example ===
 Exactly like the thread server example, but opens a listening socket on port 1500.
 Try to connect the server using “telnet your.host.address 1500” / “telnet localhost 1500”.
 The server write its output to the client sockets.
 
-  # Synchronous Process
+=== Synchronous Process ===
 The config xml should contain the path to your PHP executable.
 The logic path should point to the folder where you save your pbp (php business process) files that loaded to the BPM server memory.
 The cases path should point to the folder where you save your pbc (php business case) files.
@@ -61,10 +61,10 @@ In the activities folder you can find a simple php activity example that simply 
 I added the testMake.php for your convenience, it’s just rename all the files in cases folder from *.arc to *.pbc.
 The server renames the case files after loading them into archive files, changing them back to *.pbc files will cause the server to load them again as new cases.
 
-  # Asynchronous Process
+=== Asynchronous Process ===
 Just like the synchronous process example, only the activity class extends Ezer_AsynchronousActivity, it means that the server won’t execute it by himself, but will aggregate the task to one of its child processes.
 
-  # If process
+=== If process ===
 Just like the synchronous process example, only the business logic demonstrate the usage of if, else and elseif flows.
 You can run all the cases concurrently or one by one.
 
