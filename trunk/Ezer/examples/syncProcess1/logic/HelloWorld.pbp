@@ -1,6 +1,6 @@
 <process name="HelloWorld">
 
-	<import>C:\My\Projects\Ezer\examples\syncProcess1\activities\SayActivity.php</import>
+	<import>activities\SayActivity.php</import>
 	
 	<variables>
 		<!-- type is not mandatory -->
