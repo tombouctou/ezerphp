@@ -45,6 +45,8 @@ ______________
 You can find usage examples in the examples folder.
 All test.php files should be running using CLI.
 
+3.1 config example
+Demost
 
 ______________
 
