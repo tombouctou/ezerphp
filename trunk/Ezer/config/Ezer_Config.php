@@ -46,7 +46,7 @@ class Ezer_Config extends ArrayObject
 
 	public function __construct($xml)
 	{
-		if(is_a($xml, DOMNode))
+		if(is_a($xml, 'DOMNode'))
 			$this->loadNode($xml);
 		elseif(file_exists($xml))
 			$this->loadFile($xml);
@@ -91,7 +91,8 @@ class Ezer_Config extends ArrayObject
 	private function convertToArray()
 	{
 		$copy = array();
-		foreach($this as $index => $data)
+		$arr = (array) $this;
+		foreach($arr as $index => $data)
 		{
 			$copy[] = $data;
 			unset($this[$index]);
