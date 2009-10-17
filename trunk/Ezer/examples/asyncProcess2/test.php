@@ -1,4 +1,5 @@
 <?php
+error_reporting(E_ALL);
 ini_set('max_execution_time', 0);
 
 require_once '../../config/Ezer_Config.php';
