@@ -41,6 +41,17 @@ class Ezer_BusinessProcess extends Ezer_Scope
 				require_once $value;
 				break;
 				
+			case 'imports':
+				foreach($value as $import)
+				{
+					if(is_null($import))
+						continue;
+						
+					$this->imports[] = $import;
+					require_once $import;
+				}
+				break;
+				
 			case 'sequence':
 				$this->steps[] = $value;
 				break;
@@ -63,7 +74,8 @@ class Ezer_BusinessProcess extends Ezer_Scope
 	
 	public function &createBusinessProcessInstance(array $variables)
 	{
-		return new Ezer_BusinessProcessInstance($variables, $this);
+		$ret = new Ezer_BusinessProcessInstance($variables, $this);
+		return $ret;
 	}
 	
 	public function getName()

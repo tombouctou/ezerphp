@@ -33,8 +33,9 @@ class Ezer_StepInstanceStatus
 	const AVAILABLE = 2;
 	const QUEUED = 3;
 	const STARTED = 4;
-	const DONE = 5;
-	const FAILED = 6;
+	const HANDLED = 5;
+	const DONE = 6;
+	const FAILED = 7;
 }
 
 /**
@@ -78,15 +79,15 @@ abstract class Ezer_StepInstance
 		$this->setStatus(Ezer_StepInstanceStatus::QUEUED);
 	}
 	
-	private function setStatus($status)
+	protected function setStatus($status)
 	{
-//		if(get_class($this) == 'Ezer_SequenceInstance')
+//		if(get_class($this) == 'Ezer_ActivityStepInstance')
 //		{
 //			$trace = debug_backtrace(false);
 //			foreach($trace as $tr)
 //				echo $tr['file'] . ': ' . $tr['line'] . ': ' . $tr['function'] . "\n";
 //		}
-//		echo "status (" . get_class($this) . ", " . $this->getName() . ", $status)\n";
+//		echo "setStatus (" . get_class($this) . ", " . $this->getName() . ", $status)\n";
 		$this->status = $status;
 	}
 	
@@ -174,6 +175,11 @@ abstract class Ezer_StepInstance
 		$this->attempts++;
 	}
 	
+	public function handled()
+	{
+		$this->setStatus(Ezer_StepInstanceStatus::HANDLED);
+	}
+	
 	public function getName()
 	{
 		return $this->step->getName();
@@ -193,5 +199,15 @@ abstract class Ezer_StepInstance
 	public function done()
 	{
 		$this->setStatus(Ezer_StepInstanceStatus::DONE);
+	}
+	
+	/**
+	 * Sets a variable value in the scope instance, on the server.
+	 * @param $variable_path string separated by / to the variable and part that should be set
+	 * @param $value the new value
+	 */
+	public function setVariable($variable_path, $value)
+	{
+		$this->scope_instance->setVariableByPath($variable_path, $value);
 	}
 }

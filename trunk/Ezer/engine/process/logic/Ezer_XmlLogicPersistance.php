@@ -49,21 +49,22 @@ class Ezer_XmlLogicPersistance implements Ezer_ProcessLogicPersistance
 	public function __construct($path)
 	{
 		$this->xml_map = array(
-			'process' => Ezer_BusinessProcess,
-			'activity' => Ezer_ActivityStep,
-			'args' => Ezer_Array,
-			'assign' => Ezer_AssignStep,
-			'copy' => Ezer_AssignStepCopy,
-			'from' => Ezer_AssignStepFromAttribute,
-			'to' => Ezer_AssignStepToAttribute,
-			'sequence' => Ezer_Sequence,
-			'variables' => Ezer_Array,
-			'variable' => Ezer_Variable,
-			'part' => Ezer_VariablePart,
-			'if' => Ezer_If,
-			'else' => Ezer_Else,
-			'elseifs' => Ezer_Array,
-			'elseif' => Ezer_If,
+			'process' => 'Ezer_BusinessProcess',
+			'activity' => 'Ezer_ActivityStep',
+			'args' => 'Ezer_Array',
+			'assign' => 'Ezer_AssignStep',
+			'copy' => 'Ezer_AssignStepCopy',
+			'from' => 'Ezer_AssignStepFromAttribute',
+			'to' => 'Ezer_AssignStepToAttribute',
+			'sequence' => 'Ezer_Sequence',
+			'variables' => 'Ezer_Array',
+			'variable' => 'Ezer_Variable',
+			'part' => 'Ezer_VariablePart',
+			'if' => 'Ezer_If',
+			'else' => 'Ezer_Else',
+			'elseifs' => 'Ezer_Array',
+			'elseif' => 'Ezer_If',
+			'imports' => 'Ezer_Array',
 		);
 		
 		$this->parseDir($path);

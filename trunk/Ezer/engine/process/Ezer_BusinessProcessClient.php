@@ -37,6 +37,7 @@ class Ezer_BusinessProcessHandlerMessages
 	const DONE = 'DONE';
 	const PROGRESS = 'PROGRESS';
 	const LOG = 'LOG';
+	const SET = 'SET';
 	const QUIT = 'QUIT';
 	
 	private static function message($type, $msg)
@@ -52,6 +53,16 @@ class Ezer_BusinessProcessHandlerMessages
 	public static function log($text)
 	{
 		return self::message(self::LOG, $text);
+	}
+	
+	/**
+	 * Sets a variable value in the scope instance, on the server.
+	 * @param $variable_path string separated by / to the variable and part that should be set
+	 * @param $value the new value
+	 */
+	public static function setVar($variable_path, $value)
+	{
+		return self::message(self::SET, "$variable_path:$value");
 	}
 	
 	public static function progress($percent)
@@ -87,6 +98,16 @@ class Ezer_BusinessProcessClient extends Ezer_ThreadClient
 	{
 		echo "ERROR: $result\n";
 	}
+
+	/**
+	 * Sets a variable value in the scope instance, on the server.
+	 * @param $variable_path string separated by / to the variable and part that should be set
+	 * @param $value the new value
+	 */
+	protected function setVariable($variable_path, $value)
+	{
+		return $this->server->setVariable($this->current_task, $variable_path, $value);
+	}
 	
 	public function handleResults($result)
 	{
@@ -102,32 +123,40 @@ class Ezer_BusinessProcessClient extends Ezer_ThreadClient
 			
 		switch($cmd)
 		{
-			case READY:
+			case Ezer_BusinessProcessHandlerMessages::READY:
 				$this->ready = true;
 				break;
 				
-			case STARTED:
+			case Ezer_BusinessProcessHandlerMessages::STARTED:
 				$this->started();
 				break;
 				
-			case LOG:
+			case Ezer_BusinessProcessHandlerMessages::LOG:
 				echo "Log: $data\n";
 				break;
 				
-			case FAILED:
+			case Ezer_BusinessProcessHandlerMessages::SET:
+				$variable_path = null;
+				$value = null;
+				
+				list($variable_path, $value) = split(':', $data, 2);
+				$this->setVariable($variable_path, $value);
+				break;
+				
+			case Ezer_BusinessProcessHandlerMessages::FAILED:
 				$this->failed($data);
 				break;
 				
-			case DONE:
+			case Ezer_BusinessProcessHandlerMessages::DONE:
 				$this->done();
 				break;
 				
-			case PROGRESS:
+			case Ezer_BusinessProcessHandlerMessages::PROGRESS:
 				$this->progress($data);
 				break;
 				
-			case QUIT:
-			case KILL:
+			case Ezer_BusinessProcessHandlerMessages::QUIT:
+			case Ezer_BusinessProcessHandlerMessages::KILL:
 				$this->kill();
 				break;
 				

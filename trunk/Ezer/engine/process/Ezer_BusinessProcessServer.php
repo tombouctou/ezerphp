@@ -148,17 +148,25 @@ class Ezer_BusinessProcessServer extends Ezer_SocketServer
 	{
 		$process_instance = &$this->process_instances[$task->process_instance_index];
 		$step_instance = &$process_instance->step_instances[$task->step_index];
-		$step_instance->setProgress($percent);
-		
-		$step_instance->started();
+		$step_instance->handled();
+	}
+
+	/**
+	 * Sets a variable value in the scope instance, on the server.
+	 * @param $variable_path string separated by / to the variable and part that should be set
+	 * @param $value the new value
+	 */
+	public function setVariable($task, $variable_path, $value)
+	{
+		$process_instance = &$this->process_instances[$task->process_instance_index];
+		$step_instance = &$process_instance->step_instances[$task->step_index];
+		$step_instance->setVariable($variable_path, $value);
 	}
 	
 	public function taskFailed($task, $err)
 	{
 		$process_instance = &$this->process_instances[$task->process_instance_index];
 		$step_instance = &$process_instance->step_instances[$task->step_index];
-		$step_instance->setProgress($percent);
-		
 		$step_instance->failed($err);
 		echo "Step " . $step_instance->getName() . " failed: $err\n";
 	}
@@ -198,7 +206,7 @@ class Ezer_BusinessProcessServer extends Ezer_SocketServer
 		foreach($this->process_instances as $process_instance_index => $process_instance)
 		{
 //			echo "Check for steps $process_instance_index\n";
-			$steps_added_this_process = false;
+			$step_instances_added_this_process = false;
 			foreach($process_instance->step_instances as $step_instance_index => $step_instance)
 			{
 				if(!$step_instance->isAvailable())

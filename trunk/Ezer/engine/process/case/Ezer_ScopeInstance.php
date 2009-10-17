@@ -43,6 +43,7 @@ class Ezer_ScopeInstance extends Ezer_StepContainerInstance
 	public function getValues($args)
 	{
 		$return = array();
+		
 		foreach($args as $arg)
 		{
 			if(is_null($arg))
@@ -111,6 +112,35 @@ class Ezer_ScopeInstance extends Ezer_StepContainerInstance
 			
 		$var = $value;
 		return true;
+	}
+	
+	private function setValueByPath(&$var, array $path, $value)
+	{
+		$current = array_pop($path);
+		if(!isset($var[$current]))
+			return false;
+			
+		$set_var = &$var[$current];
+		
+		if(count($path))
+		{
+			if(!is_array($set_var))
+				return false;
+				
+			return $this->setValueByPath($set_var, $path, $value);
+		}
+		$set_var = $value;
+	}
+	
+	/**
+	 * Sets a variable value in the scope instance, on the server.
+	 * @param $variable_path string separated by / to the variable and part that should be set
+	 * @param $value the new value
+	 */
+	public function setVariableByPath($variable_path, $value)
+	{
+		$path = array_reverse(split('/', $variable_path));
+		return $this->setValueByPath($this->variables, $path, $value);
 	}
 	
 	public function setVariable(Ezer_AssignStepToAttribute $to, $value)

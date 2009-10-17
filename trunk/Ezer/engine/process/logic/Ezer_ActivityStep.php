@@ -37,6 +37,12 @@ class Ezer_ActivityStep extends Ezer_Step
 	 */
 	protected $args;
 
+	public function __construct($id)
+	{
+		parent::__construct($id);
+		$this->args = new Ezer_Array();
+	}
+	
 	public function __set($name, $value) 
 	{
 		if($name == 'args' && !($value instanceof Ezer_Array))
@@ -51,7 +57,8 @@ class Ezer_ActivityStep extends Ezer_Step
 	
 	public function &createInstance(Ezer_ScopeInstance &$scope_instance)
 	{
-		return new Ezer_ActivityStepInstance($scope_instance, $this);
+		$ret = new Ezer_ActivityStepInstance($scope_instance, $this);
+		return $ret;
 	}
 	
 	public function getClass()

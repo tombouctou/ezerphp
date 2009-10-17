@@ -147,7 +147,8 @@ class Ezer_AssignStep extends Ezer_Step
 	
 	public function &createInstance(Ezer_ScopeInstance &$scope_instance)
 	{
-		return new Ezer_AssignStepInstance($scope_instance, $this);
+		$ret = new Ezer_AssignStepInstance($scope_instance, $this);
+		return $ret;
 	}
 
 	public function __set($name, $value) 

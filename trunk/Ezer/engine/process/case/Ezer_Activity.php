@@ -54,6 +54,17 @@ abstract class Ezer_AsynchronousActivity implements Ezer_Activity
 			$this->worker->progress($percent);
 	}
 	
+	/**
+	 * Sets a variable value in the scope instance, on the server.
+	 * @param $variable_path string separated by / to the variable and part that should be set
+	 * @param $value the new value
+	 */
+	protected function setVariable($variable_path, $value)
+	{
+		if($this->worker)
+			$this->worker->setVariable($variable_path, $value);
+	}
+	
 	protected function log($text)
 	{
 		if($this->worker)
