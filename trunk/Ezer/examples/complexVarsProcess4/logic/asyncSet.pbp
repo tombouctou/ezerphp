@@ -1,0 +1,32 @@
+<process name="AsyncSet">
+
+	<imports>
+		<import>activities\CountActivity.php</import>
+		<import>activities\AsyncSetActivity.php</import>
+	</imports>
+	
+	<variables>
+		<!-- type is not mandatory -->
+		<variable name="title"/>
+		<variable name="counter">
+			<part name="title"/>
+			<part name="counts" type="array">
+				<part>
+					<part name="start" type="int"/>
+					<part name="stop" type="int"/>
+				</part>
+			</part>
+		</variable>
+	</variables>
+
+	<sequence name="main">
+	
+		<activity name="First count" class="CountActivity" args="counter" />
+		
+		<activity name="Async Set" class="AsyncSetActivity" />
+
+		<activity name="Second count" class="CountActivity" args="counter" />
+
+	</sequence>
+</process>
+
