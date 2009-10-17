@@ -41,7 +41,7 @@ class Ezer_ActivityStepInstance extends Ezer_StepInstance
 		if(!class_exists($class))
 			throw new Ezer_StepClassNotFoundException($class);
 			
-		if(!is_subclass_of($class, Ezer_Activity))
+		if(!is_subclass_of($class, 'Ezer_Activity'))
 			throw new Ezer_StepClassNotActivityException($class);
 			
 		$this->activity = new $class();
@@ -59,7 +59,7 @@ class Ezer_ActivityStepInstance extends Ezer_StepInstance
 	
 	public function getWorkerAndStart()
 	{
-		$this->status = Ezer_StepInstanceStatus::STARTED;
+		$this->setStatus(Ezer_StepInstanceStatus::STARTED);
 		$this->activity->serArgs($this->scope_instance->getValues($this->step->getArgs()));
 		return $this->activity;
 	}

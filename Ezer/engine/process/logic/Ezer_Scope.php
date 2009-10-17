@@ -44,7 +44,8 @@ class Ezer_Scope extends Ezer_StepContainer
 	
 	public function &createScopeInstance(array $variables, Ezer_ScopeInstance &$scope_instance)
 	{
-		return new Ezer_ScopeInstance($variables, $scope_instance, $this);
+		$ret = new Ezer_ScopeInstance($variables, $scope_instance, $this);
+		return $ret;
 	}
 	
 	public function getName()

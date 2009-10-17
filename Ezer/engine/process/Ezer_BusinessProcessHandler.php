@@ -1,4 +1,5 @@
 <?php
+error_reporting(E_ALL);
 ini_set('max_execution_time', 0);
 
 require_once dirname(__FILE__) . '/../core/threads/Ezer_Process.php';
@@ -67,6 +68,16 @@ class Ezer_BusinessProcessHandler extends Ezer_Process
 	public function progress($percent)
 	{
 		$this->info(Ezer_BusinessProcessHandlerMessages::progress($percent));
+	}
+	
+	/**
+	 * Sets a variable value in the scope instance, on the server.
+	 * @param $variable_path string separated by / to the variable and part that should be set
+	 * @param $value the new value
+	 */
+	public function setVariable($variable_path, $value)
+	{
+		$this->info(Ezer_BusinessProcessHandlerMessages::setVar($variable_path, $value));
 	}
 	
 	public function log($text)

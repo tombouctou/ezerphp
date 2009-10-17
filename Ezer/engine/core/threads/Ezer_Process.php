@@ -114,7 +114,9 @@ abstract class Ezer_Process
 	protected function info($text = '')
 	{
 		echo "$text\n";
-		ob_flush();
+		
+		if(ob_get_length())
+			ob_flush();
 	}
 	
 	protected function error($text)

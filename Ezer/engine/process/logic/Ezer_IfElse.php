@@ -39,7 +39,8 @@ class Ezer_Else extends Ezer_StepContainer
 	
 	public function &createInstance(Ezer_ScopeInstance &$scope_instance)
 	{
-		return new Ezer_ElseInstance($scope_instance, $this);
+		$ret = new Ezer_ElseInstance($scope_instance, $this);
+		return $ret;
 	}
 	
 	public function add(Ezer_Step $step)
