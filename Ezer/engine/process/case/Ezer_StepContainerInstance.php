@@ -41,6 +41,16 @@ class Ezer_StepContainerInstance extends Ezer_StepInstance
 	{
 		return true;
 	}
+
+	protected function &getStepInstance($name)
+	{
+		foreach($this->step_instances as &$step_instance)
+			if($step_instance->getName() == $name)
+				return $step_instance;
+				
+		$null = null;
+		return $null;
+	}
 	
 	public function start()
 	{

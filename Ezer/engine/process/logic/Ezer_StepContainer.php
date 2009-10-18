@@ -41,9 +41,19 @@ abstract class Ezer_StepContainer extends Ezer_Step
 			parent::__set($name, $value);
 	}
 	
-	public function add(Ezer_Step $step)
+	public function add(Ezer_Step &$step)
 	{
-		$this->steps[] = $step;
+		$this->steps[] = &$step;
+	}
+	
+	protected function &getStep($name)
+	{
+		foreach($this->steps as &$step)
+			if($step->getName() == $name)
+				return $step;
+				
+		$null = null;
+		return $null;
 	}
 }
 
