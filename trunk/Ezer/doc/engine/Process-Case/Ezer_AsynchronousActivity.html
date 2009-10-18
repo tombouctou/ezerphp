@@ -87,6 +87,12 @@
 											
 										</td>
 				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../../Examples/Process/AsyncSetActivity.html">AsyncSetActivity</a></td>
+					<td>
+											
+										</td>
+				</tr>
 							</table>
 		</div>
 	</div>
@@ -103,7 +109,7 @@
 		</div>
 		<div class="info-box-body">			
 			<div class="method-summary">
-																																				
+																																												
 												<div class="method-definition">
 											<span class="method-result">void</span>
 										<a href="#executeOnWorker" title="details" class="method-name">executeOnWorker</a>
@@ -124,6 +130,11 @@
 										<a href="#serArgs" title="details" class="method-name">serArgs</a>
 											(<span class="var-type"></span>&nbsp;<span class="var-name">$args</span>)
 									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setVariable" title="details" class="method-name">setVariable</a>
+											(<span class="var-type">$variable_path</span>&nbsp;<span class="var-name">$variable_path</span>, <span class="var-type">$value</span>&nbsp;<span class="var-name">$value</span>)
+									</div>
 								</div>
 		</div>
 	</div>		
@@ -142,10 +153,10 @@
 			<A NAME='method_detail'></A>
 
 <a name="methodexecuteOnWorker" id="executeOnWorker"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">executeOnWorker</span> (line <span class="line-number">63</span>)
+		<span class="method-title">executeOnWorker</span> (line <span class="line-number">74</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -170,10 +181,10 @@
 			
 	</div>
 <a name="methodlog" id="log"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">log</span> (line <span class="line-number">57</span>)
+		<span class="method-title">log</span> (line <span class="line-number">68</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -198,7 +209,7 @@
 			
 	</div>
 <a name="methodprogress" id="progress"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
 		<span class="method-title">progress</span> (line <span class="line-number">51</span>)
@@ -226,7 +237,7 @@
 			
 	</div>
 <a name="methodserArgs" id="serArgs"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
 		<span class="method-title">serArgs</span> (line <span class="line-number">46</span>)
@@ -253,13 +264,45 @@
 		
 			
 	</div>
+<a name="methodsetVariable" id="setVariable"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">setVariable</span> (line <span class="line-number">62</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Sets a variable value in the scope instance, on the server.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setVariable
+		</span>
+					(<span class="var-type">$variable_path</span>&nbsp;<span class="var-name">$variable_path</span>, <span class="var-type">$value</span>&nbsp;<span class="var-name">$value</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">$variable_path</span>
+				<span class="var-name">$variable_path</span><span class="var-description">: string separated by / to the variable and part that should be set</span>			</li>
+					<li>
+				<span class="var-type">$value</span>
+				<span class="var-name">$value</span><span class="var-description">: the new value</span>			</li>
+				</ul>
+		
+			
+	</div>
 						
 		</div>
 	</div>
 
 
 	<p class="notes" id="credit">
-		Documentation generated on Mon, 12 Oct 2009 21:20:50 +0300 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+		Documentation generated on Sat, 17 Oct 2009 20:12:55 +0300 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
 	</p>
 	</div></body>
 </html>

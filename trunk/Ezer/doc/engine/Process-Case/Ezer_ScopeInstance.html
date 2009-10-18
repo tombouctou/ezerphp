@@ -102,7 +102,7 @@
 		</div>
 		<div class="info-box-body">			
 			<div class="method-summary">
-																																				
+																																																																				
 												<div class="method-definition">
 											<span class="method-result">Ezer_ScopeInstance</span>
 										<a href="#__construct" title="details" class="method-name">__construct</a>
@@ -115,6 +115,16 @@
 									</div>
 																<div class="method-definition">
 											<span class="method-result">void</span>
+										<a href="#getVariable" title="details" class="method-name">getVariable</a>
+											(<span class="var-type"><a href="../../Engine/Process-Logic/Ezer_AssignStepFromAttribute.html">Ezer_AssignStepFromAttribute</a></span>&nbsp;<span class="var-name">$from</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#hasVariable" title="details" class="method-name">hasVariable</a>
+											(<span class="var-type"><a href="../../Engine/Process-Logic/Ezer_AssignStepFromAttribute.html">Ezer_AssignStepFromAttribute</a></span>&nbsp;<span class="var-name">$from</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
 										<a href="#isAvailable" title="details" class="method-name">isAvailable</a>
 										()
 									</div>
@@ -122,6 +132,16 @@
 											<span class="method-result">void</span>
 										<a href="#isDone" title="details" class="method-name">isDone</a>
 										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setVariable" title="details" class="method-name">setVariable</a>
+											(<span class="var-type"><a href="../../Engine/Process-Logic/Ezer_AssignStepToAttribute.html">Ezer_AssignStepToAttribute</a></span>&nbsp;<span class="var-name">$to</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$value</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setVariableByPath" title="details" class="method-name">setVariableByPath</a>
+											(<span class="var-type">$variable_path</span>&nbsp;<span class="var-name">$variable_path</span>, <span class="var-type">$value</span>&nbsp;<span class="var-name">$value</span>)
 									</div>
 								</div>
 		</div>
@@ -282,11 +302,67 @@
 		
 			
 	</div>
+<a name="methodgetVariable" id="getVariable"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getVariable</span> (line <span class="line-number">68</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getVariable
+		</span>
+					(<span class="var-type"><a href="../../Engine/Process-Logic/Ezer_AssignStepFromAttribute.html">Ezer_AssignStepFromAttribute</a></span>&nbsp;<span class="var-name">$from</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../../Engine/Process-Logic/Ezer_AssignStepFromAttribute.html">Ezer_AssignStepFromAttribute</a></span>
+				<span class="var-name">$from</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodhasVariable" id="hasVariable"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">hasVariable</span> (line <span class="line-number">59</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			hasVariable
+		</span>
+					(<span class="var-type"><a href="../../Engine/Process-Logic/Ezer_AssignStepFromAttribute.html">Ezer_AssignStepFromAttribute</a></span>&nbsp;<span class="var-name">$from</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../../Engine/Process-Logic/Ezer_AssignStepFromAttribute.html">Ezer_AssignStepFromAttribute</a></span>
+				<span class="var-name">$from</span>			</li>
+				</ul>
+		
+			
+	</div>
 <a name="methodisAvailable" id="isAvailable"><!-- --></a>
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">isAvailable</span> (line <span class="line-number">58</span>)
+		<span class="method-title">isAvailable</span> (line <span class="line-number">163</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -314,7 +390,7 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">isDone</span> (line <span class="line-number">67</span>)
+		<span class="method-title">isDone</span> (line <span class="line-number">172</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -336,6 +412,75 @@
 		<dl>
 			<dt><a href="../../Engine/Process-Case/Ezer_StepInstance.html#methodisDone">Ezer_StepInstance::isDone()</a></dt>
 					</dl>
+			
+	</div>
+<a name="methodsetVariable" id="setVariable"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">setVariable</span> (line <span class="line-number">146</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setVariable
+		</span>
+					(<span class="var-type"><a href="../../Engine/Process-Logic/Ezer_AssignStepToAttribute.html">Ezer_AssignStepToAttribute</a></span>&nbsp;<span class="var-name">$to</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$value</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../../Engine/Process-Logic/Ezer_AssignStepToAttribute.html">Ezer_AssignStepToAttribute</a></span>
+				<span class="var-name">$to</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$value</span>			</li>
+				</ul>
+		
+			<hr class="separator" />
+		<div class="notes">Redefinition of:</div>
+		<dl>
+			<dt><a href="../../Engine/Process-Case/Ezer_StepInstance.html#methodsetVariable">Ezer_StepInstance::setVariable()</a></dt>
+						<dd>Sets a variable value in the scope instance, on the server.</dd>
+					</dl>
+			
+	</div>
+<a name="methodsetVariableByPath" id="setVariableByPath"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">setVariableByPath</span> (line <span class="line-number">140</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Sets a variable value in the scope instance, on the server.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setVariableByPath
+		</span>
+					(<span class="var-type">$variable_path</span>&nbsp;<span class="var-name">$variable_path</span>, <span class="var-type">$value</span>&nbsp;<span class="var-name">$value</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">$variable_path</span>
+				<span class="var-name">$variable_path</span><span class="var-description">: string separated by / to the variable and part that should be set</span>			</li>
+					<li>
+				<span class="var-type">$value</span>
+				<span class="var-name">$value</span><span class="var-description">: the new value</span>			</li>
+				</ul>
+		
 			
 	</div>
 							<h4>Inherited Methods</h4>
@@ -360,12 +505,15 @@
 													<span class="method-name"><a href="../../Engine/Process-Case/Ezer_StepInstance.html#methodgetStatus">Ezer_StepInstance::getStatus()</a></span><br>
 													<span class="method-name"><a href="../../Engine/Process-Case/Ezer_StepInstance.html#methodgetStepId">Ezer_StepInstance::getStepId()</a></span><br>
 													<span class="method-name"><a href="../../Engine/Process-Case/Ezer_StepInstance.html#methodgetWorkerAndStart">Ezer_StepInstance::getWorkerAndStart()</a></span><br>
+													<span class="method-name"><a href="../../Engine/Process-Case/Ezer_StepInstance.html#methodhandled">Ezer_StepInstance::handled()</a></span><br>
 													<span class="method-name"><a href="../../Engine/Process-Case/Ezer_StepInstance.html#methodisAvailable">Ezer_StepInstance::isAvailable()</a></span><br>
 													<span class="method-name"><a href="../../Engine/Process-Case/Ezer_StepInstance.html#methodisDone">Ezer_StepInstance::isDone()</a></span><br>
 													<span class="method-name"><a href="../../Engine/Process-Case/Ezer_StepInstance.html#methodisStarted">Ezer_StepInstance::isStarted()</a></span><br>
 													<span class="method-name"><a href="../../Engine/Process-Case/Ezer_StepInstance.html#methodqueued">Ezer_StepInstance::queued()</a></span><br>
 													<span class="method-name"><a href="../../Engine/Process-Case/Ezer_StepInstance.html#methodretry">Ezer_StepInstance::retry()</a></span><br>
 													<span class="method-name"><a href="../../Engine/Process-Case/Ezer_StepInstance.html#methodsetProgress">Ezer_StepInstance::setProgress()</a></span><br>
+													<span class="method-name"><a href="../../Engine/Process-Case/Ezer_StepInstance.html#methodsetStatus">Ezer_StepInstance::setStatus()</a></span><br>
+													<span class="method-name"><a href="../../Engine/Process-Case/Ezer_StepInstance.html#methodsetVariable">Ezer_StepInstance::setVariable()</a></span><br>
 													<span class="method-name"><a href="../../Engine/Process-Case/Ezer_StepInstance.html#methodshouldRunOnServer">Ezer_StepInstance::shouldRunOnServer()</a></span><br>
 													<span class="method-name"><a href="../../Engine/Process-Case/Ezer_StepInstance.html#methodstart">Ezer_StepInstance::start()</a></span><br>
 													<span class="method-name"><a href="../../Engine/Process-Case/Ezer_StepInstance.html#methodstarted">Ezer_StepInstance::started()</a></span><br>
@@ -376,7 +524,7 @@
 
 
 	<p class="notes" id="credit">
-		Documentation generated on Mon, 12 Oct 2009 21:20:54 +0300 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+		Documentation generated on Sat, 17 Oct 2009 20:12:59 +0300 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
 	</p>
 	</div></body>
 </html>
