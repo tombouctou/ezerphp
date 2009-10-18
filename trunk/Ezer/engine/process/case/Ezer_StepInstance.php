@@ -185,6 +185,11 @@ abstract class Ezer_StepInstance
 		return $this->step->getName();
 	}
 	
+	public function getOutFlows()
+	{
+		return $this->step->getOutFlows();
+	}
+	
 	public function getPriority()
 	{
 		return min(1, max(10, $this->step->getPriority())); 

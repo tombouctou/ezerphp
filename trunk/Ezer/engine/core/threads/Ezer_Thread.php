@@ -67,7 +67,7 @@ class Ezer_Thread
 				
 			exit;
 		}
-		$this->pref = proc_open("$php_exe $url", $descriptor, $pipes, null);
+		$this->pref = proc_open("$php_exe $url", $descriptor, $pipes, null, null, array('bypass_shell' => true));
 		if(!$this->pref)
 			return null;
 		

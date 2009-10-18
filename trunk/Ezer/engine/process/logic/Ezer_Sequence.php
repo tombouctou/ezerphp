@@ -36,7 +36,7 @@ class Ezer_Sequence extends Ezer_StepContainer
 		return $ret;
 	}
 	
-	public function add(Ezer_Step $step)
+	public function add(Ezer_Step &$step)
 	{
 		// overwrite any flow definition
 		$step->in_flows = array();

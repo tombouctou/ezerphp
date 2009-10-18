@@ -61,6 +61,16 @@ abstract class Ezer_Step extends Ezer_Loadable
 	 */
 	protected $priority = 1;
 	
+	/**
+	 * @mandatory false
+	 */
+	protected $targets;
+	
+	/**
+	 * @mandatory false
+	 */
+	protected $sources;
+	
 	public $in_flows = array();
 	public $out_flows = array();
 	
@@ -89,6 +99,39 @@ abstract class Ezer_Step extends Ezer_Loadable
 	public function getPriority()
 	{
 		return $this->priority; 
+	}
+	
+	public function getTargets()
+	{
+		return $this->targets; 
+	}
+	
+	public function getSources()
+	{
+		return $this->sources; 
+	}
+	
+	public function getOutFlows()
+	{
+		return $this->out_flows;
+	}
+	
+	public function setOutFlow(Ezer_Step &$step)
+	{
+		if(!isset($this->out_flows[$step->id]))
+		{
+			$this->out_flows[$step->id] = $step;
+//			echo "flow " . $this->getName() . " => " . $step->getName() . "\n";
+		} 
+	}
+	
+	public function setInFlow(Ezer_Step &$step)
+	{
+		if(!isset($this->in_flows[$step->id]))
+		{
+			$this->in_flows[$step->id] = $step;
+//			echo "flow " . $step->getName() . " => " . $this->getName() . "\n";
+		} 
 	}
 }
 

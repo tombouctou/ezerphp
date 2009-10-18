@@ -28,6 +28,7 @@ require_once 'Ezer_AssignStep.php';
 require_once 'Ezer_Sequence.php';
 require_once 'Ezer_Variable.php';
 require_once 'Ezer_IfElse.php';
+require_once 'Ezer_Flow.php';
 
 
 require_once 'errors/Ezer_XmlPersistanceElementNotMappedException.php';
@@ -65,6 +66,11 @@ class Ezer_XmlLogicPersistance implements Ezer_ProcessLogicPersistance
 			'elseifs' => 'Ezer_Array',
 			'elseif' => 'Ezer_If',
 			'imports' => 'Ezer_Array',
+			'flow' => 'Ezer_Flow',
+			'targets' => 'Ezer_Array',
+			'sources' => 'Ezer_Array',
+			'target' => 'Ezer_Link',
+			'source' => 'Ezer_Link',
 		);
 		
 		$this->parseDir($path);
