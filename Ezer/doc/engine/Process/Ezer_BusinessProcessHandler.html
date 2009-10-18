@@ -29,7 +29,7 @@
 				<li><span class="field">author:</span> Tan-Tan</li>
 			</ul>
 		<p class="notes">
-			Located in <a class="field" href="_engine---process---Ezer_BusinessProcessHandler.php.html">/engine/process/Ezer_BusinessProcessHandler.php</a> (line <span class="field">15</span>)
+			Located in <a class="field" href="_engine---process---Ezer_BusinessProcessHandler.php.html">/engine/process/Ezer_BusinessProcessHandler.php</a> (line <span class="field">16</span>)
 		</p>
 		
 				
@@ -57,7 +57,7 @@
 		</div>
 		<div class="info-box-body">			
 			<div class="method-summary">
-																																																																				
+																																																																												
 												<div class="method-definition">
 											<span class="method-result">Ezer_BusinessProcessHandler</span>
 										<a href="#__construct" title="details" class="method-name">__construct</a>
@@ -97,6 +97,11 @@
 											<span class="method-result">void</span>
 										<a href="#progress" title="details" class="method-name">progress</a>
 											(<span class="var-type"></span>&nbsp;<span class="var-name">$percent</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setVariable" title="details" class="method-name">setVariable</a>
+											(<span class="var-type">$variable_path</span>&nbsp;<span class="var-name">$variable_path</span>, <span class="var-type">$value</span>&nbsp;<span class="var-name">$value</span>)
 									</div>
 								</div>
 		</div>
@@ -150,7 +155,7 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">Constructor __construct</span> (line <span class="line-number">19</span>)
+		<span class="method-title">Constructor __construct</span> (line <span class="line-number">20</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -178,7 +183,7 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">handle</span> (line <span class="line-number">25</span>)
+		<span class="method-title">handle</span> (line <span class="line-number">26</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -211,7 +216,7 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">handleTask</span> (line <span class="line-number">45</span>)
+		<span class="method-title">handleTask</span> (line <span class="line-number">46</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -239,7 +244,7 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">keepRunning</span> (line <span class="line-number">62</span>)
+		<span class="method-title">keepRunning</span> (line <span class="line-number">63</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -267,7 +272,7 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">log</span> (line <span class="line-number">72</span>)
+		<span class="method-title">log</span> (line <span class="line-number">83</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -295,7 +300,7 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">onQuit</span> (line <span class="line-number">57</span>)
+		<span class="method-title">onQuit</span> (line <span class="line-number">58</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -323,7 +328,7 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">onStart</span> (line <span class="line-number">52</span>)
+		<span class="method-title">onStart</span> (line <span class="line-number">53</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -351,7 +356,7 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">progress</span> (line <span class="line-number">67</span>)
+		<span class="method-title">progress</span> (line <span class="line-number">68</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -371,6 +376,38 @@
 					<li>
 				<span class="var-type"></span>
 				<span class="var-name">$percent</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetVariable" id="setVariable"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">setVariable</span> (line <span class="line-number">78</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Sets a variable value in the scope instance, on the server.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setVariable
+		</span>
+					(<span class="var-type">$variable_path</span>&nbsp;<span class="var-name">$variable_path</span>, <span class="var-type">$value</span>&nbsp;<span class="var-name">$value</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">$variable_path</span>
+				<span class="var-name">$variable_path</span><span class="var-description">: string separated by / to the variable and part that should be set</span>			</li>
+					<li>
+				<span class="var-type">$value</span>
+				<span class="var-name">$value</span><span class="var-description">: the new value</span>			</li>
 				</ul>
 		
 			
@@ -425,7 +462,7 @@
 	</div>
 
 	<p class="notes" id="credit">
-		Documentation generated on Mon, 12 Oct 2009 21:20:52 +0300 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+		Documentation generated on Sat, 17 Oct 2009 20:12:56 +0300 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
 	</p>
 	</div></body>
 </html>

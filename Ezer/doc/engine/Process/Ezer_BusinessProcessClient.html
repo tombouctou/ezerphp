@@ -29,7 +29,7 @@
 				<li><span class="field">author:</span> Tan-Tan</li>
 			</ul>
 		<p class="notes">
-			Located in <a class="field" href="_engine---process---Ezer_BusinessProcessClient.php.html">/engine/process/Ezer_BusinessProcessClient.php</a> (line <span class="field">70</span>)
+			Located in <a class="field" href="_engine---process---Ezer_BusinessProcessClient.php.html">/engine/process/Ezer_BusinessProcessClient.php</a> (line <span class="field">81</span>)
 		</p>
 		
 				
@@ -59,7 +59,7 @@
 		</div>
 		<div class="info-box-body">			
 			<div class="method-summary">
-																																				
+																																												
 												<div class="method-definition">
 											<span class="method-result">Ezer_BusinessProcessClient</span>
 										<a href="#__construct" title="details" class="method-name">__construct</a>
@@ -79,6 +79,11 @@
 											<span class="method-result">void</span>
 										<a href="#request" title="details" class="method-name">request</a>
 											(<span class="var-type"><a href="../../Engine/Process/Ezer_BusinessProcessWorkerTask.html">Ezer_BusinessProcessWorkerTask</a></span>&nbsp;<span class="var-name">$task</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setVariable" title="details" class="method-name">setVariable</a>
+											(<span class="var-type">$variable_path</span>&nbsp;<span class="var-name">$variable_path</span>, <span class="var-type">$value</span>&nbsp;<span class="var-name">$value</span>)
 									</div>
 								</div>
 		</div>
@@ -153,10 +158,10 @@
 			<A NAME='method_detail'></A>
 
 <a name="method__construct" id="__construct"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">Constructor __construct</span> (line <span class="line-number">72</span>)
+		<span class="method-title">Constructor __construct</span> (line <span class="line-number">83</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -189,10 +194,10 @@
 			
 	</div>
 <a name="methodhandleError" id="handleError"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">handleError</span> (line <span class="line-number">86</span>)
+		<span class="method-title">handleError</span> (line <span class="line-number">97</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -222,10 +227,10 @@
 			
 	</div>
 <a name="methodhandleResults" id="handleResults"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">handleResults</span> (line <span class="line-number">91</span>)
+		<span class="method-title">handleResults</span> (line <span class="line-number">112</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -255,10 +260,10 @@
 			
 	</div>
 <a name="methodrequest" id="request"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">request</span> (line <span class="line-number">77</span>)
+		<span class="method-title">request</span> (line <span class="line-number">88</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -285,6 +290,38 @@
 		<dl>
 			<dt><a href="../../Engine/Core-Threads/Ezer_ThreadClient.html#methodrequest">Ezer_ThreadClient::request()</a></dt>
 					</dl>
+			
+	</div>
+<a name="methodsetVariable" id="setVariable"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">setVariable</span> (line <span class="line-number">107</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Sets a variable value in the scope instance, on the server.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setVariable
+		</span>
+					(<span class="var-type">$variable_path</span>&nbsp;<span class="var-name">$variable_path</span>, <span class="var-type">$value</span>&nbsp;<span class="var-name">$value</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">$variable_path</span>
+				<span class="var-name">$variable_path</span><span class="var-description">: string separated by / to the variable and part that should be set</span>			</li>
+					<li>
+				<span class="var-type">$value</span>
+				<span class="var-name">$value</span><span class="var-description">: the new value</span>			</li>
+				</ul>
+		
 			
 	</div>
 							<h4>Inherited Methods</h4>
@@ -370,7 +407,7 @@
 	</div>
 
 	<p class="notes" id="credit">
-		Documentation generated on Mon, 12 Oct 2009 21:20:51 +0300 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+		Documentation generated on Sat, 17 Oct 2009 20:12:56 +0300 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
 	</p>
 	</div></body>
 </html>

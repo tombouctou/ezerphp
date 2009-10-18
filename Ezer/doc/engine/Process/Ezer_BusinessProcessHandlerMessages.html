@@ -87,6 +87,11 @@
 				</div>
 								<div class="const-title">
 					<img src="../../media/images/Constant.png" alt=" " />
+					<a href="#SET" title="details" class="const-name">SET</a> = 					<span class="var-type"> 'SET'</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../../media/images/Constant.png" alt=" " />
 					<a href="#STARTED" title="details" class="const-name">STARTED</a> = 					<span class="var-type"> 'STARTED'</span>
 
 				</div>
@@ -121,8 +126,13 @@
 										<a href="#progress" title="details" class="method-name">progress</a>
 											(<span class="var-type"></span>&nbsp;<span class="var-name">$percent</span>)
 									</div>
+																<div class="method-definition">
+					static 						<span class="method-result">void</span>
+										<a href="#setVar" title="details" class="method-name">setVar</a>
+											(<span class="var-type">$variable_path</span>&nbsp;<span class="var-name">$variable_path</span>, <span class="var-type">$value</span>&nbsp;<span class="var-name">$value</span>)
+									</div>
 								
-																												</div>
+																																				</div>
 		</div>
 	</div>		
 
@@ -143,7 +153,7 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">static method fail</span> (line <span class="line-number">47</span>)
+		<span class="method-title">static method fail</span> (line <span class="line-number">48</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -172,7 +182,7 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">static method log</span> (line <span class="line-number">52</span>)
+		<span class="method-title">static method log</span> (line <span class="line-number">53</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -201,7 +211,7 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">static method progress</span> (line <span class="line-number">57</span>)
+		<span class="method-title">static method progress</span> (line <span class="line-number">68</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -226,6 +236,39 @@
 		
 			
 	</div>
+<a name="methodsetVar" id="setVar"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">static method setVar</span> (line <span class="line-number">63</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Sets a variable value in the scope instance, on the server.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+	    static
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setVar
+		</span>
+					(<span class="var-type">$variable_path</span>&nbsp;<span class="var-name">$variable_path</span>, <span class="var-type">$value</span>&nbsp;<span class="var-name">$value</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">$variable_path</span>
+				<span class="var-name">$variable_path</span><span class="var-description">: string separated by / to the variable and part that should be set</span>			</li>
+					<li>
+				<span class="var-type">$value</span>
+				<span class="var-name">$value</span><span class="var-description">: the new value</span>			</li>
+				</ul>
+		
+			
+	</div>
 
 						
 		</div>
@@ -245,7 +288,7 @@
 					</div>
 		<div class="info-box-body">
 			<a name="constDONE" id="DONE"><!-- --></A>
-<div class="evenrow">
+<div class="oddrow">
 
 	<div class="const-header">
 		<img src="../../media/images/Variable.png" />
@@ -261,7 +304,7 @@
 	
 </div>
 <a name="constFAILED" id="FAILED"><!-- --></A>
-<div class="oddrow">
+<div class="evenrow">
 
 	<div class="const-header">
 		<img src="../../media/images/Variable.png" />
@@ -277,7 +320,7 @@
 	
 </div>
 <a name="constKILL" id="KILL"><!-- --></A>
-<div class="evenrow">
+<div class="oddrow">
 
 	<div class="const-header">
 		<img src="../../media/images/Variable.png" />
@@ -293,7 +336,7 @@
 	
 </div>
 <a name="constLOG" id="LOG"><!-- --></A>
-<div class="oddrow">
+<div class="evenrow">
 
 	<div class="const-header">
 		<img src="../../media/images/Variable.png" />
@@ -309,7 +352,7 @@
 	
 </div>
 <a name="constPROGRESS" id="PROGRESS"><!-- --></A>
-<div class="evenrow">
+<div class="oddrow">
 
 	<div class="const-header">
 		<img src="../../media/images/Variable.png" />
@@ -325,14 +368,14 @@
 	
 </div>
 <a name="constQUIT" id="QUIT"><!-- --></A>
-<div class="oddrow">
+<div class="evenrow">
 
 	<div class="const-header">
 		<img src="../../media/images/Variable.png" />
 		<span class="const-title">
 			<span class="const-name">QUIT</span>
 			 = <span class="const-default"> 'QUIT'</span>
-			(line <span class="line-number">40</span>)
+			(line <span class="line-number">41</span>)
 		</span>
 	</div>
 
@@ -341,7 +384,7 @@
 	
 </div>
 <a name="constREADY" id="READY"><!-- --></A>
-<div class="evenrow">
+<div class="oddrow">
 
 	<div class="const-header">
 		<img src="../../media/images/Variable.png" />
@@ -349,6 +392,22 @@
 			<span class="const-name">READY</span>
 			 = <span class="const-default"> 'READY'</span>
 			(line <span class="line-number">33</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	
+</div>
+<a name="constSET" id="SET"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">SET</span>
+			 = <span class="const-default"> 'SET'</span>
+			(line <span class="line-number">40</span>)
 		</span>
 	</div>
 
@@ -377,7 +436,7 @@
 	</div>
 
 	<p class="notes" id="credit">
-		Documentation generated on Mon, 12 Oct 2009 21:20:52 +0300 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+		Documentation generated on Sat, 17 Oct 2009 20:12:56 +0300 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
 	</p>
 	</div></body>
 </html>
