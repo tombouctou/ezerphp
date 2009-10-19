@@ -1,0 +1,5 @@
+#labels Featured,Phase-Implementation
+
+= About the code =
+
+Full documentation could be viewed [http://ezerphp.sourceforge.net/index.html here].
