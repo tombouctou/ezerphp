@@ -1,0 +1,77 @@
+<process name="Flow">
+
+	<import>activities\CountActivity.php</import>
+	
+	<variables>
+		<variable name="count" />
+		<variable name="left1" />
+		<variable name="left2" />
+		<variable name="right1" />
+		<variable name="right2" />
+		<variable name="before" />
+		<variable name="after" />
+	</variables>
+
+	<sequence name="main">
+	
+		<activity name="Before Flow" class="CountActivity">
+			<args>
+				<arg>before</arg>
+				<arg>count</arg>
+			</args>
+		</activity>
+		
+		<flow name="Flow">
+		
+			<activity name="First Left Count" class="CountActivity">
+				<args>
+					<arg>left1</arg>
+					<arg>count</arg>
+				</args>
+				<targets>
+					<target stepName="Second Left Count"></target>
+				</targets>
+			</activity>
+			
+			<activity name="First Right Count" class="CountActivity">
+				<args>
+					<arg>right1</arg>
+					<arg>count</arg>
+				</args>
+				<targets>
+					<target stepName="Second Right Count"></target>
+				</targets>
+			</activity>
+			
+			<activity name="Second Left Count" class="CountActivity">
+				<args>
+					<arg>left2</arg>
+					<arg>count</arg>
+				</args>
+				<sources>
+					<source stepName="First Left Count"></source>
+				</sources>
+			</activity>
+			
+			<activity name="Second Right Count" class="CountActivity">
+				<args>
+					<arg>right2</arg>
+					<arg>count</arg>
+				</args>
+				<sources>
+					<source stepName="First Right Count"></source>
+				</sources>
+			</activity>
+			
+		</flow>
+		
+		<activity name="After Flow" class="CountActivity">
+			<args>
+				<arg>after</arg>
+				<arg>count</arg>
+			</args>
+		</activity>
+		
+	</sequence>
+</process>
+
