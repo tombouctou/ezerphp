@@ -25,8 +25,15 @@ Contains the code for PHP business process management.
   * logic - code for loading business process definitions to the server memory.
   * case - code for loading and executing business case.
 
-=== examples ===
+== examples ==
 Contains working simple and basic examples
   * config - var_dumping XMLconfiguration as PHP class.
   * threadsServer - simple multi-process server.
   * socketsServer - simple sockets server.
+
+Process Examples
+  # syncProcess - simple process that demonstrate simple synchronous workflow.
+  # asyncProcess - simple process that demonstrate simple asynchronous workflow.
+  # ifProcess - process that demonstrate if, else and else if workflows.
+  # complexVarsProcess - process that demonstrate complex variables usage.
+  # flowProcess - process that demonstrate concurrent flow workflow.
