@@ -1,5 +1,32 @@
 #labels Featured,Phase-Implementation
-
 = About the code =
 
-Full documentation could be viewed [http://ezerphp.sourceforge.net/index.html here].
+Full phpdoc documentation could be viewed [http://ezerphp.sourceforge.net/index.html here].
+
+
+== config ==
+Offers base functionality to load XML configuration files into PHP class.
+
+== controller ==
+Will contain a process control panel code.
+
+== designer ==
+Will contain a process logic designer code.
+
+== engine ==
+Contains the engine hart
+
+=== core ===
+  * threads - base multi-process server.
+  * sockets - base sockets server.
+
+=== process ===
+Contains the code for PHP business process management.
+  * logic - code for loading business process definitions to the server memory.
+  * case - code for loading and executing business case.
+
+=== examples ===
+Contains working simple and basic examples
+  * config - var_dumping XMLconfiguration as PHP class.
+  * threadsServer - simple multi-process server.
+  * socketsServer - simple sockets server.
