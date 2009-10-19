@@ -1,5 +1,5 @@
 #labels Featured,Phase-Implementation,Phase-Deploy,Phase-Requirements
-= PHP Ezer Process manager - Version 1.0.3 =
+= PHP Ezer Process manager - Version 1.0.4 =
 
 == CONTENTS ==
   # [#Product_Description Product Description]
@@ -26,6 +26,8 @@ all of them offering important modules on the way to well orgenized PHP applicat
 === Since 1.0.3 ===
   * Support complex variable types
 
+=== Since 1.0.4 ===
+  * Support for concurrent flow
 I tried to supply an extendable core framework with simple examples.
 
 ----
