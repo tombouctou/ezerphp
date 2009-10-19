@@ -61,7 +61,7 @@
 												<div class="method-definition">
 											<span class="method-result">void</span>
 										<a href="#add" title="details" class="method-name">add</a>
-											(<span class="var-type"><a href="../../Engine/Process-Logic/Ezer_Step.html">Ezer_Step</a></span>&nbsp;<span class="var-name">$step</span>)
+											(<span class="var-type"><a href="../../Engine/Process-Logic/Ezer_Step.html">Ezer_Step</a></span>&nbsp;<span class="var-name">&$step</span>)
 									</div>
 																<div class="method-definition">
 											<span class="method-result">void</span>
@@ -116,6 +116,12 @@
 													<span class="var-title">
 								<span class="var-name"><a href="../../Engine/Process-Logic/Ezer_Step.html#var$priority">Ezer_Step::$priority</a></span><br>
 							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../../Engine/Process-Logic/Ezer_Step.html#var$sources">Ezer_Step::$sources</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../../Engine/Process-Logic/Ezer_Step.html#var$targets">Ezer_Step::$targets</a></span><br>
+							</span>
 											</blockquote> 
 										
 		</div>
@@ -134,7 +140,7 @@
 			<A NAME='method_detail'></A>
 
 <a name="methodadd" id="add"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
 		<span class="method-title">add</span> (line <span class="line-number">39</span>)
@@ -150,13 +156,13 @@
 		<span class="method-name">
 			add
 		</span>
-					(<span class="var-type"><a href="../../Engine/Process-Logic/Ezer_Step.html">Ezer_Step</a></span>&nbsp;<span class="var-name">$step</span>)
+					(<span class="var-type"><a href="../../Engine/Process-Logic/Ezer_Step.html">Ezer_Step</a></span>&nbsp;<span class="var-name">&$step</span>)
 			</div>
 	
 			<ul class="parameters">
 					<li>
 				<span class="var-type"><a href="../../Engine/Process-Logic/Ezer_Step.html">Ezer_Step</a></span>
-				<span class="var-name">$step</span>			</li>
+				<span class="var-name">&$step</span>			</li>
 				</ul>
 		
 			<hr class="separator" />
@@ -167,7 +173,7 @@
 			
 	</div>
 <a name="methodcreateInstance" id="createInstance"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
 		<span class="method-title">createInstance</span> (line <span class="line-number">33</span>)
@@ -205,6 +211,7 @@
 					<p>Inherited From <span class="classname"><a href="../../Engine/Process-Logic/Ezer_StepContainer.html">Ezer_StepContainer</a></span></p>
 					<blockquote>
 													<span class="method-name"><a href="../../Engine/Process-Logic/Ezer_StepContainer.html#methodadd">Ezer_StepContainer::add()</a></span><br>
+													<span class="method-name"><a href="../../Engine/Process-Logic/Ezer_StepContainer.html#methodgetStep">Ezer_StepContainer::getStep()</a></span><br>
 													<span class="method-name"><a href="../../Engine/Process-Logic/Ezer_StepContainer.html#method__set">Ezer_StepContainer::__set()</a></span><br>
 											</blockquote>
 									<!-- =========== Summary =========== -->
@@ -215,7 +222,12 @@
 													<span class="method-name"><a href="../../Engine/Process-Logic/Ezer_Step.html#methodgetJoinPolicy">Ezer_Step::getJoinPolicy()</a></span><br>
 													<span class="method-name"><a href="../../Engine/Process-Logic/Ezer_Step.html#methodgetMaxRetries">Ezer_Step::getMaxRetries()</a></span><br>
 													<span class="method-name"><a href="../../Engine/Process-Logic/Ezer_Step.html#methodgetName">Ezer_Step::getName()</a></span><br>
+													<span class="method-name"><a href="../../Engine/Process-Logic/Ezer_Step.html#methodgetOutFlows">Ezer_Step::getOutFlows()</a></span><br>
 													<span class="method-name"><a href="../../Engine/Process-Logic/Ezer_Step.html#methodgetPriority">Ezer_Step::getPriority()</a></span><br>
+													<span class="method-name"><a href="../../Engine/Process-Logic/Ezer_Step.html#methodgetSources">Ezer_Step::getSources()</a></span><br>
+													<span class="method-name"><a href="../../Engine/Process-Logic/Ezer_Step.html#methodgetTargets">Ezer_Step::getTargets()</a></span><br>
+													<span class="method-name"><a href="../../Engine/Process-Logic/Ezer_Step.html#methodsetInFlow">Ezer_Step::setInFlow()</a></span><br>
+													<span class="method-name"><a href="../../Engine/Process-Logic/Ezer_Step.html#methodsetOutFlow">Ezer_Step::setOutFlow()</a></span><br>
 											</blockquote>
 									<!-- =========== Summary =========== -->
 					<p>Inherited From <span class="classname"><a href="../../Engine/Process-Logic/Ezer_Loadable.html">Ezer_Loadable</a></span></p>
@@ -229,7 +241,7 @@
 
 
 	<p class="notes" id="credit">
-		Documentation generated on Sat, 17 Oct 2009 20:12:59 +0300 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+		Documentation generated on Sun, 18 Oct 2009 23:33:09 +0300 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
 	</p>
 	</div></body>
 </html>
