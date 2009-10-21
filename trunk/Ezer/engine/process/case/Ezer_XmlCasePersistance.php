@@ -22,6 +22,8 @@
 require_once 'Ezer_ProcessCasePersistance.php';
 require_once 'Ezer_Case.php';
 
+// TODO - add support for periodic cases.
+
 
 /**
  * Purpose:     Load case definitions from xml file

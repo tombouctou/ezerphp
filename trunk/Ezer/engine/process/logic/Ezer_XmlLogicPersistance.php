@@ -35,6 +35,9 @@ require_once 'errors/Ezer_XmlPersistanceElementNotMappedException.php';
 require_once 'errors/Ezer_XmlPersistanceMissingAttributeException.php';
 require_once 'errors/Ezer_XmlPersistanceMissingClassException.php';
 
+// TODO - change the load logic, each class will extract its own node.
+
+
 /**
  * Purpose:     Load business process definitions from xml file
  * @author Tan-Tan
