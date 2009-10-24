@@ -59,10 +59,9 @@ class Ezer_Flow extends Ezer_StepContainer
 		$step->out_flows = array();
 		
 		$sources = $step->getSources();
-		if($sources && $sources instanceof Ezer_Array)
+		if($sources && is_array($sources) && count($sources))
 		{
-			$arr_sources = (array)$sources;
-			foreach($arr_sources as $source)
+			foreach($sources as $source)
 			{
 				$source_name = $source->getStepName();
 				$source_step = &$this->getStep($source_name);
@@ -75,10 +74,9 @@ class Ezer_Flow extends Ezer_StepContainer
 		}
 	
 		$targets = $step->getTargets();
-		if($targets && $targets instanceof Ezer_Array)
+		if($targets && is_array($targets) && count($targets))
 		{
-			$arr_targets = (array)$targets;
-			foreach($arr_targets as $target)
+			foreach($targets as $target)
 			{
 				$target_name = $target->getStepName();
 				$target_step = &$this->getStep($target_name);

@@ -22,16 +22,16 @@
 
 
 /**
- * Purpose:     Thrown when an unrecognized business process item tried to load
+ * Purpose:     Thrown when trying to add more than one step to a single step container
  * @author Tan-Tan
  * @package Engine
  * @subpackage Process.Logic.errors
  */
-class Ezer_XmlPersistanceMissingClassException extends Exception
+class Ezer_TooManyStepsException extends Exception
 {
 	public function __construct($class_name)
 	{
-		parent::__construct("Missing class $class_name", 0);
+		parent::__construct("$class_name supports only one step", 0);
 	}
 }
 ?>

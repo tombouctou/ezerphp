@@ -19,6 +19,7 @@
  */
 
 require_once dirname(__FILE__) . '/../Ezer_IfElse.php';
+require_once dirname(__FILE__) . '/../errors/Ezer_XmlPersistanceElementNotMappedException.php';
 require_once 'Ezer_XmlStepContainerUtil.php';
 
 
@@ -78,6 +79,26 @@ class Ezer_XmlIf extends Ezer_If
 				case 'elseif':
 					$this->elseifs[] = new Ezer_XmlIf($childElement);
 					break;
+					
+				case 'flow':
+				case 'sequence':
+				case 'activity':
+				case 'assign':
+				case 'if':
+				case 'foreach':
+				case 'repeatUntil':
+				case 'while':
+				case 'switch':
+				case 'empty':
+				case 'wait':
+				case 'terminate':
+				case 'throw':
+				case 'rethrow':
+					// ignore, handled by Ezer_XmlStepContainerUtil
+					break;
+					
+				default:
+					throw new Ezer_XmlPersistanceElementNotMappedException($childElement->nodeName);
 			}
 		}
 	}

@@ -19,6 +19,7 @@
  */
 
 require_once dirname(__FILE__) . '/../Ezer_Variable.php';
+require_once dirname(__FILE__) . '/../errors/Ezer_XmlPersistanceElementNotMappedException.php';
 
 
 /**
@@ -60,6 +61,9 @@ class Ezer_XmlVariable extends Ezer_Variable
 				case 'part':
 					$this->parts[] = new Ezer_XmlVariable($childElement);
 					break;
+					
+				default:
+					throw new Ezer_XmlPersistanceElementNotMappedException($childElement->nodeName);
 			}
 		}
 	}

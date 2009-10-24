@@ -47,8 +47,8 @@ abstract class Ezer_Step
 	protected $join_policy = Ezer_StepJoinPolicy::JOIN_AND;
 	protected $max_retries = 1;
 	protected $priority = 1;
-	protected $targets;
-	protected $sources;
+	protected $targets = array();
+	protected $sources = array();
 	
 	public $in_flows = array();
 	public $out_flows = array();
@@ -68,6 +68,16 @@ abstract class Ezer_Step
 	public function setName($name)
 	{
 		$this->name = $name; 
+	}
+	
+	public function addTarget(Ezer_Link $target)
+	{
+		$this->targets[] = $target;
+	}
+	
+	public function addSource(Ezer_Link $source)
+	{
+		$this->sources[] = $source;
 	}
 	
 	public function getMaxRetries()

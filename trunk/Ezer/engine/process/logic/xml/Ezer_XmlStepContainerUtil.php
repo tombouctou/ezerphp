@@ -20,6 +20,7 @@
 
 
 require_once dirname(__FILE__) . '/../Ezer_StepContainer.php';
+require_once dirname(__FILE__) . '/../errors/Ezer_XmlPersistanceElementNotMappedException.php';
 require_once 'Ezer_XmlFlow.php';
 require_once 'Ezer_XmlSequence.php';
 require_once 'Ezer_XmlActivityStep.php';
@@ -51,6 +52,20 @@ class Ezer_XmlStepContainerUtil
 			
 			switch($childElement->nodeName)
 			{
+				case 'import':
+					// ignore, relevant for process only
+					break;
+					
+				case 'variables':
+					// ignore, relevant for scope only
+					break;
+					
+				case 'condition':
+				case 'else':
+				case 'elseif':
+					// ignore, relevant for if only
+					break;
+					
 				case 'flow':
 					$stepContainer->addStep(new Ezer_XmlFlow($childElement));
 					break;
@@ -70,6 +85,36 @@ class Ezer_XmlStepContainerUtil
 				case 'if':
 					$stepContainer->addStep(new Ezer_XmlIf($childElement));
 					break;
+					
+				case 'foreach':
+					// TODO - implement foreach
+					
+				case 'repeatUntil':
+					// TODO - implement repeatUntil
+					
+				case 'while':
+					// TODO - implement while
+					
+				case 'switch':
+					// TODO - implement switch
+					
+				case 'empty':
+					// TODO - implement empty
+					
+				case 'wait':
+					// TODO - implement wait
+					
+				case 'terminate':
+					// TODO - implement terminate
+					
+				case 'throw':
+					// TODO - implement throw
+					
+				case 'rethrow':
+					// TODO - implement rethrow
+					
+				default:
+					throw new Ezer_XmlPersistanceElementNotMappedException($childElement->nodeName);
 			}
 		}
 	}
