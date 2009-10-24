@@ -18,34 +18,50 @@
  * e-mail to tan-tan@simple.co.il
  */
 
-require_once dirname(__FILE__) . '/../case/Ezer_ScopeInstance.php';
-require_once 'Ezer_StepContainer.php';
+require_once dirname(__FILE__) . '/../Ezer_Variable.php';
 
 
 /**
- * Purpose:     Store in the memory the definitions of a business process
+ * Purpose:     Loads a variable from XML
  * @author Tan-Tan
  * @package Engine
- * @subpackage Process.Logic
+ * @subpackage Process.Logic.XML
  */
-class Ezer_Scope extends Ezer_StepContainer
+class Ezer_XmlVariable extends Ezer_Variable
 {
-	protected $variables;
-	
-	public function &createInstance(Ezer_ScopeInstance &$scope_instance)
+	public function __construct(DOMNode $element)
 	{
-		throw new Exception("createScopeInstance should be used for scope");
+		parent::__construct(uniqid('var_'));
+		
+		$this->parse($element);
 	}
 	
-	public function &createScopeInstance(array $variables, Ezer_ScopeInstance &$scope_instance)
+	public function parse(DOMNode $element)
 	{
-		$ret = new Ezer_ScopeInstance($variables, $scope_instance, $this);
-		return $ret;
-	}
+		if($element->hasAttribute('name'))
+			$this->name = $element->getAttribute('name');
+		
+		if($element->hasAttribute('type'))
+			$this->type = $element->getAttribute('type');
+		
 	
-	public function getName()
-	{
-		return $this->name;
+		for($i = 0;$i < $element->childNodes->length;$i++)
+		{
+			$childElement = $element->childNodes->item($i);
+			
+			if($childElement->parentNode !== $element)
+				continue;
+			
+			if($childElement instanceof DOMComment || $childElement instanceof DOMText)
+				continue;
+			
+			switch($childElement->nodeName)
+			{
+				case 'part':
+					$this->parts[] = new Ezer_XmlVariable($childElement);
+					break;
+			}
+		}
 	}
 }
 

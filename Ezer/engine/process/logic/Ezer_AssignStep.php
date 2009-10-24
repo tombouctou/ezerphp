@@ -27,16 +27,9 @@ require_once dirname(__FILE__) . '/../case/Ezer_AssignStepInstance.php';
  * @package Engine
  * @subpackage Process.Logic
  */
-abstract class Ezer_AssignStepCopyAttribute extends Ezer_Loadable
+abstract class Ezer_AssignStepCopyAttribute
 {
-	/**
-	 * @mandatory false
-	 */
 	protected $variable;
-	
-	/**
-	 * @mandatory false
-	 */
 	protected $part;
 	
 	public function getVariable()
@@ -68,14 +61,6 @@ abstract class Ezer_AssignStepCopyAttribute extends Ezer_Loadable
  */
 class Ezer_AssignStepToAttribute extends Ezer_AssignStepCopyAttribute
 {
-
-	public function __set($name, $value) 
-	{
-		if($value instanceof Ezer_AssignStepToAttribute)
-			$this->part = $value;
-		else	
-			parent::__set($name, $value);
-	}
 }
 
 /**
@@ -86,19 +71,8 @@ class Ezer_AssignStepToAttribute extends Ezer_AssignStepCopyAttribute
  */
 class Ezer_AssignStepFromAttribute extends Ezer_AssignStepCopyAttribute
 {
-	/**
-	 * @mandatory false
-	 */
 	protected $value;
 
-	public function __set($name, $value) 
-	{
-		if($value instanceof Ezer_AssignStepFromAttribute)
-			$this->part = $value;
-		else	
-			parent::__set($name, $value);
-	}
-	
 	public function getVariable()
 	{
 		return $this->variable;
@@ -121,7 +95,7 @@ class Ezer_AssignStepFromAttribute extends Ezer_AssignStepCopyAttribute
  * @package Engine
  * @subpackage Process.Logic
  */
-class Ezer_AssignStepCopy extends Ezer_Loadable
+class Ezer_AssignStepCopy
 {
 	public $from;
 	public $to;	
@@ -149,19 +123,6 @@ class Ezer_AssignStep extends Ezer_Step
 	{
 		$ret = new Ezer_AssignStepInstance($scope_instance, $this);
 		return $ret;
-	}
-
-	public function __set($name, $value) 
-	{
-		if($value instanceof Ezer_AssignStepCopy)
-			$this->add($value);
-		else	
-			parent::__set($name, $value);
-	}
-	
-	public function add(Ezer_AssignStepCopy $copy)
-	{
-		$this->copies[] = $copy;
 	}
 }
 

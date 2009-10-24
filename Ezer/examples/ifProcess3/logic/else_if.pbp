@@ -22,21 +22,19 @@
 	    	<condition>$condition == 3 &amp;&amp; $expression</condition>
 	    	<activity name="If Message" class="SayActivity" args="ifMessage" />
 	    	
+			<elseif name="else if 1">
+                <condition>$condition == 3</condition>
+	    		<activity name="Else Message" class="SayActivity" args="elseIfMessage1" />
+            </elseif>
+			
+			<elseif name="else if 2">
+                <condition>$expression</condition>
+	    		<activity name="Else Message" class="SayActivity" args="elseIfMessage2" />
+            </elseif>
+            
 			<else>
 	    		<activity name="Else Message" class="SayActivity" args="elseMessage" />
 			</else>
-			
-			<elseifs>
-				<elseif>
-	                <condition>$condition == 3</condition>
-		    		<activity name="Else Message" class="SayActivity" args="elseIfMessage1" />
-	            </elseif>
-				
-				<elseif>
-	                <condition>$expression</condition>
-		    		<activity name="Else Message" class="SayActivity" args="elseIfMessage2" />
-	            </elseif>
-			</elseifs>
 		</if>
 	        
 		<activity name="End Message" class="SayActivity" args="endMessage" />

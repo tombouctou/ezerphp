@@ -20,7 +20,6 @@
 
 
 require_once dirname(__FILE__) . '/../case/Ezer_StepInstance.php';
-require_once 'Ezer_Loadable.php';
 
 
 /**
@@ -41,34 +40,14 @@ class Ezer_StepJoinPolicy
  * @package Engine
  * @subpackage Process.Logic
  */
-abstract class Ezer_Step extends Ezer_Loadable
+abstract class Ezer_Step
 {
 	public $id;
 	protected $name;
-	
-	/**
-	 * @mandatory false
-	 */
 	protected $join_policy = Ezer_StepJoinPolicy::JOIN_AND;
-	
-	/**
-	 * @mandatory false
-	 */
 	protected $max_retries = 1;
-	
-	/**
-	 * @mandatory false
-	 */
 	protected $priority = 1;
-	
-	/**
-	 * @mandatory false
-	 */
 	protected $targets;
-	
-	/**
-	 * @mandatory false
-	 */
 	protected $sources;
 	
 	public $in_flows = array();
@@ -84,6 +63,11 @@ abstract class Ezer_Step extends Ezer_Loadable
 	public function getName()
 	{
 		return $this->name; 
+	}
+	
+	public function setName($name)
+	{
+		$this->name = $name; 
 	}
 	
 	public function getMaxRetries()

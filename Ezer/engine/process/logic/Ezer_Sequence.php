@@ -36,13 +36,13 @@ class Ezer_Sequence extends Ezer_StepContainer
 		return $ret;
 	}
 	
-	public function add(Ezer_Step &$step)
+	public function addStep(Ezer_Step &$step)
 	{
 		// overwrite any flow definition
 		$step->in_flows = array();
 		$step->out_flows = array();
 		
-		parent::add($step);
+		parent::addStep($step);
 		
 		$last_index = count($this->steps) - 1;
 		if($last_index <= 0)

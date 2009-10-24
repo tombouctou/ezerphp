@@ -39,7 +39,7 @@ class Ezer_ActivityStepInstance extends Ezer_StepInstance
 		
 		$class = $step->getClass();
 		if(!class_exists($class))
-			throw new Ezer_StepClassNotFoundException($class);
+			throw new Ezer_StepActivityClassNotFoundException($class);
 			
 		if(!is_subclass_of($class, 'Ezer_Activity'))
 			throw new Ezer_StepClassNotActivityException($class);

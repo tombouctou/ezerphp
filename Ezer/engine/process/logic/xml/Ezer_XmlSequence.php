@@ -18,34 +18,22 @@
  * e-mail to tan-tan@simple.co.il
  */
 
-
-require_once 'Ezer_Loadable.php';
+require_once dirname(__FILE__) . '/../Ezer_Sequence.php';
+require_once 'Ezer_XmlStepContainerUtil.php';
 
 
 /**
- * Purpose:     Store in the memory the definitions of array, used to array variables, steps and so on
+ * Purpose:     Loads a sequence from XML
  * @author Tan-Tan
  * @package Engine
- * @subpackage Process.Logic
+ * @subpackage Process.Logic.XML
  */
-class Ezer_Array extends ArrayObject
+class Ezer_XmlSequence extends Ezer_Sequence
 {
-	public $id;
-	private $data;
-	
-	public function __construct($id = 0)
+	public function __construct(DOMElement $element)
 	{
-		$this->id = $id;
-	}
-	
-	public function add($value)
-	{
-		$this[] = $value;
-	}
-	
-	public function __set($name, $value)
-	{
-		$this[] = $value;
+		parent::__construct(uniqid('seq_'));
+		Ezer_XmlStepContainerUtil::parse($this, $element);
 	}
 }
 

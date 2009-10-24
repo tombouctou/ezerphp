@@ -4,7 +4,7 @@ ini_set('max_execution_time', 0);
 
 require_once '../../config/Ezer_Config.php';
 require_once '../../engine/process/Ezer_BusinessProcessServer.php';
-require_once '../../engine/process/logic/Ezer_XmlLogicPersistance.php';
+require_once '../../engine/process/logic/xml/Ezer_XmlLogicPersistance.php';
 require_once '../../engine/process/case/Ezer_XmlCasePersistance.php';
 
 $config = new Ezer_Config('config.xml');

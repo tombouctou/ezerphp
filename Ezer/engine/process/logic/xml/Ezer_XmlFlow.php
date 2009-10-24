@@ -18,34 +18,22 @@
  * e-mail to tan-tan@simple.co.il
  */
 
-require_once dirname(__FILE__) . '/../case/Ezer_ScopeInstance.php';
-require_once 'Ezer_StepContainer.php';
+require_once dirname(__FILE__) . '/../Ezer_Flow.php';
+require_once 'Ezer_XmlStepContainerUtil.php';
 
 
 /**
- * Purpose:     Store in the memory the definitions of a business process
+ * Purpose:     Loads a flow from XML
  * @author Tan-Tan
  * @package Engine
- * @subpackage Process.Logic
+ * @subpackage Process.Logic.XML
  */
-class Ezer_Scope extends Ezer_StepContainer
+class Ezer_XmlFlow extends Ezer_Flow
 {
-	protected $variables;
-	
-	public function &createInstance(Ezer_ScopeInstance &$scope_instance)
+	public function __construct(DOMElement $element)
 	{
-		throw new Exception("createScopeInstance should be used for scope");
-	}
-	
-	public function &createScopeInstance(array $variables, Ezer_ScopeInstance &$scope_instance)
-	{
-		$ret = new Ezer_ScopeInstance($variables, $scope_instance, $this);
-		return $ret;
-	}
-	
-	public function getName()
-	{
-		return $this->name;
+		parent::__construct(uniqid('flow_'));
+		Ezer_XmlStepContainerUtil::parse($this, $element);
 	}
 }
 
