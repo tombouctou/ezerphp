@@ -100,7 +100,7 @@ class Ezer_ScopeInstance extends Ezer_StepContainerInstance
 			{
 				$all_set = true;
 //				$part_part = $part->getPart();
-//				echo "array part has part " . $part_part->getVariable() . "\n";
+//				echo "array part has part " . $part->getPart()->getVariable() . "\n";
 				
 				foreach($var as &$set_var)
 					if(!$this->setValue($set_var, $part, $value))

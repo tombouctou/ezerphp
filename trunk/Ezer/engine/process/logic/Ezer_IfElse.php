@@ -32,18 +32,13 @@ require_once 'errors/Ezer_SyntaxException.php';
  */
 class Ezer_Else extends Ezer_StepContainer
 {
-	/**
-	 * @mandatory false
-	 */
-	protected $name;
-	
 	public function &createInstance(Ezer_ScopeInstance &$scope_instance)
 	{
 		$ret = new Ezer_ElseInstance($scope_instance, $this);
 		return $ret;
 	}
 	
-	public function add(Ezer_Step $step)
+	public function addStep(Ezer_Step $step)
 	{
 		if(count($this->steps))
 			throw new Ezer_SyntaxException('Else object can contain only on step');
@@ -52,7 +47,7 @@ class Ezer_Else extends Ezer_StepContainer
 		$step->in_flows = array();
 		$step->out_flows = array();
 		
-		parent::add($step);
+		parent::addStep($step);
 	}
 }
 
@@ -69,44 +64,21 @@ class Ezer_If extends Ezer_StepContainer
 	
 	protected $condition = null;
 	
-	/**
-	 * @mandatory false
-	 */
-	protected $name;
-	
-	public $canElse = true;
-	
 	public function &createInstance(Ezer_ScopeInstance &$scope_instance)
 	{
 		return new Ezer_IfInstance($scope_instance, $this);
 	}
 	
-	public function add(Ezer_Step $value)
+	public function addStep(Ezer_Step $step)
 	{
 		// overwrite any flow definition
-		$value->in_flows = array();
-		$value->out_flows = array();
-		
-		if($value instanceof Ezer_If)
-		{
-			$value->canElse = false;
-			$this->elseifs[] = $value;
-			return;
-		}
-		
-		if($value instanceof Ezer_Else)
-		{
-			if(!$value->canElse)
-				throw new Ezer_SyntaxException('ElseIf object can not contain Else object');
-				
-			$this->else = $value;
-			return;
-		}
+		$step->in_flows = array();
+		$step->out_flows = array();
 		
 		if(count($this->steps))
 			throw new Ezer_SyntaxException('If object can contain only on step');
 			
-		parent::add($value);
+		parent::addStep($step);
 	}
 	
 	public function getCondition()

@@ -33,15 +33,7 @@ abstract class Ezer_StepContainer extends Ezer_Step
 {
 	public $steps = array();
 	
-	public function __set($name, $value) 
-	{
-		if($value instanceof Ezer_Step)
-			$this->add($value);
-		else	
-			parent::__set($name, $value);
-	}
-	
-	public function add(Ezer_Step &$step)
+	public function addStep(Ezer_Step &$step)
 	{
 		$this->steps[] = &$step;
 	}

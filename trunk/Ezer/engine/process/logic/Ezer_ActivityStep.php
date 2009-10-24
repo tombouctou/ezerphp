@@ -31,28 +31,12 @@ require_once dirname(__FILE__) . '/../case/Ezer_ActivityStepInstance.php';
 class Ezer_ActivityStep extends Ezer_Step
 {
 	protected $class;
-	
-	/**
-	 * @mandatory false
-	 */
 	protected $args;
 
 	public function __construct($id)
 	{
 		parent::__construct($id);
-		$this->args = new Ezer_Array();
-	}
-	
-	public function __set($name, $value) 
-	{
-		if($name == 'args' && !($value instanceof Ezer_Array))
-		{
-			$arr = new Ezer_Array();
-			$arr->add($value);
-			$value = $arr;
-		}
-			
-		parent::__set($name, $value);
+		$this->args = array();
 	}
 	
 	public function &createInstance(Ezer_ScopeInstance &$scope_instance)

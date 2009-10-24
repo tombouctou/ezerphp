@@ -30,43 +30,6 @@ require_once 'Ezer_Scope.php';
  */
 class Ezer_BusinessProcess extends Ezer_Scope
 {
-	private $imports = array();
-
-	public function __set($name, $value) 
-	{
-		switch($name)
-		{
-			case 'import':
-				$this->imports[] = $value;
-				require_once $value;
-				break;
-				
-			case 'imports':
-				foreach($value as $import)
-				{
-					if(is_null($import))
-						continue;
-						
-					$this->imports[] = $import;
-					require_once $import;
-				}
-				break;
-				
-			case 'sequence':
-				$this->steps[] = $value;
-				break;
-				
-			default:
-				parent::__set($name, $value);
-				break;
-		}
-	}
-	
-	public function __construct($id)
-	{
-		$this->id = $id;
-	}
-
 	public function &createInstance(Ezer_ScopeInstance &$scope_instance)
 	{
 		throw new Exception("createBusinessProcessInstance should be used for business process");
@@ -81,11 +44,6 @@ class Ezer_BusinessProcess extends Ezer_Scope
 	public function getName()
 	{
 		return $this->name;
-	}
-	
-	public function getImports()
-	{
-		return $this->imports;
 	}
 }
 

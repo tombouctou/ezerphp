@@ -28,7 +28,7 @@ require_once 'Ezer_StepContainer.php';
  * @package Engine
  * @subpackage Process.Logic
  */
-class Ezer_Link extends Ezer_Loadable
+class Ezer_Link
 {
 	protected $stepName;
 	
@@ -52,7 +52,7 @@ class Ezer_Flow extends Ezer_StepContainer
 		return $ret;
 	}
 	
-	public function add(Ezer_Step &$step)
+	public function addStep(Ezer_Step &$step)
 	{
 		// overwrite any flow definition
 		$step->in_flows = array();
@@ -90,7 +90,7 @@ class Ezer_Flow extends Ezer_StepContainer
 			}
 		}
 		
-		parent::add($step);
+		parent::addStep($step);
 	}
 }
 

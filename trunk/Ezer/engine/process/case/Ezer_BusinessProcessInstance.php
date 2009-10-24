@@ -38,9 +38,4 @@ class Ezer_BusinessProcessInstance extends Ezer_ScopeInstance
 		$this->process = $process;
 		$this->start();
 	}
-	
-	public function getImports()
-	{
-		return $this->process->getImports();
-	}
 }

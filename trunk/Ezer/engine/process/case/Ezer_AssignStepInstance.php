@@ -62,20 +62,15 @@ class Ezer_AssignStepInstance extends Ezer_StepInstance
 				}
 				else
 				{
-//					echo "scope dont have variable\n";
 					$all_set = false;
 				}
 			}
 				
 			if($should_set)
 				if(!$this->scope_instance->setVariable($to, $value))
-				{
-//					echo "set variable failed\n";
 					$all_set = false;
-				}
 		}
 		
-//		echo "variable set\n";
 		return $all_set;
 	}
 	

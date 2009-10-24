@@ -1,9 +1,7 @@
 <process name="AsyncSet">
 
-	<imports>
-		<import>activities\CountActivity.php</import>
-		<import>activities\AsyncSetActivity.php</import>
-	</imports>
+	<import>activities\CountActivity.php</import>
+	<import>activities\AsyncSetActivity.php</import>
 	
 	<variables>
 		<!-- type is not mandatory -->

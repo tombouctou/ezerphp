@@ -53,10 +53,10 @@ class Ezer_IfInstance extends Ezer_StepContainerInstance
 			}
 			else
 			{
-				$step = &$this->step->steps[0];
+				$step = reset($this->step->steps);
 				$step_instance = &$step->createInstance($this->scope_instance);
 				$this->step_instances[] = &$step_instance;
-				$step_instance->flow();
+				$step_instance->start();
 			}
 			return;
 		}
@@ -64,12 +64,15 @@ class Ezer_IfInstance extends Ezer_StepContainerInstance
 		foreach($this->step->elseifs as &$elseif)
 		{
 			$elseif_instance = &$elseif->createInstance($this->scope_instance);
-			$condition_results = $elseif_instance->evaluateCondition();
-			if($condition_results)
+			if($elseif_instance->evaluateCondition())
 			{
-				$this->else_instance = &$elseif_instance;
-				$elseif_instance->flow();
+				$this->elseif_instance = &$elseif_instance;
+				$this->elseif_instance->start();
 				return;
+			}
+			else
+			{
+				$elseif_instance->done();
 			}
 		}
 		
@@ -78,7 +81,7 @@ class Ezer_IfInstance extends Ezer_StepContainerInstance
 			$else = &$this->step->else;
 			$else_instance = &$else->createInstance($this->scope_instance);
 			$this->else_instance = &$else_instance;
-			$else_instance->flow();
+			$this->else_instance->start();
 			return;
 		}
 		
@@ -105,32 +108,47 @@ class Ezer_IfInstance extends Ezer_StepContainerInstance
 	
 	public function isAvailable()
 	{
-		if(!parent::isStarted())
-			return parent::isAvailable();
+		$this->tryClose();
+		
+		return parent::isAvailable();
+	}
+	
+	public function isDone()
+	{
+		$this->tryClose();
+		
+		return parent::isDone();
+	}
+	
+	private function tryClose()
+	{
+		if(parent::isDone())
+			return;
 			
 		if($this->condition_results)
 		{
-			$step_instance = $this->step_instances[0];
-			if($step_instance->isDone())
+			$step_instance = reset($this->step_instances);
+			if(!$step_instance || $step_instance->isDone())
 				$this->done();
 				
-			return false;
+			return;
 		}
 		
 		if($this->elseif_instance && $this->elseif_instance->condition_results)
 		{
-			if($this->elseif_instance->isDone())
+			if(!$this->elseif_instance || $this->elseif_instance->isDone())
 				$this->done();
 				
-			return false;
+			return;
 		}
 		
 		if($this->else_instance)
 		{
-			if($this->else_instance->isDone())
+			if(!$this->else_instance || $this->else_instance->isDone())
 				$this->done();
+				
+			return;
 		}
-		return false;
 	}
 }
 
