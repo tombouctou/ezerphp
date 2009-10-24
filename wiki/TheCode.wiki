@@ -23,6 +23,7 @@ Contains the engine hart
 === process ===
 Contains the code for PHP business process management.
   * logic - code for loading business process definitions to the server memory.
+  * logic xml - loads business process from BPEL like xml.
   * case - code for loading and executing business case.
 
 == examples ==
