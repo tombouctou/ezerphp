@@ -20,7 +20,7 @@
 
 require_once dirname(__FILE__) . '/../case/Ezer_IfInstance.php';
 require_once dirname(__FILE__) . '/../case/Ezer_ElseInstance.php';
-require_once 'Ezer_StepContainer.php';
+require_once 'Ezer_SingleStepContainer.php';
 require_once 'errors/Ezer_SyntaxException.php';
 
 
@@ -30,7 +30,7 @@ require_once 'errors/Ezer_SyntaxException.php';
  * @package Engine
  * @subpackage Process.Logic
  */
-class Ezer_Else extends Ezer_StepContainer
+class Ezer_Else extends Ezer_SingleStepContainer
 {
 	public function &createInstance(Ezer_ScopeInstance &$scope_instance)
 	{
@@ -57,7 +57,7 @@ class Ezer_Else extends Ezer_StepContainer
  * @package Engine
  * @subpackage Process.Logic
  */
-class Ezer_If extends Ezer_StepContainer
+class Ezer_If extends Ezer_SingleStepContainer
 {
 	public $else = null;
 	public $elseifs = array();

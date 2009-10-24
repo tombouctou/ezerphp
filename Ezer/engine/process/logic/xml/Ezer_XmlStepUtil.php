@@ -18,34 +18,24 @@
  * e-mail to tan-tan@simple.co.il
  */
 
-require_once dirname(__FILE__) . '/../Ezer_ActivityStep.php';
-require_once dirname(__FILE__) . '/../errors/Ezer_XmlPersistanceElementNotMappedException.php';
-require_once 'Ezer_XmlStepUtil.php';
 
+require_once dirname(__FILE__) . '/../Ezer_Step.php';
+require_once dirname(__FILE__) . '/../errors/Ezer_XmlPersistanceElementNotMappedException.php';
+require_once 'Ezer_XmlFlow.php';
 
 /**
- * Purpose:     Loads an activity step from XML
+ * Purpose:     Parse helper for steps from XML
  * @author Tan-Tan
  * @package Engine
  * @subpackage Process.Logic.XML
  */
-class Ezer_XmlActivityStep extends Ezer_ActivityStep
+class Ezer_XmlStepUtil
 {
-	public function __construct(DOMElement $element)
+	public static function parse(Ezer_Step $step, DOMElement $element)
 	{
-		parent::__construct(uniqid('act_'));
-		Ezer_XmlStepUtil::parse($this, $element);
-		$this->parse($element);
-	}
-	
-	public function parse(DOMElement $element)
-	{
-		$this->class = $element->getAttribute('class');
+		$step->setName($element->getAttribute('name'));
 		
-		if($element->hasAttribute('args'))
-			$this->args[] = $element->getAttribute('args');
-		
-		for($i = 0; $i < $element->childNodes->length; $i++)
+		for($i = 0;$i < $element->childNodes->length;$i++)
 		{
 			$childElement = $element->childNodes->item($i);
 			
@@ -58,12 +48,19 @@ class Ezer_XmlActivityStep extends Ezer_ActivityStep
 			switch($childElement->nodeName)
 			{
 				case 'args':
-					$this->parseArgs($childElement);
+					// ignore, relevant for activity step only
+					break;
+			
+				case 'copy':
+					// ignore, relevant for assign step only
 					break;
 					
 				case 'targets':
+					self::parseTargets($step, $childElement);
+					break;
+					
 				case 'sources':
-					// already handled by Ezer_XmlStepUtil
+					self::parseSources($step, $childElement);
 					break;
 					
 				default:
@@ -72,19 +69,35 @@ class Ezer_XmlActivityStep extends Ezer_ActivityStep
 		}
 	}
 	
-	public function parseArgs(DOMElement $argsElement)
+	public static function parseTargets(Ezer_Step $step, DOMElement $element)
 	{
-		for($i = 0; $i < $argsElement->childNodes->length; $i++)
+		for($i = 0;$i < $element->childNodes->length;$i++)
 		{
-			$childElement = $argsElement->childNodes->item($i);
+			$childElement = $element->childNodes->item($i);
 			
-			if($childElement->parentNode !== $argsElement)
+			if($childElement->parentNode !== $element)
 				continue;
 			
 			if($childElement instanceof DOMComment || $childElement instanceof DOMText)
 				continue;
-				
-			$this->args[] = $childElement->nodeValue;
+			
+			$step->addTarget(new Ezer_XmlLink($childElement));
+		}
+	}
+	
+	public static function parseSources(Ezer_Step $step, DOMElement $element)
+	{
+		for($i = 0;$i < $element->childNodes->length;$i++)
+		{
+			$childElement = $element->childNodes->item($i);
+			
+			if($childElement->parentNode !== $element)
+				continue;
+			
+			if($childElement instanceof DOMComment || $childElement instanceof DOMText)
+				continue;
+			
+			$step->addSource(new Ezer_XmlLink($childElement));
 		}
 	}
 }

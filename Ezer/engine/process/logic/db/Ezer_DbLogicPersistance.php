@@ -37,7 +37,7 @@ class Ezer_DbLogicPersistance implements Ezer_ProcessLogicPersistance
 	
 	public function getProcesses()
 	{
-		// TODO - implement
+		// TODO - implement DB persistance
 	}
 }
 

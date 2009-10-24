@@ -19,6 +19,7 @@
  */
 
 require_once dirname(__FILE__) . '/../Ezer_BusinessProcess.php';
+require_once dirname(__FILE__) . '/../errors/Ezer_XmlPersistanceElementNotMappedException.php';
 require_once 'Ezer_XmlVariable.php';
 require_once 'Ezer_XmlSequence.php';
 
@@ -35,12 +36,11 @@ class Ezer_XmlBusinessProcess extends Ezer_BusinessProcess
 	{
 		parent::__construct(uniqid('proc_'));
 		$this->parse($element);
+		Ezer_XmlStepContainerUtil::parse($this, $element);
 	}
 	
 	public function parse(DOMElement $element)
 	{
-		$this->name = $element->getAttribute('name');
-		
 		for($i = 0;$i < $element->childNodes->length;$i++)
 		{
 			$childElement = $element->childNodes->item($i);
@@ -60,10 +60,13 @@ class Ezer_XmlBusinessProcess extends Ezer_BusinessProcess
 				case 'variables':
 					$this->parseVariables($childElement);
 					break;
-					
+
 				case 'sequence':
-					$this->addStep(new Ezer_XmlSequence($childElement));
+					// handled already by Ezer_XmlStepContainerUtil
 					break;
+					
+				default:
+					throw new Ezer_XmlPersistanceElementNotMappedException($childElement->nodeName);
 			}
 		}
 	}

@@ -19,7 +19,7 @@
  */
 
 require_once dirname(__FILE__) . '/../case/Ezer_ScopeInstance.php';
-require_once 'Ezer_StepContainer.php';
+require_once 'Ezer_SingleStepContainer.php';
 
 
 /**
@@ -28,7 +28,7 @@ require_once 'Ezer_StepContainer.php';
  * @package Engine
  * @subpackage Process.Logic
  */
-class Ezer_Scope extends Ezer_StepContainer
+class Ezer_Scope extends Ezer_SingleStepContainer
 {
 	protected $variables;
 	

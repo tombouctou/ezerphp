@@ -19,6 +19,8 @@
  */
 
 require_once dirname(__FILE__) . '/../Ezer_AssignStep.php';
+require_once dirname(__FILE__) . '/../errors/Ezer_XmlPersistanceElementNotMappedException.php';
+require_once 'Ezer_XmlStepUtil.php';
 
 
 /**
@@ -54,6 +56,9 @@ class Ezer_XmlAssignStepToAttribute extends Ezer_AssignStepToAttribute
 				case 'to':
 					$this->part = new Ezer_XmlAssignStepToAttribute($childElement);
 					break;
+					
+				default:
+					throw new Ezer_XmlPersistanceElementNotMappedException($childElement->nodeName);
 			}
 		}
 	}
@@ -95,6 +100,9 @@ class Ezer_XmlAssignStepFromAttribute extends Ezer_AssignStepFromAttribute
 				case 'from':
 					$this->part = new Ezer_XmlAssignStepFromAttribute($childElement);
 					break;
+					
+				default:
+					throw new Ezer_XmlPersistanceElementNotMappedException($childElement->nodeName);
 			}
 		}
 	}
@@ -134,6 +142,9 @@ class Ezer_XmlAssignStepCopy extends Ezer_AssignStepCopy
 				case 'to':
 					$this->to = new Ezer_XmlAssignStepToAttribute($childElement);
 					break;
+					
+				default:
+					throw new Ezer_XmlPersistanceElementNotMappedException($childElement->nodeName);
 			}
 		}
 	}
@@ -151,6 +162,7 @@ class Ezer_XmlAssignStep extends Ezer_AssignStep
 	public function __construct(DOMElement $element)
 	{
 		parent::__construct(uniqid('asgn_'));
+		Ezer_XmlStepUtil::parse($this, $element);
 		$this->parse($element);
 	}
 	
@@ -173,6 +185,14 @@ class Ezer_XmlAssignStep extends Ezer_AssignStep
 				case 'copy':
 					$this->copies[] = new Ezer_XmlAssignStepCopy($childElement);
 					break;
+					
+				case 'targets':
+				case 'sources':
+					// already handled by Ezer_XmlStepUtil
+					break;
+					
+				default:
+					throw new Ezer_XmlPersistanceElementNotMappedException($childElement->nodeName);
 			}
 		}
 	}

@@ -19,7 +19,29 @@
  */
 
 require_once dirname(__FILE__) . '/../Ezer_Flow.php';
+require_once dirname(__FILE__) . '/../errors/Ezer_XmlPersistanceElementNotMappedException.php';
 require_once 'Ezer_XmlStepContainerUtil.php';
+
+
+/**
+ * Purpose:     Loads a flow link from XML
+ * @author Tan-Tan
+ * @package Engine
+ * @subpackage Process.Logic.XML
+ */
+class Ezer_XmlLink extends Ezer_Link
+{
+	public function __construct(DOMElement $element)
+	{
+		$this->parse($element);
+	}
+
+	public function parse(DOMNode $element)
+	{
+		if($element->hasAttribute('stepName'))
+			$this->stepName = $element->getAttribute('stepName');
+	}
+}
 
 
 /**

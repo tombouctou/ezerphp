@@ -1,5 +1,4 @@
 <?php
-
 /**
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -19,19 +18,35 @@
  * e-mail to tan-tan@simple.co.il
  */
 
+require_once dirname(__FILE__) . '/errors/Ezer_TooManyStepsException.php';
+require_once 'Ezer_StepContainer.php';
 
 
 /**
- * Purpose:     Thrown when an trying to load unrecognized attribute to a business process item
+ * Purpose:     Store in the memory the definitions of a step container with a single step only
  * @author Tan-Tan
  * @package Engine
- * @subpackage Process.Logic.errors
+ * @subpackage Process.Logic
  */
-class Ezer_XmlPersistanceMissingAttributeException extends Exception
+abstract class Ezer_SingleStepContainer extends Ezer_StepContainer
 {
-	public function __construct($attr_name, $class_name)
+	public function &createInstance(Ezer_ScopeInstance &$scope_instance)
 	{
-		parent::__construct("Missing attribute $attr_name for $class_name", 0);
+		$ret = new Ezer_SingleStepContainer($scope_instance, $this);
+		return $ret;
+	}
+	
+	public function addStep(Ezer_Step &$step)
+	{
+		if(count($this->steps))
+			throw new Ezer_TooManyStepsException(get_class($this));
+			
+		// overwrite any flow definition
+		$step->in_flows = array();
+		$step->out_flows = array();
+		
+		parent::addStep($step);
 	}
 }
+
 ?>
