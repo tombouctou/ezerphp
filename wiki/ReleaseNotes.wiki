@@ -32,6 +32,9 @@ all of them offering important modules on the way to well orgenized PHP applicat
 === Since 1.0.5 ===
   * Support for BPEL like xml
   
+=== Since 1.1.0 ===
+  * Support DB persistence over propel ORM 
+
   
 I tried to supply an extendable core framework with simple examples.
 
@@ -81,6 +84,12 @@ You can run all the cases concurrently or one by one.
 === Complex vars ===
 Demonstrate how to define complex type, how to set a part of a variable, and how to set a part in each part of array.
 Additional process example added, called "Async Set", shows how to set a variable value remotely from an asynchronous activity step.
+
+=== Flow process ===
+Demonstrate how to define concurrent execution of few steps.
+
+=== Propel process ===
+Demonstrate how to save process definitions and case definitions in mySql DB over propel ORM.
 
 ----
 
