@@ -1,6 +1,8 @@
 <process name="HelloWorld">
 
+	<!-- autoload makes imports not needed
 	<import>activities\SayActivity.php</import>
+	-->
 	
 	<variables>
 		<!-- type is not mandatory -->
