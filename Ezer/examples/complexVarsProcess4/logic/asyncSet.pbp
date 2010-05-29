@@ -1,7 +1,9 @@
 <process name="AsyncSet">
 
+	<!-- autoload makes imports not needed
 	<import>activities\CountActivity.php</import>
 	<import>activities\AsyncSetActivity.php</import>
+	-->
 	
 	<variables>
 		<!-- type is not mandatory -->
