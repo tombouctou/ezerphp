@@ -1,5 +1,4 @@
 <?php
-require_once 'Ezer_ConfigExceptions.php';
 
 /**
  * This library is free software; you can redistribute it and/or
@@ -42,7 +41,7 @@ class Ezer_Config extends ArrayObject
 	
 	public $entityName;
 	public $type = self::CLASS_TYPE;
-	private $keys;
+	protected $keys;
 
 	public function __construct($xml)
 	{
@@ -58,6 +57,20 @@ class Ezer_Config extends ArrayObject
 			return null;
 			
 		return $this[$name];
+	}
+
+	public function toArray()
+	{
+		$ret = array();
+		foreach($this->keys as $key)
+		{
+			$value = $this[$key];
+			if($value instanceof Ezer_Config)
+				$value = $value->toArray();
+				
+			$ret[$key] = $value;
+		}
+		return $ret;
 	}
 
 	public function getKeys()
@@ -177,7 +190,8 @@ class Ezer_Config extends ArrayObject
 	private function replaceSpecialChars($value)
 	{
 		//Replace any non-word characters with an underscore
-		return ereg_replace("[\\W-]", "_", $value); //Convert non-word characters, hyphens and dots to underscores
+//		echo "$value: " . preg_replace('/[-]/', '_', $value) . "\n";
+		return preg_replace('/[-]/', '_', $value); //Convert non-word characters, hyphens and dots to underscores
 	}
 
 	private function getTextValue(DOMNode $node)
@@ -191,4 +205,3 @@ class Ezer_Config extends ArrayObject
 }
 
 
-?>
