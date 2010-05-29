@@ -1,6 +1,8 @@
 <process name="If Else">
 
+	<!-- autoload makes imports not needed
 	<import>activities\SayActivity.php</import>
+	-->
 	
 	<variables>
 		<variable name="condition" type="int" />
