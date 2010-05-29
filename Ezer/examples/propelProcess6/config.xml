@@ -1,0 +1,13 @@
+<config>
+	<phpExe>C:\xampp\php\php.exe</phpExe>
+	<database>
+		<datasources default="ezer">
+			<ezer adapter="mysql">
+				<connection phptype="mysql" database="ezer" hostspec="localhost"
+					user="root" password="root"
+					dsn="mysql:host=localhost;dbname=ezer;user=root;password=root;" />
+			</ezer>
+			<log ident="ezer" level="7" />
+		</datasources>
+	</database>
+</config>
