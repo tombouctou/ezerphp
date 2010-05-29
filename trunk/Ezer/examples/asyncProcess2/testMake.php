@@ -1,6 +1,6 @@
 <?php
 
-$path = 'cases';
+$path = 'lib/cases';
 $dir = dir($path);
 
 $files = array();
@@ -20,4 +20,3 @@ foreach($files as $file)
 	rename($file, $archive);
 }
 
-?>
