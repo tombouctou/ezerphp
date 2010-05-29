@@ -1,5 +1,4 @@
 <?php
-require_once '../../engine/core/threads/Ezer_ThreadClient.php';
 
 /**
  * @author Tan-Tan
@@ -39,4 +38,3 @@ class SocketCountClient extends Ezer_ThreadClient
 	}
 }
 
-?>
