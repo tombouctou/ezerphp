@@ -1,0 +1,44 @@
+<process name="Else If">
+
+	<import>activities\SayActivity.php</import>
+	
+	<variables>
+		<variable name="condition" type="int" />
+		<variable name="expression" type="boolean" />
+		
+		<variable name="beginMessage" />
+		<variable name="endMessage" />
+		<variable name="ifMessage" />
+		<variable name="elseMessage" />
+		<variable name="elseIfMessage1" />
+		<variable name="elseIfMessage2" />
+	</variables>
+
+	<sequence name="main">
+	
+		<activity name="Begin Message" class="SayActivity" args="beginMessage" />
+		
+		<if name="If" condition="">
+	    	<condition>$condition == 3 &amp;&amp; $expression</condition>
+	    	<activity name="If Message" class="SayActivity" args="ifMessage" />
+	    	
+			<elseif name="else if 1">
+                <condition>$condition == 3</condition>
+	    		<activity name="Else Message" class="SayActivity" args="elseIfMessage1" />
+            </elseif>
+			
+			<elseif name="else if 2">
+                <condition>$expression</condition>
+	    		<activity name="Else Message" class="SayActivity" args="elseIfMessage2" />
+            </elseif>
+            
+			<else>
+	    		<activity name="Else Message" class="SayActivity" args="elseMessage" />
+			</else>
+		</if>
+	        
+		<activity name="End Message" class="SayActivity" args="endMessage" />
+
+	</sequence>
+</process>
+

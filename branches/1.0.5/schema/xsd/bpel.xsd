@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" 
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:ezer="http://schemas.ezer.org/schema/xsd/bpel/"
+	xmlns:bp="http://schemas.xmlsoap.org/ws/2003/03/business-process/"
+	targetNamespace="http://schemas.ezer.org/schema/xsd/bpel/"
+	elementFormDefault="qualified">
+
+	<import namespace="http://schemas.xmlsoap.org/ws/2003/03/business-process/" schemaLocation="http://schemas.xmlsoap.org/ws/2003/03/business-process/" />
+	
+	<redefine>
+		<group name="activity">
+			<choice>
+				<element ref="bp:assign" />
+				<element ref="bp:empty" />
+				<element ref="bp:extensionActivity" />
+				<element ref="bp:flow" />
+				<element ref="bp:invoke" />
+				<element ref="bp:pick" />
+				<element ref="bp:receive" />
+				<element ref="bp:reply" />
+				<element ref="bp:scope" />
+				<element ref="bp:sequence" />
+				<element ref="bp:throw" />
+				<element ref="bp:wait" />
+				<element ref="bp:while" />
+				<element ref="bp:terminate" />
+				<element ref="bp:switch" />
+				<element ref="ezer:php" />
+			</choice>
+		</group>
+	</redefine>
+	
+	<element name="php" type="ezer:tPhp" /> 
+	<complexType name="tPhp">
+		<complexContent>
+			<extension base="bp:tActivity">
+				<sequence>
+					<element name="correlations" type="bpws:tCorrelations"
+						minOccurs="0" />
+				</sequence>
+				<attribute name="partnerLink" type="NCName" use="required" />
+				<attribute name="portType" type="QName" use="required" />
+				<attribute name="operation" type="NCName" use="required" />
+				<attribute name="variable" type="NCName" use="optional" />
+				<attribute name="createInstance" type="bpws:tBoolean"
+					default="no" />
+			</extension>
+		</complexContent>
+	</complexType>
+
+</schema>
