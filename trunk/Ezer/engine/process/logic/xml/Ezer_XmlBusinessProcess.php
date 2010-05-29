@@ -18,11 +18,6 @@
  * e-mail to tan-tan@simple.co.il
  */
 
-require_once dirname(__FILE__) . '/../Ezer_BusinessProcess.php';
-require_once dirname(__FILE__) . '/../errors/Ezer_XmlPersistanceElementNotMappedException.php';
-require_once 'Ezer_XmlVariable.php';
-require_once 'Ezer_XmlSequence.php';
-
 
 /**
  * Purpose:     Loads a business process from XML
@@ -54,7 +49,7 @@ class Ezer_XmlBusinessProcess extends Ezer_BusinessProcess
 			switch($childElement->nodeName)
 			{
 				case 'import':
-					require_once $childElement->nodeValue;
+					$this->addImport($childElement->nodeValue);
 					break;
 					
 				case 'variables':
@@ -85,4 +80,3 @@ class Ezer_XmlBusinessProcess extends Ezer_BusinessProcess
 	}
 }
 
-?>

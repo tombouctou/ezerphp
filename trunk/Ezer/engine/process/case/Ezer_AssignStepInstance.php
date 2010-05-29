@@ -53,11 +53,9 @@ class Ezer_AssignStepInstance extends Ezer_StepInstance
 			}
 			else
 			{
-				$from_variable = $from->getVariable();
-				
 				if($this->scope_instance->hasVariable($from))
 				{
-					$value = $this->scope_instance->getVariable($from);
+					$value = $this->scope_instance->getVariableValue($from);
 					$should_set = true;
 				}
 				else
@@ -90,4 +88,3 @@ class Ezer_AssignStepInstance extends Ezer_StepInstance
 	}
 }
 
-?>

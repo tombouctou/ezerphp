@@ -31,8 +31,8 @@ abstract class Ezer_Process
 {
 	const MSG_EXIT = 'exit';
 	
-	private $stdin;
-	private $stderr;
+	protected $stdin;
+	protected $stderr;
 	
 	protected $current_pid;
 	protected $sleep = 1;
@@ -125,4 +125,3 @@ abstract class Ezer_Process
 		fflush($this->stderr);
 	}
 }
-?>

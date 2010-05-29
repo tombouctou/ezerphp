@@ -20,8 +20,6 @@
  */
 
 
-require_once dirname(__FILE__) . '/../core/threads/Ezer_ThreadClient.php';
-
 /**
  * Purpose:     Enum of availble messages from worker to server
  * @author Tan-Tan
@@ -119,7 +117,7 @@ class Ezer_BusinessProcessClient extends Ezer_ThreadClient
 		$data = null;
 		
 		if(strpos($result, ':'))
-			list($cmd, $data) = split(':', $result, 2);
+			list($cmd, $data) = explode(':', $result, 2);
 			
 		switch($cmd)
 		{
@@ -139,7 +137,7 @@ class Ezer_BusinessProcessClient extends Ezer_ThreadClient
 				$variable_path = null;
 				$value = null;
 				
-				list($variable_path, $value) = split(':', $data, 2);
+				list($variable_path, $value) = explode(':', $data, 2);
 				$this->setVariable($variable_path, $value);
 				break;
 				
@@ -168,4 +166,3 @@ class Ezer_BusinessProcessClient extends Ezer_ThreadClient
 	
 }
 
-?>

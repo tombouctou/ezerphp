@@ -2,10 +2,7 @@
 error_reporting(E_ALL);
 ini_set('max_execution_time', 0);
 
-require_once dirname(__FILE__) . '/../core/threads/Ezer_Process.php';
-
-require_once 'Ezer_BusinessProcessClient.php';
-require_once 'Ezer_BusinessProcessServer.php';
+require_once realpath(dirname(__FILE__) . '/../') . '/bootstrap.php';
 
 /**
  * Purpose:     A single worker that executes async tasks
@@ -15,7 +12,7 @@ require_once 'Ezer_BusinessProcessServer.php';
  */
 class Ezer_BusinessProcessHandler extends Ezer_Process
 {
-	private $shouldKeepRunning = true;
+	protected $shouldKeepRunning = true;
 	
 	public function __construct() 
 	{
@@ -88,4 +85,3 @@ class Ezer_BusinessProcessHandler extends Ezer_Process
 
 $countHandler = new Ezer_BusinessProcessHandler();
 $countHandler->run();
-?>

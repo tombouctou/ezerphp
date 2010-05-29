@@ -1,5 +1,4 @@
 <?php
-
 /**
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -19,26 +18,24 @@
  * e-mail to tan-tan@simple.co.il
  */
 
-require_once 'Ezer_ProcessLogicPersistance.php';
-
-
 
 /**
- * Purpose:     Load business process definitions from the DB
+ * Purpose:     Loads a sequense from DB
  * @author Tan-Tan
  * @package Engine
- * @subpackage Process.Logic
+ * @subpackage Process.Logic.DB
  */
-class Ezer_DbLogicPersistance implements Ezer_ProcessLogicPersistance
+class Ezer_DbSequence extends Ezer_Sequence
 {
-	public function __construct()
+	public function __construct(Ezer_IntSequence $sequence)
 	{
+		parent::__construct($sequence->getId());
+		$this->load($sequence);
+		Ezer_DbStepContainerUtil::load($this, $sequence);
 	}
 	
-	public function getProcesses()
+	public function load(Ezer_IntSequence $sequence)
 	{
-		// TODO - implement DB persistance
 	}
 }
 
-?>

@@ -19,9 +19,6 @@
  */
 
 
-require_once 'Ezer_Process.php';
-
-
 /**
  * Purpose:     Executes a single process using CLI
  * @author Tan-Tan
@@ -38,8 +35,8 @@ class Ezer_Thread
 	public $stdout;
 	public $stderr;
 	
-	private $pid;
-	private $pref;
+	protected $pid;
+	protected $pref;
 	
 	public function __construct($url, $php_exe = 'php')
 	{
@@ -54,13 +51,13 @@ class Ezer_Thread
 
 		if(!file_exists($php_exe))
 		{
-			echo "$php_exe not found\n";
+			echo __FILE__ . '(' . __LINE__ . ')' . " php exe [$php_exe] not found\n";
 			exit;
 		}
 	
 		if(!file_exists($url))
 		{
-			echo "$url not found\n";
+			echo __FILE__ . '(' . __LINE__ . ')' . " url [$url] not found\n";
 //			$trace = debug_backtrace(false);
 //			foreach($trace as $tr)
 //				echo $tr['file'] . ': ' . $tr['line'] . ': ' . $tr['function'] . "\n";
@@ -123,4 +120,3 @@ class Ezer_Thread
 		fflush($this->stdin);
 	}
 }
-?>

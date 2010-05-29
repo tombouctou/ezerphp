@@ -18,11 +18,6 @@
  * e-mail to tan-tan@simple.co.il
  */
 
-require_once dirname(__FILE__) . '/../case/Ezer_IfInstance.php';
-require_once dirname(__FILE__) . '/../case/Ezer_ElseInstance.php';
-require_once 'Ezer_SingleStepContainer.php';
-require_once 'errors/Ezer_SyntaxException.php';
-
 
 /**
  * Purpose:     Store in the memory the definitions of an 'else'
@@ -87,4 +82,3 @@ class Ezer_If extends Ezer_SingleStepContainer
 	}
 }
 
-?>

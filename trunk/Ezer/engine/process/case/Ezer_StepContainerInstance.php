@@ -19,8 +19,6 @@
  */
 
 
-require_once 'Ezer_StepInstance.php';
-
 
 /**
  * Purpose:     Stores a single instance for the execution of steps container for a specified case
@@ -32,16 +30,27 @@ class Ezer_StepContainerInstance extends Ezer_StepInstance
 {
 	public $step_instances = array();
 	
+	/**
+	 * @param Ezer_ScopeInstance $scope_instance
+	 * @param Ezer_StepContainer $step_container
+	 */
 	public function __construct(Ezer_ScopeInstance &$scope_instance, Ezer_StepContainer $step_container)
 	{
 		parent::__construct($scope_instance, $step_container);
 	}
 	
+	/* (non-PHPdoc)
+	 * @see engine/process/case/Ezer_StepInstance#shouldRunOnServer()
+	 */
 	public function shouldRunOnServer()
 	{
 		return true;
 	}
 
+	/**
+	 * @param string $name
+	 * @return Ezer_StepInstance
+	 */
 	protected function &getStepInstance($name)
 	{
 		foreach($this->step_instances as &$step_instance)
@@ -51,7 +60,27 @@ class Ezer_StepContainerInstance extends Ezer_StepInstance
 		$null = null;
 		return $null;
 	}
+
+	/**
+	 * @param int $index
+	 * @return Ezer_StepInstance
+	 */
+	public function &getStepInstanceByIndex($index)
+	{
+		return $this->step_instances[$index];
+	}
+
+	/**
+	 * @return array<Ezer_StepInstance>
+	 */
+	public function getStepInstances()
+	{
+		return $this->step_instances;
+	}
 	
+	/**
+	 * Starts the step
+	 */
 	public function start()
 	{
 		parent::start();
@@ -61,7 +90,7 @@ class Ezer_StepContainerInstance extends Ezer_StepInstance
 			$step_instance = &$step->createInstance($this->scope_instance);
 			$this->step_instances[] = &$step_instance;
 			
-			if(count($step->in_flows))
+			if($step->getInFlowsCount())
 				continue;
 				
 			$step_instance->flow();

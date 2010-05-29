@@ -18,9 +18,6 @@
  * e-mail to tan-tan@simple.co.il
  */
 
-require_once dirname(__FILE__) . '/../case/Ezer_SequenceInstance.php';
-require_once 'Ezer_StepContainer.php';
-
 
 /**
  * Purpose:     Store in the memory the definitions of a sequence
@@ -55,4 +52,3 @@ class Ezer_Sequence extends Ezer_StepContainer
 	}
 }
 
-?>

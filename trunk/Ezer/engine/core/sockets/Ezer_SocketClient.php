@@ -28,7 +28,7 @@
  */
 class Ezer_SocketClient
 {
-	private $socket;
+	protected $socket;
 	
 	public function __construct($socket)
 	{

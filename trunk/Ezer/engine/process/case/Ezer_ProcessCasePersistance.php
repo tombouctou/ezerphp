@@ -33,4 +33,3 @@ interface Ezer_ProcessCasePersistance
 	public function getCases();
 }
 
-?>

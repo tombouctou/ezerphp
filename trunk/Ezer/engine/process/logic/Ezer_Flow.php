@@ -18,9 +18,6 @@
  * e-mail to tan-tan@simple.co.il
  */
 
-require_once dirname(__FILE__) . '/../case/Ezer_FlowInstance.php';
-require_once 'Ezer_StepContainer.php';
-
 
 /**
  * Purpose:     Store in the memory the definitions of a source or target link
@@ -92,4 +89,3 @@ class Ezer_Flow extends Ezer_StepContainer
 	}
 }
 
-?>

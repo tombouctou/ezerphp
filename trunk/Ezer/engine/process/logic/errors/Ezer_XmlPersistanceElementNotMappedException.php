@@ -33,4 +33,3 @@ class Ezer_XmlPersistanceElementNotMappedException extends Exception
 		parent::__construct("Class $class_name not mapped", 0);
 	}
 }
-?>

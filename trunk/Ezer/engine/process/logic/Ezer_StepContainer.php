@@ -19,9 +19,6 @@
  */
 
 
-require_once dirname(__FILE__) . '/../case/Ezer_StepContainerInstance.php';
-require_once 'Ezer_Step.php';
-
 
 /**
  * Purpose:     Store in the memory the definitions of a steps container such as sequence, flow or scope
@@ -29,15 +26,30 @@ require_once 'Ezer_Step.php';
  * @package Engine
  * @subpackage Process.Logic
  */
-abstract class Ezer_StepContainer extends Ezer_Step
+abstract class Ezer_StepContainer extends Ezer_Step implements Ezer_IntStepContainer
 {
 	public $steps = array();
 	
+	/**
+	 * @param Ezer_Step $step
+	 */
 	public function addStep(Ezer_Step &$step)
 	{
 		$this->steps[] = &$step;
 	}
 	
+	/**
+	 * @return array<Ezer_IntStep>
+	 */
+	public function getSteps()
+	{
+		return $this->steps;
+	}
+	
+	/**
+	 * @param string $name
+	 * @return Ezer_Step
+	 */
 	protected function &getStep($name)
 	{
 		foreach($this->steps as &$step)
@@ -49,4 +61,3 @@ abstract class Ezer_StepContainer extends Ezer_Step
 	}
 }
 
-?>

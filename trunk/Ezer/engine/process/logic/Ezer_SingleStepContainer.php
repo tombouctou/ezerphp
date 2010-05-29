@@ -18,9 +18,6 @@
  * e-mail to tan-tan@simple.co.il
  */
 
-require_once dirname(__FILE__) . '/errors/Ezer_TooManyStepsException.php';
-require_once 'Ezer_StepContainer.php';
-
 
 /**
  * Purpose:     Store in the memory the definitions of a step container with a single step only
@@ -49,4 +46,3 @@ abstract class Ezer_SingleStepContainer extends Ezer_StepContainer
 	}
 }
 
-?>

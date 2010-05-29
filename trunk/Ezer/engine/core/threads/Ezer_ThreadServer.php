@@ -19,8 +19,6 @@
  */
 
 
-require_once 'Ezer_Thread.php';
-
 /**
  * Purpose:     Serve as a base multi process server
  * @author Tan-Tan
@@ -31,9 +29,9 @@ require_once 'Ezer_Thread.php';
  */
 abstract class Ezer_ThreadServer
 {
-	private $current_pid;
-	private $thread_clients;
-	private $sleep_time;
+	protected $current_pid;
+	protected $thread_clients;
+	protected $sleep_time;
 	protected $tasks;
 	
 	protected abstract function taskProgressed($task, $percent);
@@ -224,4 +222,3 @@ abstract class Ezer_ThreadServer
 	}
 }
 
-?>

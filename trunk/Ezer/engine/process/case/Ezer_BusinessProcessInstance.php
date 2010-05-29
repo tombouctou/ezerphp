@@ -20,8 +20,6 @@
  */
 
 
-require_once 'Ezer_ScopeInstance.php';
-
 /**
  * Purpose:     Stores a single instance for the execution of a business process for a specified case
  * @author Tan-Tan
@@ -30,7 +28,7 @@ require_once 'Ezer_ScopeInstance.php';
  */
 class Ezer_BusinessProcessInstance extends Ezer_ScopeInstance
 {
-	public $process;
+	protected $process;
 	
 	public function __construct(array $variables, Ezer_BusinessProcess $process)
 	{

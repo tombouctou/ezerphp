@@ -48,11 +48,15 @@ abstract class Ezer_StepInstance
 {
 	protected $progress = 0;
 	protected $scope_instance;
+	
+	/**
+	 * @var Ezer_Step
+	 */
 	protected $step;
 	protected $max_retries;
 	protected $attempts;
 	protected $flowed_in = array();
-	private $status;
+	protected $status;
 	
 	public abstract function shouldRunOnServer();
 
@@ -98,18 +102,21 @@ abstract class Ezer_StepInstance
 	
 	public function getStepId()
 	{
-		return $this->step->id;
+		return $this->step->getId();
 	}
 	
+	/**
+	 * @param string $step_id
+	 */
 	public function flow($step_id = null)
 	{
-		if(is_null($step_id) && !count($this->step->in_flows))
+		if(is_null($step_id) && !$this->step->getInFlowsCount())
 		{
 			$this->setStatus(Ezer_StepInstanceStatus::AVAILABLE);
 			return true;
 		}
 
-		if(!isset($this->step->in_flows[$step_id]))
+		if(!$this->step->hasInFlow($step_id))
 		{
 			return false;
 		}
@@ -120,7 +127,7 @@ abstract class Ezer_StepInstance
 			return true;
 		}
 			
-		if($this->step->getJoinPolicy() == Ezer_StepJoinPolicy::JOIN_OR || count($this->flowed_in) >= count($this->step->in_flows))
+		if($this->step->getJoinPolicy() == Ezer_StepJoinPolicy::JOIN_OR || count($this->flowed_in) >= $this->step->getInFlowsCount())
 		{
 //			echo get_class($this) . "(" . $this->getName() . ") is available\n";
 			$this->setStatus(Ezer_StepInstanceStatus::AVAILABLE);

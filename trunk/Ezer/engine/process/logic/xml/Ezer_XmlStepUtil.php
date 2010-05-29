@@ -19,10 +19,6 @@
  */
 
 
-require_once dirname(__FILE__) . '/../Ezer_Step.php';
-require_once dirname(__FILE__) . '/../errors/Ezer_XmlPersistanceElementNotMappedException.php';
-require_once 'Ezer_XmlFlow.php';
-
 /**
  * Purpose:     Parse helper for steps from XML
  * @author Tan-Tan
@@ -102,4 +98,3 @@ class Ezer_XmlStepUtil
 	}
 }
 
-?>

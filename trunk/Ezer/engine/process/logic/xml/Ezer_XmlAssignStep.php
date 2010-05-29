@@ -18,10 +18,6 @@
  * e-mail to tan-tan@simple.co.il
  */
 
-require_once dirname(__FILE__) . '/../Ezer_AssignStep.php';
-require_once dirname(__FILE__) . '/../errors/Ezer_XmlPersistanceElementNotMappedException.php';
-require_once 'Ezer_XmlStepUtil.php';
-
 
 /**
  * Purpose:     Loads an assign step copy from XML
@@ -198,4 +194,3 @@ class Ezer_XmlAssignStep extends Ezer_AssignStep
 	}
 }
 
-?>

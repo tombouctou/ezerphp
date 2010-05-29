@@ -34,4 +34,3 @@ class Ezer_SyntaxException extends Exception
 		parent::__construct($massage, 0);
 	}
 }
-?>

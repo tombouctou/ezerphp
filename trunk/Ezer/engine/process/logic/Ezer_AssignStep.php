@@ -18,8 +18,6 @@
  * e-mail to tan-tan@simple.co.il
  */
 
-require_once dirname(__FILE__) . '/../case/Ezer_AssignStepInstance.php';
-
 
 /**
  * Purpose:     Store in the memory the definitions of a copy attribute
@@ -29,24 +27,49 @@ require_once dirname(__FILE__) . '/../case/Ezer_AssignStepInstance.php';
  */
 abstract class Ezer_AssignStepCopyAttribute
 {
+	/**
+	 * @var string
+	 */
 	protected $variable;
+	
+	/**
+	 * @var Ezer_AssignStepCopyAttribute
+	 */
 	protected $part;
 	
+	public function __construct($variable = null, Ezer_AssignStepCopyAttribute $part = null)
+	{
+		$this->variable = $variable;
+		$this->part = $part;
+	}
+	
+	/**
+	 * @return string
+	 */
 	public function getVariable()
 	{
 		return $this->variable;
 	}
 	
+	/**
+	 * @return boolean
+	 */
 	public function hasPart()
 	{
 		return !is_null($this->part);
 	}
 	
+	/**
+	 * @return boolean
+	 */
 	public function hasVariable()
 	{
 		return !is_null($this->variable);
 	}
 	
+	/**
+	 * @return Ezer_AssignStepCopyAttribute
+	 */
 	public function getPart()
 	{
 		return $this->part;
@@ -71,6 +94,9 @@ class Ezer_AssignStepToAttribute extends Ezer_AssignStepCopyAttribute
  */
 class Ezer_AssignStepFromAttribute extends Ezer_AssignStepCopyAttribute
 {
+	/**
+	 * @var unknown_type
+	 */
 	protected $value;
 
 	public function getVariable()
@@ -78,6 +104,9 @@ class Ezer_AssignStepFromAttribute extends Ezer_AssignStepCopyAttribute
 		return $this->variable;
 	}
 	
+	/**
+	 * @return boolean
+	 */
 	public function hasValue()
 	{
 		return !is_null($this->value);
@@ -97,7 +126,14 @@ class Ezer_AssignStepFromAttribute extends Ezer_AssignStepCopyAttribute
  */
 class Ezer_AssignStepCopy
 {
+	/**
+	 * @var Ezer_AssignStepFromAttribute
+	 */
 	public $from;
+	
+	/**
+	 * @var Ezer_AssignStepToAttribute
+	 */
 	public $to;	
 	
 	public function __construct()
@@ -111,19 +147,42 @@ class Ezer_AssignStepCopy
  * @package Engine
  * @subpackage Process.Logic
  */
-class Ezer_AssignStep extends Ezer_Step
+class Ezer_AssignStep extends Ezer_Step implements Ezer_IntAssignStep
 {
+	/**
+	 * @var array<Ezer_AssignStepCopy>
+	 */
 	public $copies;
 	
 	public function __construct()
 	{
 	}
 	
+	/* (non-PHPdoc)
+	 * @see engine/process/logic/Ezer_Step#createInstance($scope_instance)
+	 */
 	public function &createInstance(Ezer_ScopeInstance &$scope_instance)
 	{
 		$ret = new Ezer_AssignStepInstance($scope_instance, $this);
 		return $ret;
 	}
+	
+	
+	/**
+	 * @return array<Ezer_AssignStepCopy>
+	 */
+	public function getCopies()
+	{
+		return $this->copies;
+	}
+	
+	
+	/**
+	 * @param array<Ezer_AssignStepCopy> $copies
+	 */
+	public function setCopies(array $copies)
+	{
+		$this->copies = $copies;
+	}
 }
 
-?>

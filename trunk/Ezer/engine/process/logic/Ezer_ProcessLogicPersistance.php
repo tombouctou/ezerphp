@@ -31,4 +31,3 @@ interface Ezer_ProcessLogicPersistance
 	public function getProcesses();
 }
 
-?>

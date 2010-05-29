@@ -18,9 +18,6 @@
  * e-mail to tan-tan@simple.co.il
  */
 
-require_once dirname(__FILE__) . '/../case/Ezer_ScopeInstance.php';
-require_once 'Ezer_SingleStepContainer.php';
-
 
 /**
  * Purpose:     Store in the memory the definitions of a business process
@@ -28,7 +25,7 @@ require_once 'Ezer_SingleStepContainer.php';
  * @package Engine
  * @subpackage Process.Logic
  */
-class Ezer_Scope extends Ezer_SingleStepContainer
+class Ezer_Scope extends Ezer_SingleStepContainer implements Ezer_IntScope
 {
 	protected $variables;
 	
@@ -47,6 +44,13 @@ class Ezer_Scope extends Ezer_SingleStepContainer
 	{
 		return $this->name;
 	}
+	
+	/**
+	 * @return array<Ezer_IntVariable>
+	 */
+	public function getVariables()
+	{
+		return $this->variables;
+	}
 }
 
-?>

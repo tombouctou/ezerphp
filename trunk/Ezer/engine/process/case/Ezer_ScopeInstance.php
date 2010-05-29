@@ -21,9 +21,6 @@
 
 
 
-require_once 'Ezer_StepContainerInstance.php';
-
-
 /**
  * Purpose:     Stores a single instance for the execution of a sequence for a specified case
  * @author Tan-Tan
@@ -32,7 +29,7 @@ require_once 'Ezer_StepContainerInstance.php';
  */
 class Ezer_ScopeInstance extends Ezer_StepContainerInstance
 {
-	public $variables = array();
+	protected $variables = array();
 	
 	public function __construct(array $variables, Ezer_ScopeInstance &$scope_instance, Ezer_Scope $scope)
 	{
@@ -56,6 +53,10 @@ class Ezer_ScopeInstance extends Ezer_StepContainerInstance
 		return $return;
 	}
 	
+	/**
+	 * @param Ezer_AssignStepFromAttribute $from
+	 * @return bool
+	 */
 	public function hasVariable(Ezer_AssignStepFromAttribute $from)
 	{
 		if(!isset($this->variables[$from->getVariable()]))
@@ -65,13 +66,25 @@ class Ezer_ScopeInstance extends Ezer_StepContainerInstance
 		return true;
 	}
 	
-	public function getVariable(Ezer_AssignStepFromAttribute $from)
+	protected function getValueFromVariable(Ezer_AssignStepFromAttribute $from, $variable)
+	{
+		if(!$from->hasPart())
+			return $variable;
+			
+		$part = $from->getPart();
+		$partVariable = $part->getVariable();
+		if(!isset($variable[$partVariable]))
+			return null;
+			
+		return $this->getValueFromVariable($part, $variable[$partVariable]);
+	}
+	
+	public function getVariableValue(Ezer_AssignStepFromAttribute $from)
 	{
 		if(!isset($this->variables[$from->getVariable()]))
 			return null;
-			
-		// TODO - check for from part
-		return $this->variables[$from->getVariable()];
+		
+		return $this->getValueFromVariable($from, $this->variables[$from->getVariable()]);
 	}
 	
 	private function setValue(&$var, Ezer_AssignStepToAttribute $to, $value)
@@ -86,21 +99,14 @@ class Ezer_ScopeInstance extends Ezer_StepContainerInstance
 			{
 				$variable = $part->getVariable();
 				
-//				echo $to->getVariable() .  " has part " . $part->getVariable() . "\n";
-				
 				if(!isset($var[$variable]))
-				{
-//					echo "couldnt find part $variable\n";
 					return false;
-				}
 					
 				return $this->setValue($var[$variable], $part, $value);
 			}
 			elseif($part->hasPart() && is_array($var))
 			{
 				$all_set = true;
-//				$part_part = $part->getPart();
-//				echo "array part has part " . $part->getPart()->getVariable() . "\n";
 				
 				foreach($var as &$set_var)
 					if(!$this->setValue($set_var, $part, $value))
@@ -124,10 +130,10 @@ class Ezer_ScopeInstance extends Ezer_StepContainerInstance
 		
 		if(count($path))
 		{
-			if(!is_array($set_var))
-				return false;
+			if(is_array($set_var))
+				return $this->setValueByPath($set_var, $path, $value);
 				
-			return $this->setValueByPath($set_var, $path, $value);
+			return false;
 		}
 		$set_var = $value;
 	}
@@ -139,7 +145,7 @@ class Ezer_ScopeInstance extends Ezer_StepContainerInstance
 	 */
 	public function setVariableByPath($variable_path, $value)
 	{
-		$path = array_reverse(split('/', $variable_path));
+		$path = array_reverse(explode('/', $variable_path));
 		return $this->setValueByPath($this->variables, $path, $value);
 	}
 	
@@ -149,15 +155,7 @@ class Ezer_ScopeInstance extends Ezer_StepContainerInstance
 		if(!isset($this->variables[$variable]))
 			return false;
 			
-//		echo "before set\n";
-//		var_dump($this->variables[$variable]);
-		
-		$ret = $this->setValue($this->variables[$variable], $to, $value);
-		
-//		echo "after set\n";
-//		var_dump($this->variables[$variable]);
-		
-		return $ret;
+		return $this->setValue($this->variables[$variable], $to, $value);
 	}
 	
 	public function isAvailable()
@@ -179,4 +177,3 @@ class Ezer_ScopeInstance extends Ezer_StepContainerInstance
 	}
 }
 
-?>

@@ -30,7 +30,6 @@ class Ezer_StepActivityClassNotFoundException extends Exception
 {
 	public function __construct($process_identifier)
 	{
-		parent::__construct("Step activity class $process_identifier not found", 0);
+		parent::__construct(__FILE__ . '(' . __LINE__ . ')' . " Step activity class identifier [$process_identifier] not found", 0);
 	}
 }
-?>
