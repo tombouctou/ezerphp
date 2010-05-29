@@ -1,8 +1,5 @@
 <?php
 
-require_once '../../engine/core/threads/Ezer_ThreadServer.php';
-require_once '../../engine/core/sockets/Ezer_SocketServer.php';
-
 /**
  * @author Tan-Tan
  * @package Examples
@@ -63,4 +60,3 @@ class SocketCountServer extends Ezer_SocketServer
 	}
 }
 
-?>
