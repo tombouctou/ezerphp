@@ -18,9 +18,6 @@
  * e-mail to tan-tan@simple.co.il
  */
 
-require_once dirname(__FILE__) . '/../threads/Ezer_ThreadServer.php';
-require_once 'Ezer_SocketClient.php';
-
 
 
 /**
@@ -31,10 +28,10 @@ require_once 'Ezer_SocketClient.php';
  */
 abstract class Ezer_SocketServer extends Ezer_ThreadServer
 {
-	private $port;
-	private $socket_clients;
-	private $client_counter;
-	private $socket;
+	protected $port;
+	protected $socket_clients;
+	protected $client_counter;
+	protected $socket;
 	
 	public function __construct($sleep_time = 60, $port = 1500)
 	{		
@@ -201,4 +198,3 @@ abstract class Ezer_SocketServer extends Ezer_ThreadServer
 	}
 }
 
-?>

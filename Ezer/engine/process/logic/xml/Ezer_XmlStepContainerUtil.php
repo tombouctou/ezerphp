@@ -19,14 +19,6 @@
  */
 
 
-require_once dirname(__FILE__) . '/../Ezer_StepContainer.php';
-require_once dirname(__FILE__) . '/../errors/Ezer_XmlPersistanceElementNotMappedException.php';
-require_once 'Ezer_XmlFlow.php';
-require_once 'Ezer_XmlSequence.php';
-require_once 'Ezer_XmlActivityStep.php';
-require_once 'Ezer_XmlAssignStep.php';
-require_once 'Ezer_XmlIf.php';
-
 
 /**
  * Purpose:     Parse helper for step containers from XML
@@ -120,4 +112,3 @@ class Ezer_XmlStepContainerUtil
 	}
 }
 
-?>

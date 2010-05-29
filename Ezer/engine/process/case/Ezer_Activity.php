@@ -132,4 +132,3 @@ abstract class Ezer_CpuActivity extends Ezer_AsynchronousActivity
 {
 }
 
-?>

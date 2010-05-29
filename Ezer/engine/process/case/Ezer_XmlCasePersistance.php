@@ -19,9 +19,6 @@
  */
 
 
-require_once 'Ezer_ProcessCasePersistance.php';
-require_once 'Ezer_Case.php';
-
 // TODO - add support for periodic cases.
 
 
@@ -33,8 +30,8 @@ require_once 'Ezer_Case.php';
  */
 class Ezer_XmlCasePersistance implements Ezer_ProcessCasePersistance
 {
-	private $cases = array();
-	private $path = array();
+	protected $cases = array();
+	protected $path = array();
 	
 	public function __construct($path)
 	{
@@ -130,7 +127,7 @@ class Ezer_XmlCasePersistance implements Ezer_ProcessCasePersistance
 				}
 			}
 				
-			$case->variables[$variable->name] = $value;
+			$case->addVariable($variable->name, $value);
 		}
 			
 		return $case;
@@ -150,4 +147,3 @@ class Ezer_XmlCasePersistance implements Ezer_ProcessCasePersistance
 	}
 }
 
-?>

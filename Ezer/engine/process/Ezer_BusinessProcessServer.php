@@ -19,9 +19,6 @@
  * e-mail to tan-tan@simple.co.il
  */
 
-require_once dirname(__FILE__) . '/../core/sockets/Ezer_SocketServer.php';
-require_once 'Ezer_BusinessProcessClient.php';
-
 
 /**
  * Purpose:     Store a single task, refers to a case and step
@@ -193,11 +190,12 @@ class Ezer_BusinessProcessServer extends Ezer_SocketServer
 				
 			foreach($cases as $case)
 			{
-				if(!isset($this->logic_processes[$case->process_identifier]))
-					throw new Ezer_ProcessLogicNotFound($case->process_identifier);
+				$process_identifier = $case->getProcessIdentifier();
+				if(!isset($this->logic_processes[$process_identifier]))
+					throw new Ezer_ProcessLogicNotFound($process_identifier);
 				
-				$process = $this->logic_processes[$case->process_identifier];
-				$process_instance = &$process->createBusinessProcessInstance($case->variables);
+				$process = $this->logic_processes[$process_identifier];
+				$process_instance = &$process->createBusinessProcessInstance($case->getVariables());
 				$this->process_instances[uniqid('case_')] = $process_instance;
 			}
 		}
@@ -205,7 +203,6 @@ class Ezer_BusinessProcessServer extends Ezer_SocketServer
 		$step_instances_added = false;
 		foreach($this->process_instances as $process_instance_index => $process_instance)
 		{
-//			echo "Check for steps $process_instance_index\n";
 			$step_instances_added_this_process = false;
 			foreach($process_instance->step_instances as $step_instance_index => $step_instance)
 			{
@@ -214,16 +211,13 @@ class Ezer_BusinessProcessServer extends Ezer_SocketServer
 					
 				$step_instance->queued();
 				
-//				echo "Have steps $process_instance_index\n";
 				$step_instances_added = true;
 				$step_instances_added_this_process = true;
 				
 				$task = new Ezer_BusinessProcessServerTask($process_instance_index, $step_instance_index);
 				$priority = 'p_' . (microtime() * $step_instance->getPriority());
-//				echo "task ($priority, " . $step_instance->getName() . ")\n";
 				usleep(1);
 				$this->tasks[$priority] = $task;
-//				var_dump(count($this->tasks));
 			}
 			
 			if(!$step_instances_added_this_process && $process_instance->isDone())
@@ -271,4 +265,3 @@ class Ezer_BusinessProcessServer extends Ezer_SocketServer
 	}
 }
 
-?>

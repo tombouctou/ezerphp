@@ -18,9 +18,6 @@
  * e-mail to tan-tan@simple.co.il
  */
 
-require_once 'Ezer_StepContainerInstance.php';
-require_once 'Ezer_ScopeInstance.php';
-
 
 /**
  * Purpose:     Stores a single instance for the execution of a sequence for a specified case
@@ -30,9 +27,9 @@ require_once 'Ezer_ScopeInstance.php';
  */
 class Ezer_IfInstance extends Ezer_StepContainerInstance
 {
-	private $condition_results = false;
-	private $else_instance = null;
-	private $elseif_instance = null;
+	protected $condition_results = false;
+	protected $else_instance = null;
+	protected $elseif_instance = null;
 	
 	public function __construct(Ezer_ScopeInstance &$scope_instance, Ezer_If $if)
 	{
@@ -152,4 +149,3 @@ class Ezer_IfInstance extends Ezer_StepContainerInstance
 	}
 }
 
-?>

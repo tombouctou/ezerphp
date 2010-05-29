@@ -34,4 +34,3 @@ class Ezer_TooManyStepsException extends Exception
 		parent::__construct("$class_name supports only one step", 0);
 	}
 }
-?>

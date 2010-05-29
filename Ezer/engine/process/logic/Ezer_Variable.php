@@ -35,8 +35,9 @@ class Ezer_Variable
 	
 	protected $name;
 	protected $type;
+	protected $value;
 	
-	public function __construct($id)
+	public function __construct($id = null)
 	{
 		$this->id = $id;
 	}
@@ -44,6 +45,26 @@ class Ezer_Variable
 	public function getName()
 	{
 		return $this->name;
+	}
+	
+	public function setName($name)
+	{
+		$this->name = $name;
+	}
+	
+	public function getValue()
+	{
+		return $this->value;
+	}
+	
+	public function setValue($value)
+	{
+		$this->value = $value;
+	}
+	
+	public function setType($type)
+	{
+		$this->type = $type;
 	}
 }
 

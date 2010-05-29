@@ -18,9 +18,6 @@
  * e-mail to tan-tan@simple.co.il
  */
 
-require_once dirname(__FILE__) . '/../case/Ezer_BusinessProcessInstance.php';
-require_once 'Ezer_Scope.php';
-
 
 /**
  * Purpose:     Store in the memory the definitions of a business process
@@ -28,23 +25,52 @@ require_once 'Ezer_Scope.php';
  * @package Engine
  * @subpackage Process.Logic
  */
-class Ezer_BusinessProcess extends Ezer_Scope
+class Ezer_BusinessProcess extends Ezer_Scope implements Ezer_IntBusinessProcess
 {
+	protected $imports = array();
+	
+	/**
+	 * @param Ezer_ScopeInstance $scope_instance
+	 * @throws Exception
+	 */
 	public function &createInstance(Ezer_ScopeInstance &$scope_instance)
 	{
 		throw new Exception("createBusinessProcessInstance should be used for business process");
 	}
 	
+	/**
+	 * @param array $variables
+	 * @return Ezer_BusinessProcessInstance
+	 */
 	public function &createBusinessProcessInstance(array $variables)
 	{
 		$ret = new Ezer_BusinessProcessInstance($variables, $this);
 		return $ret;
 	}
-	
+
+	/**
+	 * @return string
+	 */
 	public function getName()
 	{
 		return $this->name;
 	}
+
+	/**
+	 * @param string $import
+	 */
+	public function addImport($import)
+	{
+		require_once $import;
+		$this->imports[] = $import;
+	}
+
+	/**
+	 * @return array<string>
+	 */
+	public function getImports()
+	{
+		return $this->imports;
+	}
 }
 
-?>

@@ -18,10 +18,6 @@
  * e-mail to tan-tan@simple.co.il
  */
 
-require_once dirname(__FILE__) . '/../Ezer_Flow.php';
-require_once dirname(__FILE__) . '/../errors/Ezer_XmlPersistanceElementNotMappedException.php';
-require_once 'Ezer_XmlStepContainerUtil.php';
-
 
 /**
  * Purpose:     Loads a flow link from XML
@@ -59,4 +55,3 @@ class Ezer_XmlFlow extends Ezer_Flow
 	}
 }
 
-?>

@@ -18,10 +18,6 @@
  * e-mail to tan-tan@simple.co.il
  */
 
-require_once dirname(__FILE__) . '/../Ezer_ActivityStep.php';
-require_once dirname(__FILE__) . '/../errors/Ezer_XmlPersistanceElementNotMappedException.php';
-require_once 'Ezer_XmlStepUtil.php';
-
 
 /**
  * Purpose:     Loads an activity step from XML
@@ -89,4 +85,3 @@ class Ezer_XmlActivityStep extends Ezer_ActivityStep
 	}
 }
 
-?>

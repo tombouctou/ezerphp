@@ -20,10 +20,6 @@
  */
 
 
-require_once dirname(__FILE__) . '/../Ezer_ProcessLogicPersistance.php';
-require_once 'Ezer_XmlBusinessProcess.php';
-
-
 /**
  * Purpose:     Load business process definitions from xml file
  * @author Tan-Tan
@@ -32,7 +28,7 @@ require_once 'Ezer_XmlBusinessProcess.php';
  */
 class Ezer_XmlLogicPersistance implements Ezer_ProcessLogicPersistance
 {
-	private $processes = array();
+	protected $processes = array();
 	
 	public function __construct($path)
 	{
@@ -42,6 +38,8 @@ class Ezer_XmlLogicPersistance implements Ezer_ProcessLogicPersistance
 	private function parseDir($path)
 	{
 		$dir = dir($path);
+		if(!$dir)
+			return;
 		
 		while (false !== ($entry = $dir->read())) 
 		{
@@ -77,4 +75,3 @@ class Ezer_XmlLogicPersistance implements Ezer_ProcessLogicPersistance
 	}
 }
 
-?>

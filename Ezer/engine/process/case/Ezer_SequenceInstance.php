@@ -18,9 +18,6 @@
  * e-mail to tan-tan@simple.co.il
  */
 
-require_once 'Ezer_StepContainerInstance.php';
-require_once 'Ezer_ScopeInstance.php';
-
 
 /**
  * Purpose:     Stores a single instance for the execution of a sequence for a specified case
@@ -67,4 +64,3 @@ class Ezer_SequenceInstance extends Ezer_StepContainerInstance
 	}
 }
 
-?>

@@ -19,9 +19,6 @@
  */
 
 
-require_once dirname(__FILE__) . '/../errors/Ezer_StepActivityClassNotFoundException.php';
-require_once dirname(__FILE__) . '/../errors/Ezer_StepClassNotActivityException.php';
-
 
 /**
  * Purpose:     Stores a single instance for the execution of an activity step for a specified case
@@ -75,4 +72,3 @@ class Ezer_ActivityStepInstance extends Ezer_StepInstance
 	}
 }
 
-?>

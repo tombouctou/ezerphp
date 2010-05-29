@@ -18,10 +18,6 @@
  * e-mail to tan-tan@simple.co.il
  */
 
-require_once dirname(__FILE__) . '/../Ezer_IfElse.php';
-require_once dirname(__FILE__) . '/../errors/Ezer_XmlPersistanceElementNotMappedException.php';
-require_once 'Ezer_XmlStepContainerUtil.php';
-
 
 /**
  * Purpose:     Loads an else from XML
@@ -104,4 +100,3 @@ class Ezer_XmlIf extends Ezer_If
 	}
 }
 
-?>

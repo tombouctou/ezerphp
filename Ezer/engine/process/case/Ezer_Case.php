@@ -26,13 +26,47 @@
  * @package Engine
  * @subpackage Process.Case
  */
-class Ezer_Case
+class Ezer_Case implements Ezer_IntCase
 {
-	public $variables = array();
-	public $process_identifier;
+	/**
+	 * @var array
+	 */
+	protected $variables = array();
 	
+	/**
+	 * @var string
+	 */
+	protected $process_identifier;
+	
+	/**
+	 * @param string $process_identifier
+	 */
 	public function __construct($process_identifier)
 	{
 		$this->process_identifier = $process_identifier;
+	}
+	
+	/**
+	 * @return string
+	 */
+	public function getProcessIdentifier()
+	{
+		return $this->process_identifier;
+	}
+	
+	/**
+	 * @param array $variables
+	 */
+	public function setVariables(array $variables)
+	{
+		$this->variables = $variables;
+	}
+	
+	/**
+	 * @return array
+	 */
+	public function getVariables()
+	{
+		return $this->variables;
 	}
 }

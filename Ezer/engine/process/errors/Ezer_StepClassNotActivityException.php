@@ -33,4 +33,3 @@ class Ezer_StepClassNotActivityException extends Exception
 		parent::__construct("Step activity class $process_identifier is not an activity", 0);
 	}
 }
-?>

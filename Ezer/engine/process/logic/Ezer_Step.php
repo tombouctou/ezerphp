@@ -19,8 +19,6 @@
  */
 
 
-require_once dirname(__FILE__) . '/../case/Ezer_StepInstance.php';
-
 
 /**
  * Purpose:     Enum for join policies
@@ -40,18 +38,19 @@ class Ezer_StepJoinPolicy
  * @package Engine
  * @subpackage Process.Logic
  */
-abstract class Ezer_Step
+abstract class Ezer_Step implements Ezer_IntStep
 {
-	public $id;
+	protected $id;
 	protected $name;
+	protected $type;
 	protected $join_policy = Ezer_StepJoinPolicy::JOIN_AND;
 	protected $max_retries = 1;
 	protected $priority = 1;
 	protected $targets = array();
 	protected $sources = array();
 	
-	public $in_flows = array();
-	public $out_flows = array();
+	protected $in_flows = array();
+	protected $out_flows = array();
 	
 	public function __construct($id)
 	{
@@ -60,56 +59,123 @@ abstract class Ezer_Step
 
 	public abstract function &createInstance(Ezer_ScopeInstance &$scope_instance);
 
+	/**
+	 * @return string
+	 */
+	public function getId()
+	{
+		return $this->id; 
+	}
+
+	/**
+	 * @return string
+	 */
 	public function getName()
 	{
 		return $this->name; 
 	}
+
+	/**
+	 * @return int
+	 */
+	public function getType()
+	{
+		return $this->type; 
+	}
 	
+	/**
+	 * @param string $name
+	 */
 	public function setName($name)
 	{
 		$this->name = $name; 
 	}
 	
+	/**
+	 * @param Ezer_Link $target
+	 */
 	public function addTarget(Ezer_Link $target)
 	{
 		$this->targets[] = $target;
 	}
 	
+	/**
+	 * @param Ezer_Link $source
+	 */
 	public function addSource(Ezer_Link $source)
 	{
 		$this->sources[] = $source;
 	}
 	
+	
+	/**
+	 * @return int
+	 */
 	public function getMaxRetries()
 	{
 		return $this->max_retries; 
 	}
 	
+	/**
+	 * @return Ezer_StepJoinPolicy
+	 */
 	public function getJoinPolicy()
 	{
 		return $this->join_policy; 
 	}
 	
+	/**
+	 * @return int
+	 */
 	public function getPriority()
 	{
 		return $this->priority; 
 	}
 	
+	/**
+	 * @return array<Ezer_Link>
+	 */
 	public function getTargets()
 	{
 		return $this->targets; 
 	}
 	
+	/**
+	 * @return array<Ezer_Link>
+	 */
 	public function getSources()
 	{
 		return $this->sources; 
 	}
 	
+	/**
+	 * @return int
+	 */
+	public function getInFlowsCount()
+	{
+		return count($this->in_flows);
+	}
+	
+	/**
+	 * @param string $step_id
+	 * @return bool
+	 */
+	public function hasInFlow($step_id)
+	{
+		return isset($this->in_flows[$step_id]);
+	}
+	
+	/**
+	 * @return array<Ezer_Step>
+	 */
 	public function getOutFlows()
 	{
 		return $this->out_flows;
 	}
 	
+	/**
+	 * @param Ezer_Step $step
+	 */
 	public function setOutFlow(Ezer_Step &$step)
 	{
 		if(!isset($this->out_flows[$step->id]))
@@ -119,6 +185,9 @@ abstract class Ezer_Step
 		} 
 	}
 	
+	/**
+	 * @param Ezer_Step $step
+	 */
 	public function setInFlow(Ezer_Step &$step)
 	{
 		if(!isset($this->in_flows[$step->id]))
@@ -129,4 +198,3 @@ abstract class Ezer_Step
 	}
 }
 
-?>

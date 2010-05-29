@@ -21,8 +21,6 @@
  */
 
 
-require_once dirname(__FILE__) . '/Ezer_Thread.php';
-
 /**
  * Purpose:     Represents a single process on the server
  * @author Tan-Tan
@@ -122,4 +120,3 @@ abstract class Ezer_ThreadClient extends Ezer_Thread
 	}
 			
 }
-?>

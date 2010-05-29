@@ -19,8 +19,6 @@
  */
 
 
-require_once dirname(__FILE__) . '/../case/Ezer_ActivityStepInstance.php';
-
 
 /**
  * Purpose:     Store in the memory the definitions of a php activity step
@@ -28,7 +26,7 @@ require_once dirname(__FILE__) . '/../case/Ezer_ActivityStepInstance.php';
  * @package Engine
  * @subpackage Process.Logic
  */
-class Ezer_ActivityStep extends Ezer_Step
+class Ezer_ActivityStep extends Ezer_Step implements Ezer_IntActivityStep
 {
 	protected $class;
 	protected $args;
@@ -45,15 +43,36 @@ class Ezer_ActivityStep extends Ezer_Step
 		return $ret;
 	}
 	
+	/**
+	 * @return string
+	 */
 	public function getClass()
 	{
 		return $this->class;
 	}
 	
+	/**
+	 * @return array<string>
+	 */
 	public function getArgs()
 	{
 		return $this->args;
 	}
+	
+	/**
+	 * @param string $class
+	 */
+	public function setClass($class)
+	{
+		$this->class = $class;
+	}
+	
+	/**
+	 * @param array $args
+	 */
+	public function setArgs(array $args)
+	{
+		$this->args = $args;
+	}
 }
 
-?>
