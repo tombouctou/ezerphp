@@ -1,6 +1,8 @@
 <process name="Count">
 
+	<!-- autoload makes imports not needed
 	<import>activities\CountActivity.php</import>
+	-->
 	
 	<variables>
 		<!-- type is not mandatory -->

@@ -20,4 +20,3 @@ foreach($files as $file)
 	rename($file, $archive);
 }
 
-?>
