@@ -1,7 +1,7 @@
 <?php
 ini_set('max_execution_time', 0);
 
-require_once '../../engine/core/threads/Ezer_Process.php';
+require_once 'bootstrap.php';
 
 /**
  * @author Tan-Tan
@@ -55,4 +55,3 @@ class ThreadCountHandler extends Ezer_Process
 
 $countHandler = new ThreadCountHandler();
 $countHandler->run();
-?>
