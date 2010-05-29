@@ -1,6 +1,8 @@
 <process name="Flow">
 
+	<!-- autoload makes imports not needed
 	<import>activities\CountActivity.php</import>
+	-->
 	
 	<variables>
 		<variable name="count" />
