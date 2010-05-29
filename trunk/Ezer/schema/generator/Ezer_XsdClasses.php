@@ -46,7 +46,7 @@ class Ezer_XsdClass
 		
 		$this->doc = str_replace("\r", '', $this->doc);
 		$doc = array('Genarated by Ezer_XsdClasses');
-		$doc = array_merge($doc, split("\n", $this->doc));
+		$doc = array_merge($doc, explode("\n", $this->doc));
 		$doc = "// " . join("\r\n// ", $doc);
 		
 		$vars = array();
@@ -119,7 +119,6 @@ $vars_str
 $functions_str
 }
 
-?>
 		";
 		
 		file_put_contents($path . '/' . $this->name . '.class.php', $str);
@@ -268,7 +267,7 @@ class Ezer_XsdClasses
 		$ref = $groupNode->getAttribute('ref');
 		$attr_name = $ref;
 		if(strpos($ref, ':') > 0)
-			list($ns, $attr_name) = split(':', $ref);
+			list($ns, $attr_name) = explode(':', $ref);
 			
 		$attr_name = $this->replaceNameChars($attr_name);
 		$class->groups[$attr_name] = $this->prefix . ucfirst($attr_name);
@@ -290,7 +289,7 @@ class Ezer_XsdClasses
 				default:
 					$type_name = $type;
 					if(strpos($type, ':') > 0)
-						list($ns, $type_name) = split(':', $type);
+						list($ns, $type_name) = explode(':', $type);
 						
 					$type = $this->prefix . ucfirst($this->replaceNameChars($type_name));
 					break;
@@ -307,7 +306,7 @@ class Ezer_XsdClasses
 			$ref = $attributeNode->getAttribute('ref');
 			$attr_name = $ref;
 			if(strpos($ref, ':') > 0)
-				list($ns, $attr_name) = split(':', $ref);
+				list($ns, $attr_name) = explode(':', $ref);
 				
 			$attr_name = $this->replaceNameChars($attr_name);
 			$class->members[$attr_name] = $type;
@@ -348,7 +347,7 @@ class Ezer_XsdClasses
 		$base = $extensionNode->getAttribute('base');
 		$super_name = $base;
 		if(strpos($base, ':') > 0)
-			list($ns, $super_name) = split(':', $base);
+			list($ns, $super_name) = explode(':', $base);
 			
 		$class->super_name = $this->prefix . ucfirst($super_name);
 	
@@ -456,4 +455,3 @@ class Ezer_XsdClasses
 		}
 	}
 }
-?>
