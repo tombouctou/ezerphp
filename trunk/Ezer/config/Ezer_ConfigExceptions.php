@@ -34,4 +34,3 @@ class ConfigNotLoadedException extends Exception
 		parent::__construct("Config Not Loaded for $file", 0);
 	}
 }
-?>
