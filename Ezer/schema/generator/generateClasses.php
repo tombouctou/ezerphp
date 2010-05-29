@@ -15,4 +15,3 @@ $generator = new Ezer_XsdClasses('WsBpel_');
 $generator->loadFile('../xsd/ws-bpel.xsd');
 $generator->saveClasses('../types/wsbpel', 'wsbpel');
 
-?>
