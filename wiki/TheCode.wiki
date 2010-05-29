@@ -38,3 +38,4 @@ Process Examples
   # ifProcess - process that demonstrate if, else and else if workflows.
   # complexVarsProcess - process that demonstrate complex variables usage.
   # flowProcess - process that demonstrate concurrent flow workflow.
+  # propelProcess - the process definition and the case are loaded from mySql DB using propel ORM.
