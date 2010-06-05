@@ -1,5 +1,6 @@
 <config>
     <phpExe>C:\xampp\php\php.exe</phpExe>
     <logicPath>lib\logic</logicPath>
+    <instancePath>lib\instance</instancePath>
     <casesPath>lib\cases</casesPath>
 </config>
