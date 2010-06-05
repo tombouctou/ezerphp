@@ -3,7 +3,7 @@ error_reporting(E_ALL);
 
 require_once 'bootstrap.php';
 
-$config = new Ezer_Config('config.xml');
+$config = Ezer_Config::createFromPath('config.xml');
 
 Propel::setConfiguration($config->database->toArray());
 Propel::initialize();
