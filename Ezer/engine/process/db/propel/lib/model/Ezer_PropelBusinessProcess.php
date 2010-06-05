@@ -29,4 +29,21 @@ class Ezer_PropelBusinessProcess extends Ezer_PropelScope implements Ezer_IntBus
 		return array(); //TODO
 	}
 	
+	/**
+	 * @param Ezer_Case $case
+	 * @return Ezer_PropelBusinessProcessInstance
+	 */
+	public function &createBusinessProcessInstance(Ezer_Case $case)
+	{
+		$ret = new Ezer_PropelBusinessProcessInstance();
+		$ret->setProcessId($this->getId());
+		$ret->setCaseId($case->getId());
+		$ret->setStepId($this->getId());
+		$ret->setName($this->getName());
+		$ret->setVariables($case->getVariables());
+		$ret->save();
+		
+		return $ret;
+	}
+	
 } // Ezer_PropelBusinessProcess

@@ -44,7 +44,7 @@ class Ezer_StepInstanceStatus
  * @package Engine
  * @subpackage Process.Case
  */
-abstract class Ezer_StepInstance
+abstract class Ezer_StepInstance implements Ezer_IntStepInstance
 {
 	/**
 	 * @var int
@@ -88,8 +88,9 @@ abstract class Ezer_StepInstance
 		return null;
 	}
 	
-	public function __construct(Ezer_StepContainerInstance &$scope_instance, Ezer_Step $step)
+	public function __construct($id, Ezer_StepContainerInstance &$scope_instance, Ezer_Step $step)
 	{
+		$this->id = $id;
 		$this->max_retries = $step->getMaxRetries();
 		$this->attempts = 0;
 		$this->step = $step;
@@ -99,11 +100,14 @@ abstract class Ezer_StepInstance
 			$this->scope_instance->step_instances[] = &$this;
 			
 		$this->setStatus(Ezer_StepInstanceStatus::LOADED);
-	}
+	}	
 	
-	public function save()
+	/**
+	 * @return int
+	 */
+	public function getId()
 	{
-		$this->scope_instance->save();
+		return $this->id;
 	}
 	
 	public function queued()
@@ -111,7 +115,7 @@ abstract class Ezer_StepInstance
 		$this->setStatus(Ezer_StepInstanceStatus::QUEUED);
 	}
 	
-	protected function setStatus($status)
+	public function setStatus($status)
 	{
 //		if(get_class($this) == 'Ezer_ActivityStepInstance')
 //		{
@@ -121,7 +125,7 @@ abstract class Ezer_StepInstance
 //		}
 //		echo "setStatus (" . get_class($this) . ", " . $this->getName() . ", $status)\n";
 		$this->status = $status;
-		$this->save();
+		$this->persist();
 	}
 	
 	public function getStatus()
@@ -250,5 +254,11 @@ abstract class Ezer_StepInstance
 	public function setVariable($variable_path, $value)
 	{
 		$this->scope_instance->setVariableByPath($variable_path, $value);
+	}
+	
+	public function persist()
+	{
+		if($this->scope_instance)
+			$this->scope_instance->persist();
 	}
 }

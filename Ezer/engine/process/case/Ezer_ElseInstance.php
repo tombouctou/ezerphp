@@ -27,9 +27,9 @@
  */
 class Ezer_ElseInstance extends Ezer_StepContainerInstance
 {
-	public function __construct(Ezer_ScopeInstance &$scope_instance, Ezer_Else $else)
+	public function __construct($id, Ezer_ScopeInstance &$scope_instance, Ezer_Else $else)
 	{
-		parent::__construct($scope_instance, $else);
+		parent::__construct($id, $scope_instance, $else);
 	}
 	
 	public function isAvailable()
@@ -48,6 +48,14 @@ class Ezer_ElseInstance extends Ezer_StepContainerInstance
 			$this->done();
 				
 		return false;
+	}
+	
+	/**
+	 * @return int
+	 */
+	public function getType()
+	{
+		return Ezer_IntStep::STEP_TYPE_IF;
 	}
 }
 

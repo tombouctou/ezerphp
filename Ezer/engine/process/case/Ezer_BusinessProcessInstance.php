@@ -33,10 +33,18 @@ class Ezer_BusinessProcessInstance extends Ezer_ScopeInstance implements Ezer_In
 	 */
 	protected $process;
 	
-	public function __construct(array $variables, Ezer_BusinessProcess $process)
+	public function __construct($id, array $variables, Ezer_BusinessProcess $process)
 	{
-		parent::__construct($variables, $this, $process);
+		parent::__construct($id, $variables, $this, $process);
 		$this->process = $process;
 		$this->start();
+	}
+	
+	/**
+	 * @return int
+	 */
+	public function getType()
+	{
+		return Ezer_IntStep::STEP_TYPE_PROCESS;
 	}
 }

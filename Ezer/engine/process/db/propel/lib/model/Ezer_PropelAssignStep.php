@@ -36,5 +36,21 @@ class Ezer_PropelAssignStep extends Ezer_PropelStep implements Ezer_IntAssignSte
 	{
 		$this->dataObject->addCopy($copy);
 	}
+
+	
+	/**
+	 * @param Ezer_ScopeInstance $scope_instance
+	 * @return Ezer_PropelAssignStepInstance
+	 */
+	public function &createInstance(Ezer_ScopeInstance $scope_instance)
+	{
+		$ret = new Ezer_PropelAssignStepInstance();
+		$ret->setContainer($scope_instance);
+		$ret->setStepId($this->getId());
+		$ret->setName($this->getName());
+		$ret->save();
+		
+		return $ret;
+	}
 	
 } // Ezer_PropelScope

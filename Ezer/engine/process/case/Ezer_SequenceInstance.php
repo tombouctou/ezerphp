@@ -27,9 +27,9 @@
  */
 class Ezer_SequenceInstance extends Ezer_StepContainerInstance
 {
-	public function __construct(Ezer_ScopeInstance &$scope_instance, Ezer_Sequence $sequence)
+	public function __construct($id, Ezer_ScopeInstance &$scope_instance, Ezer_Sequence $sequence)
 	{
-		parent::__construct($scope_instance, $sequence);
+		parent::__construct($id, $scope_instance, $sequence);
 	}
 	
 	public function start()
@@ -61,6 +61,14 @@ class Ezer_SequenceInstance extends Ezer_StepContainerInstance
 		}
 		
 		return false;
+	}
+	
+	/**
+	 * @return int
+	 */
+	public function getType()
+	{
+		return Ezer_IntStep::STEP_TYPE_SEQUENCE;
 	}
 }
 

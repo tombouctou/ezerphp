@@ -25,24 +25,35 @@
  * @package Engine
  * @subpackage Process.Case
  */
-class Ezer_XmlElseInstance extends Ezer_ElseInstance
+class Ezer_DbSequenceInstance extends Ezer_SequenceInstance
 {
-	public function __construct(Ezer_ScopeInstance &$scope_instance, Ezer_Else $else)
+	/**
+	 * @var Ezer_IntSequenceInstance
+	 */
+	protected $db_instance;
+	
+	/**
+	 * @param Ezer_IntSequenceInstance $db_instance
+	 * @param Ezer_Case $case
+	 * @param Ezer_BusinessProcess $process
+	 */
+	public function __construct(Ezer_IntSequenceInstance $db_instance, Ezer_ScopeInstance &$scope_instance, Ezer_Sequence $sequence)
 	{
-		$id = uniqid('i_');
-		parent::__construct($id, $scope_instance, $else);
+		$this->db_instance = $db_instance;
+		parent::__construct($this->db_instance->getId(), $scope_instance, $sequence);
 	}
 	
-	public function getFullStatus()
+	public function persist()
 	{
-		$data = array(
-			'if-instance' => array(
-				'name' => $this->getName(),
-				'status' => $this->getStatus(),
-			)
-		);
-		
-		return $data;
+		$this->db_instance->setStatus($this->getStatus());
+		$this->db_instance->setContainer($this->scope_instance);
+		$this->db_instance->persist();
+	
+		if($this->step_instances && is_array($this->step_instances))
+		{
+			foreach($this->step_instances as $index => $step_instance)
+				$this->step_instances[$index]->persist();
+		}
 	}
 }
 

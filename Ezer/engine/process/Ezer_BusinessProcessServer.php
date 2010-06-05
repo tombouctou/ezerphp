@@ -195,8 +195,8 @@ class Ezer_BusinessProcessServer extends Ezer_SocketServer
 					throw new Ezer_ProcessLogicNotFound($process_identifier);
 				
 				$process = $this->logic_processes[$process_identifier];
-				$process_instance = &$process->createBusinessProcessInstance($case->getVariables());
-				$this->process_instances[uniqid('case_')] = $process_instance;
+				$process_instance = &$process->createBusinessProcessInstance($case);
+				$this->process_instances[uniqid('inst_')] = $process_instance;
 			}
 		}
 		

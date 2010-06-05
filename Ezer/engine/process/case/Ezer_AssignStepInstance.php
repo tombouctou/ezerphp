@@ -29,9 +29,9 @@
  */
 class Ezer_AssignStepInstance extends Ezer_StepInstance
 {
-	public function __construct(Ezer_ScopeInstance  &$scope_instance, Ezer_AssignStep $step)
+	public function __construct($id, Ezer_ScopeInstance  &$scope_instance, Ezer_AssignStep $step)
 	{
-		parent::__construct($scope_instance, $step);
+		parent::__construct($id, $scope_instance, $step);
 	}
 	
 	protected function execute()
@@ -85,6 +85,14 @@ class Ezer_AssignStepInstance extends Ezer_StepInstance
 			$this->done();
 		else
 			$this->retry();	
+	}
+	
+	/**
+	 * @return int
+	 */
+	public function getType()
+	{
+		return Ezer_IntStep::STEP_TYPE_ASSIGN;
 	}
 }
 

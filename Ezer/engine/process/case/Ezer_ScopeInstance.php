@@ -27,13 +27,13 @@
  * @package Engine
  * @subpackage Process.Case
  */
-class Ezer_ScopeInstance extends Ezer_StepContainerInstance
+class Ezer_ScopeInstance extends Ezer_StepContainerInstance implements Ezer_IntScopeInstance
 {
 	protected $variables = array();
 	
-	public function __construct(array $variables, Ezer_ScopeInstance &$scope_instance, Ezer_Scope $scope)
+	public function __construct($id, array $variables, Ezer_ScopeInstance &$scope_instance, Ezer_Scope $scope)
 	{
-		parent::__construct($this, $scope);
+		parent::__construct($id, $this, $scope);
 		$this->variables = $variables;
 	}
 	
@@ -177,6 +177,30 @@ class Ezer_ScopeInstance extends Ezer_StepContainerInstance
 				return false;
 				
 		return true;
+	}
+	
+	/**
+	 * @return array
+	 */
+	public function getVariables()
+	{
+		return $this->variables;
+	}
+	
+	/**
+	 * @param array $variables
+	 */
+	public function setVariables(array $variables)
+	{
+		$this->variables = $variables;
+	}
+	
+	/**
+	 * @return int
+	 */
+	public function getType()
+	{
+		return Ezer_IntStep::STEP_TYPE_SCOPE;
 	}
 }
 

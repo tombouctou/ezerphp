@@ -20,22 +20,12 @@
 
 
 /**
- * Purpose:     Loads a sequense from DB
+ * Purpose:     Stores a single instance for the execution of a sequence for a specified case
  * @author Tan-Tan
  * @package Engine
- * @subpackage Process.Logic.DB
+ * @subpackage Process.Case
  */
-class Ezer_DbSequence extends Ezer_Sequence
+class Ezer_DbElseInstance extends Ezer_ElseInstance
 {
-	public function __construct(Ezer_IntSequence $sequence)
-	{
-		parent::__construct($sequence->getId());
-		$this->load($sequence);
-		Ezer_DbStepContainerUtil::load($this, $sequence);
-	}
-	
-	public function load(Ezer_IntSequence $sequence)
-	{
-	}
 }
 

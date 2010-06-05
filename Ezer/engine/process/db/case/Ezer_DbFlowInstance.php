@@ -20,24 +20,12 @@
 
 
 /**
- * Purpose:     Loads a sequense from DB
+ * Purpose:     Stores a single instance for the execution of a sequence for a specified case
  * @author Tan-Tan
  * @package Engine
- * @subpackage Process.Logic.DB
+ * @subpackage Process.Case
  */
-class Ezer_DbActivityStep extends Ezer_ActivityStep
+class Ezer_DbFlowInstance extends Ezer_FlowInstance
 {
-	public function __construct(Ezer_IntActivityStep $activityStep)
-	{
-		parent::__construct($activityStep->getId());
-		$this->load($activityStep);
-	}
-	
-	public function load(Ezer_IntActivityStep $activityStep)
-	{
-		$this->setName($activityStep->getName());
-		$this->setClass($activityStep->getClass());
-		$this->setArgs($activityStep->getArgs());
-	}
 }
 

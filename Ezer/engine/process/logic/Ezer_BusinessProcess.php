@@ -39,12 +39,12 @@ class Ezer_BusinessProcess extends Ezer_Scope implements Ezer_IntBusinessProcess
 	}
 	
 	/**
-	 * @param array $variables
+	 * @param Ezer_Case $case
 	 * @return Ezer_BusinessProcessInstance
 	 */
-	public function &createBusinessProcessInstance(array $variables)
+	public function &createBusinessProcessInstance(Ezer_Case $case)
 	{
-		$ret = new Ezer_BusinessProcessInstance($variables, $this);
+		$ret = new Ezer_BusinessProcessInstance($case->getVariables(), $this);
 		return $ret;
 	}
 

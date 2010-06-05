@@ -41,7 +41,8 @@ class Ezer_XmlBusinessProcessInstance extends Ezer_BusinessProcessInstance
 	public function __construct($path, array $variables, Ezer_BusinessProcess $process)
 	{
 		$this->path = $path;
-		parent::__construct($variables, $process);
+		$id = uniqid('i_');
+		parent::__construct($id, $variables, $process);
 	}
 	
 	public function var2Array(Ezer_XmlVariable $var)
@@ -91,7 +92,7 @@ class Ezer_XmlBusinessProcessInstance extends Ezer_BusinessProcessInstance
 		return $data;
 	}
 	
-	public function save()
+	public function persist()
 	{
 		$data = $this->getFullStatus();
 		$xml = Ezer_Config::createFromArray($data);

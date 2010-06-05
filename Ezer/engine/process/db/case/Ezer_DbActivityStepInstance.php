@@ -19,30 +19,36 @@
  */
 
 
+
 /**
- * Purpose:     Stores a single instance for the execution of a sequence for a specified case
+ * Purpose:     Stores a single instance for the execution of an activity step for a specified case
  * @author Tan-Tan
  * @package Engine
  * @subpackage Process.Case
  */
-class Ezer_XmlElseInstance extends Ezer_ElseInstance
+class Ezer_DbActivityStepInstance extends Ezer_ActivityStepInstance
 {
-	public function __construct(Ezer_ScopeInstance &$scope_instance, Ezer_Else $else)
+	/**
+	 * @var Ezer_IntActivityStepInstance
+	 */
+	protected $db_instance;
+	
+	/**
+	 * @param Ezer_IntActivityStepInstance $db_instance
+	 * @param Ezer_Case $case
+	 * @param Ezer_BusinessProcess $process
+	 */
+	public function __construct(Ezer_IntActivityStepInstance $db_instance, Ezer_ScopeInstance &$scope_instance, Ezer_ActivityStep $step)
 	{
-		$id = uniqid('i_');
-		parent::__construct($id, $scope_instance, $else);
+		$this->db_instance = $db_instance;
+		parent::__construct($this->db_instance->getId(), $scope_instance, $step);
 	}
 	
-	public function getFullStatus()
+	public function persist()
 	{
-		$data = array(
-			'if-instance' => array(
-				'name' => $this->getName(),
-				'status' => $this->getStatus(),
-			)
-		);
-		
-		return $data;
+		$this->db_instance->setStatus($this->getStatus());
+		$this->db_instance->setContainer($this->scope_instance);
+		$this->db_instance->persist();
 	}
 }
 

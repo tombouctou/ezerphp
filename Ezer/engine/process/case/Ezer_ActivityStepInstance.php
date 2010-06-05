@@ -30,9 +30,9 @@ class Ezer_ActivityStepInstance extends Ezer_StepInstance
 {
 	protected $activity;
 	
-	public function __construct(Ezer_ScopeInstance &$scope_instance, Ezer_ActivityStep $step)
+	public function __construct($id, Ezer_ScopeInstance &$scope_instance, Ezer_ActivityStep $step)
 	{
-		parent::__construct($scope_instance, $step);
+		parent::__construct($id, $scope_instance, $step);
 		
 		$class = $step->getClass();
 		if(!class_exists($class))
@@ -69,6 +69,14 @@ class Ezer_ActivityStepInstance extends Ezer_StepInstance
 			$this->done();
 		else
 			$this->retry();	
+	}
+	
+	/**
+	 * @return int
+	 */
+	public function getType()
+	{
+		return Ezer_IntStep::STEP_TYPE_ACTIVITY;
 	}
 }
 

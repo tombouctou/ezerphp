@@ -52,5 +52,21 @@ class Ezer_PropelActivityStep extends Ezer_PropelStep implements Ezer_IntActivit
 	{
 		$this->dataObject->setClass($class);
 	}
+
+	
+	/**
+	 * @param Ezer_ScopeInstance $scope_instance
+	 * @return Ezer_PropelActivityStepInstance
+	 */
+	public function &createInstance(Ezer_ScopeInstance $scope_instance)
+	{
+		$ret = new Ezer_PropelActivityStepInstance();
+		$ret->setContainer($scope_instance);
+		$ret->setStepId($this->getId());
+		$ret->setName($this->getName());
+		$ret->save();
+		
+		return $ret;
+	}
 	
 } // Ezer_PropelScope

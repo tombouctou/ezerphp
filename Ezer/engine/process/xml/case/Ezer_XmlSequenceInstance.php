@@ -27,6 +27,12 @@
  */
 class Ezer_XmlSequenceInstance extends Ezer_SequenceInstance
 {
+	public function __construct(Ezer_ScopeInstance &$scope_instance, Ezer_Sequence $sequence)
+	{
+		$id = uniqid('i_');
+		parent::__construct($id, $scope_instance, $sequence);
+	}
+	
 	public function getFullStatus()
 	{
 		$data = array(
