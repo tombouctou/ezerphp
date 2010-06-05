@@ -29,6 +29,12 @@
  */
 class Ezer_XmlAssignStepInstance extends Ezer_AssignStepInstance
 {
+	public function __construct(Ezer_ScopeInstance &$scope_instance, Ezer_AssignStep $step)
+	{
+		$id = uniqid('i_');
+		parent::__construct($id, $scope_instance, $step);
+	}
+	
 	public function getFullStatus()
 	{
 		$data = array(

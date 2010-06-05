@@ -36,7 +36,7 @@ class Ezer_PropelCasePersistance implements Ezer_ProcessCasePersistance
 		Propel::setConfiguration($config);
 		Propel::initialize();
 	}
-
+	
 	private function loadCases()
 	{
 		$dbCases = Ezer_PropelCasePeer::retrieveReadyToStart();
@@ -54,7 +54,7 @@ class Ezer_PropelCasePersistance implements Ezer_ProcessCasePersistance
 				$dbCase->save();
 			}
 			
-			$this->cases[] = clone $dbCase;
+			$this->cases[] = $this->loadCase(clone $dbCase);
 		}
 	}
 	
@@ -96,7 +96,7 @@ class Ezer_PropelCasePersistance implements Ezer_ProcessCasePersistance
 	
 	private function loadCase(Ezer_PropelCase $dbCase)
 	{
-		$case = new Ezer_Case($dbCase->getProcessId());
+		$case = new Ezer_Case($dbCase->getId(), $dbCase->getProcessId());
 		$case->setVariables($dbCase->getVariables());
 			
 		return $case;

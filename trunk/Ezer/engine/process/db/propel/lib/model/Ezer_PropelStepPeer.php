@@ -66,9 +66,6 @@ class Ezer_PropelStepPeer extends BaseEzer_PropelStepPeer {
 			case Ezer_IntStep::STEP_TYPE_FLOW:
 				return new Ezer_PropelFlow();
 		
-			case Ezer_IntStep::STEP_TYPE_FLOW:
-				return new Ezer_PropelFlow();
-		
 			case Ezer_IntStep::STEP_TYPE_SEQUENCE:
 				return new Ezer_PropelSequence();
 		
@@ -126,10 +123,27 @@ class Ezer_PropelStepPeer extends BaseEzer_PropelStepPeer {
 	}
 	
 	/**
+	 * Retrieve all active processes
+	 *
+	 * @param      string $name
+	 * @param      PropelPDO $con the connection to use
+	 * @return     Ezer_PropelStep
+	 */
+	public static function retrieveProcessByName($name, PropelPDO $con = null)
+	{
+		$criteria = new Criteria();
+		$criteria->add(Ezer_PropelStepPeer::NAME, $name);
+		$criteria->add(Ezer_PropelStepPeer::STATUS, Ezer_IntStep::STEP_STATUS_ACTIVE);
+		$criteria->add(Ezer_PropelStepPeer::TYPE, Ezer_IntStep::STEP_TYPE_PROCESS);
+
+		return self::doSelectOne($criteria, $con);
+	}
+	
+	/**
 	 * Retrieve all active child steps
 	 *
 	 * @param      PropelPDO $con the connection to use
-	 * @return     Ezer_PropelStep
+	 * @return     array<Ezer_PropelStep>
 	 */
 	public static function retrieveChildSteps($containerId, $containerType, PropelPDO $con = null)
 	{

@@ -27,9 +27,9 @@
  */
 class Ezer_FlowInstance extends Ezer_StepContainerInstance
 {
-	public function __construct(Ezer_ScopeInstance &$scope_instance, Ezer_Flow $flow)
+	public function __construct($id, Ezer_ScopeInstance &$scope_instance, Ezer_Flow $flow)
 	{
-		parent::__construct($scope_instance, $flow);
+		parent::__construct($id, $scope_instance, $flow);
 	}
 	
 	public function start()
@@ -70,6 +70,14 @@ class Ezer_FlowInstance extends Ezer_StepContainerInstance
 			$this->done();
 		
 		return false;
+	}
+	
+	/**
+	 * @return int
+	 */
+	public function getType()
+	{
+		return Ezer_IntStep::STEP_TYPE_FLOW;
 	}
 }
 

@@ -102,7 +102,8 @@ class Ezer_XmlCasePersistance implements Ezer_ProcessCasePersistance
 	
 	private function mapConfig(Ezer_Config $config)
 	{
-		$case = new Ezer_Case($config->identifier);
+		$id = uniqid('case_');
+		$case = new Ezer_Case($id, $config->identifier);
 		$case->priority = $config->priority;
 		
 		foreach($config->variables as $variable)

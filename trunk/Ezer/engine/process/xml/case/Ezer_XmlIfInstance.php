@@ -27,6 +27,12 @@
  */
 class Ezer_XmlIfInstance extends Ezer_IfInstance
 {
+	public function __construct(Ezer_ScopeInstance &$scope_instance, Ezer_If $if)
+	{
+		$id = uniqid('i_');
+		parent::__construct($id, $scope_instance, $if);
+	}
+	
 	public function getFullStatus()
 	{
 		$data = array(

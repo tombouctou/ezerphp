@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -20,35 +21,40 @@
 
 
 /**
- * Purpose:     Stores a single instance for the execution of a sequence for a specified case
+ * Purpose:     Stores a single instance for the execution of a business process for a specified case
  * @author Tan-Tan
  * @package Engine
  * @subpackage Process.Case
  */
-class Ezer_XmlFlowInstance extends Ezer_FlowInstance
+class Ezer_DbBusinessProcessInstance extends Ezer_BusinessProcessInstance
 {
-	public function __construct(Ezer_ScopeInstance &$scope_instance, Ezer_Flow $flow)
-	{
-		$id = uniqid('i_');
-		parent::__construct($id, $scope_instance, $flow);
-	}
+	/**
+	 * @var Ezer_IntBusinessProcessInstance
+	 */
+	protected $db_instance;
 	
-	public function getFullStatus()
+	/**
+	 * @param Ezer_IntBusinessProcessInstance $db_instance
+	 * @param Ezer_Case $case
+	 * @param Ezer_BusinessProcess $process
+	 */
+	public function __construct(Ezer_IntBusinessProcessInstance $db_instance, Ezer_Case $case, Ezer_BusinessProcess $process)
 	{
-		$data = array(
-			'flow-instance' => array(
-				'status' => $this->getStatus(),
-				'steps' => null,
-			)
-		);
-		
+		$this->db_instance = $db_instance;
+		parent::__construct($this->db_instance->getId(), $db_instance->getVariables(), $process);
+	}
+
+	
+	public function persist()
+	{
+		$this->db_instance->setVariables($this->getVariables());
+		$this->db_instance->setStatus($this->getStatus());
+		$this->db_instance->persist();
+	
 		if($this->step_instances && is_array($this->step_instances))
 		{
-			foreach($this->step_instances as $step_instance)
-				$data['flow-instance']['steps'][] = $step_instance->getFullStatus();
+			foreach($this->step_instances as $index => $step_instance)
+				$this->step_instances[$index]->persist();
 		}
-		
-		return $data;
 	}
 }
-

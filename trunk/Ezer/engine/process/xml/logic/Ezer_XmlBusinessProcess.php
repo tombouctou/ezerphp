@@ -87,13 +87,13 @@ class Ezer_XmlBusinessProcess extends Ezer_BusinessProcess
 	}
 	
 	/**
-	 * @param array $variables
+	 * @param Ezer_Case $case
 	 * @return Ezer_BusinessProcessInstance
 	 */
-	public function &createBusinessProcessInstance(array $variables)
+	public function &createBusinessProcessInstance(Ezer_Case $case)
 	{
 		$instance_path = $this->instance_path . '/' . uniqid('inst') . '.xml';
-		$ret = new Ezer_XmlBusinessProcessInstance($instance_path, $variables, $this);
+		$ret = new Ezer_XmlBusinessProcessInstance($instance_path, $case->getVariables(), $this);
 		return $ret;
 	}
 }

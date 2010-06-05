@@ -31,9 +31,9 @@ class Ezer_IfInstance extends Ezer_StepContainerInstance
 	protected $else_instance = null;
 	protected $elseif_instance = null;
 	
-	public function __construct(Ezer_ScopeInstance &$scope_instance, Ezer_If $if)
+	public function __construct($id, Ezer_ScopeInstance &$scope_instance, Ezer_If $if)
 	{
-		parent::__construct($scope_instance, $if);
+		parent::__construct($id, $scope_instance, $if);
 	}
 	
 	public function start()
@@ -146,6 +146,14 @@ class Ezer_IfInstance extends Ezer_StepContainerInstance
 				
 			return;
 		}
+	}
+	
+	/**
+	 * @return int
+	 */
+	public function getType()
+	{
+		return Ezer_IntStep::STEP_TYPE_IF;
 	}
 }
 

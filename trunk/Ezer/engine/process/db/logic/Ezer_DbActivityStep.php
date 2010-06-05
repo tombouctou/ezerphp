@@ -20,29 +20,37 @@
 
 
 /**
- * Purpose:     Stores a single instance for the execution of a sequence for a specified case
+ * Purpose:     Loads a sequense from DB
  * @author Tan-Tan
  * @package Engine
- * @subpackage Process.Case
+ * @subpackage Process.Logic.DB
  */
-class Ezer_XmlElseInstance extends Ezer_ElseInstance
+class Ezer_DbActivityStep extends Ezer_ActivityStep
 {
-	public function __construct(Ezer_ScopeInstance &$scope_instance, Ezer_Else $else)
+	/**
+	 * @var Ezer_IntActivityStep
+	 */
+	protected $dbImpl;
+	
+	public function __construct(Ezer_IntActivityStep $activityStep)
 	{
-		$id = uniqid('i_');
-		parent::__construct($id, $scope_instance, $else);
+		$this->dbImpl = $activityStep;
+		parent::__construct($activityStep->getId());
+		$this->load($activityStep);
 	}
 	
-	public function getFullStatus()
+	public function load(Ezer_IntActivityStep $activityStep)
 	{
-		$data = array(
-			'if-instance' => array(
-				'name' => $this->getName(),
-				'status' => $this->getStatus(),
-			)
-		);
-		
-		return $data;
+		$this->setName($activityStep->getName());
+		$this->setClass($activityStep->getClass());
+		$this->setArgs($activityStep->getArgs());
+	}
+	
+	public function &createInstance(Ezer_ScopeInstance &$scope_instance)
+	{
+		$dbInstance = $this->dbImpl->createInstance($scope_instance);
+		$ret = new Ezer_DbActivityStepInstance($dbInstance, $scope_instance, $this);
+		return $ret;
 	}
 }
 

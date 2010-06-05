@@ -26,7 +26,7 @@
  * @package Engine
  * @subpackage Process.Case
  */
-class Ezer_StepContainerInstance extends Ezer_StepInstance
+abstract class Ezer_StepContainerInstance extends Ezer_StepInstance implements Ezer_IntStepContainerInstance
 {
 	public $step_instances = array();
 	
@@ -34,9 +34,9 @@ class Ezer_StepContainerInstance extends Ezer_StepInstance
 	 * @param Ezer_ScopeInstance $scope_instance
 	 * @param Ezer_StepContainer $step_container
 	 */
-	public function __construct(Ezer_ScopeInstance &$scope_instance, Ezer_StepContainer $step_container)
+	public function __construct($id, Ezer_ScopeInstance &$scope_instance, Ezer_StepContainer $step_container)
 	{
-		parent::__construct($scope_instance, $step_container);
+		parent::__construct($id, $scope_instance, $step_container);
 	}
 	
 	/* (non-PHPdoc)

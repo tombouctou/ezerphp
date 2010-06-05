@@ -28,6 +28,12 @@
  */
 class Ezer_XmlActivityStepInstance extends Ezer_ActivityStepInstance
 {
+	public function __construct(Ezer_ScopeInstance &$scope_instance, Ezer_ActivityStep $step)
+	{
+		$id = uniqid('i_');
+		parent::__construct($id, $scope_instance, $step);
+	}
+	
 	public function getFullStatus()
 	{
 		$data = array(

@@ -29,6 +29,11 @@
 class Ezer_Case implements Ezer_IntCase
 {
 	/**
+	 * @var string
+	 */
+	protected $id;
+	
+	/**
 	 * @var array
 	 */
 	protected $variables = array();
@@ -41,8 +46,9 @@ class Ezer_Case implements Ezer_IntCase
 	/**
 	 * @param string $process_identifier
 	 */
-	public function __construct($process_identifier)
+	public function __construct($id, $process_identifier)
 	{
+		$this->id = $id;
 		$this->process_identifier = $process_identifier;
 	}
 	
@@ -77,5 +83,13 @@ class Ezer_Case implements Ezer_IntCase
 	public function getVariables()
 	{
 		return $this->variables;
+	}
+	
+	/**
+	 * @return string
+	 */
+	public function getId()
+	{
+		return $this->id;
 	}
 }

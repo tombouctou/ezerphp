@@ -20,49 +20,36 @@
 
 
 /**
- * Purpose:     Loads a business process from DB
+ * Purpose:     Loads a sequense from DB
  * @author Tan-Tan
  * @package Engine
  * @subpackage Process.Logic.DB
  */
-class Ezer_DbBusinessProcess extends Ezer_BusinessProcess
+class Ezer_DbAssignStep extends Ezer_AssignStep
 {
 	/**
-	 * @var Ezer_IntBusinessProcess
+	 * @var Ezer_IntAssignStep
 	 */
-	protected $processImpl;
+	protected $dbImpl;
 	
-	public function __construct(Ezer_IntBusinessProcess $processImpl)
+	public function __construct(Ezer_IntAssignStep $assignStep)
 	{
-		$this->processImpl = $processImpl;
-		parent::__construct($processImpl->getId());
-		$this->load();
-		Ezer_DbStepContainerUtil::load($this, $processImpl);
+		$this->dbImpl = $assignStep;
+		parent::__construct($assignStep->getId());
+		$this->load($assignStep);
 	}
 	
-	public function load()
+	public function load(Ezer_IntAssignStep $assignStep)
 	{
-		$imports = $this->processImpl->getImports();
-		foreach($imports as $import)
-			$this->addImport($import);
-			
-		$variables = $this->processImpl->getVariables();
-		foreach($variables as $variable)
-			$this->addVariable($variable);
+		$this->setName($assignStep->getName());
+		$this->setCopies($assignStep->getCopies());
 	}
 	
-	public function addVariable(Ezer_Variable $variable)
+	public function &createInstance(Ezer_ScopeInstance &$scope_instance)
 	{
-		$this->variables[$variable->getName()] = $variable;
-	}
-	
-	/**
-	 * @param array $variables
-	 * @return Ezer_BusinessProcessInstance
-	 */
-	public function &createBusinessProcessInstance(array $variables)
-	{
-		return $this->processImpl->createBusinessProcessInstance($variables);
+		$dbInstance = $this->dbImpl->createInstance($scope_instance);
+		$ret = new Ezer_DbAssignStepInstance($dbInstance, $scope_instance, $this);
+		return $ret;
 	}
 }
 

@@ -20,4 +20,20 @@ class Ezer_PropelSequence extends Ezer_PropelStepContainer implements Ezer_IntSe
 //		$this->dataObject = new Ezer_PropelSequenceData();
 		$this->setType(Ezer_IntStep::STEP_TYPE_SEQUENCE);
 	}
+
+	
+	/**
+	 * @param Ezer_ScopeInstance $scope_instance
+	 * @return Ezer_PropelSequenceInstance
+	 */
+	public function &createInstance(Ezer_ScopeInstance $scope_instance)
+	{
+		$ret = new Ezer_PropelSequenceInstance();
+		$ret->setContainer($scope_instance);
+		$ret->setStepId($this->getId());
+		$ret->setName($this->getName());
+		$ret->save();
+		
+		return $ret;
+	}
 } // Ezer_PropelScope
