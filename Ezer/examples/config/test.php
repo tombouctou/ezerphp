@@ -2,5 +2,5 @@
 
 require_once 'bootstrap.php';
 
-$config = new Ezer_Config('config.xml');
+$config = Ezer_Config::createFromPath('config.xml');
 var_dump($config);
