@@ -37,8 +37,11 @@ class Ezer_ScopeInstance extends Ezer_StepContainerInstance
 		$this->variables = $variables;
 	}
 	
-	public function getValues($args)
+	public function getValues(array $args = null)
 	{
+		if(is_null($args))
+			return $this->variables;
+		
 		$return = array();
 		
 		foreach($args as $arg)

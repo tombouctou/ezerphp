@@ -46,16 +46,39 @@ class Ezer_StepInstanceStatus
  */
 abstract class Ezer_StepInstance
 {
+	/**
+	 * @var int
+	 */
 	protected $progress = 0;
+	
+	/**
+	 * @var Ezer_StepContainerInstance
+	 */
 	protected $scope_instance;
 	
 	/**
 	 * @var Ezer_Step
 	 */
 	protected $step;
+	
+	/**
+	 * @var int
+	 */
 	protected $max_retries;
+	
+	/**
+	 * @var int
+	 */
 	protected $attempts;
+	
+	/**
+	 * @var array
+	 */
 	protected $flowed_in = array();
+	
+	/**
+	 * @var Ezer_StepInstanceStatus
+	 */
 	protected $status;
 	
 	public abstract function shouldRunOnServer();
@@ -78,6 +101,11 @@ abstract class Ezer_StepInstance
 		$this->setStatus(Ezer_StepInstanceStatus::LOADED);
 	}
 	
+	public function save()
+	{
+		$this->scope_instance->save();
+	}
+	
 	public function queued()
 	{
 		$this->setStatus(Ezer_StepInstanceStatus::QUEUED);
@@ -93,6 +121,7 @@ abstract class Ezer_StepInstance
 //		}
 //		echo "setStatus (" . get_class($this) . ", " . $this->getName() . ", $status)\n";
 		$this->status = $status;
+		$this->save();
 	}
 	
 	public function getStatus()

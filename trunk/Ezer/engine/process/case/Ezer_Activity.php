@@ -43,7 +43,7 @@ abstract class Ezer_AsynchronousActivity implements Ezer_Activity
 	private $args;
 	private $worker = null;
 
-	public function serArgs(array $args)
+	public function setArgs(array $args)
 	{
 		$this->args = $args;
 	}

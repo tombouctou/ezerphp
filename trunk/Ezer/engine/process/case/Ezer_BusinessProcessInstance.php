@@ -26,8 +26,11 @@
  * @package Engine
  * @subpackage Process.Case
  */
-class Ezer_BusinessProcessInstance extends Ezer_ScopeInstance
+class Ezer_BusinessProcessInstance extends Ezer_ScopeInstance implements Ezer_IntBusinessProcessInstance
 {
+	/**
+	 * @var Ezer_BusinessProcess
+	 */
 	protected $process;
 	
 	public function __construct(array $variables, Ezer_BusinessProcess $process)

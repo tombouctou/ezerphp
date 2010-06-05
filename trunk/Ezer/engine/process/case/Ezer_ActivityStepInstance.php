@@ -57,7 +57,7 @@ class Ezer_ActivityStepInstance extends Ezer_StepInstance
 	public function getWorkerAndStart()
 	{
 		$this->setStatus(Ezer_StepInstanceStatus::STARTED);
-		$this->activity->serArgs($this->scope_instance->getValues($this->step->getArgs()));
+		$this->activity->setArgs($this->scope_instance->getValues($this->step->getArgs()));
 		return $this->activity;
 	}
 	
