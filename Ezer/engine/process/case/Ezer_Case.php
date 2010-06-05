@@ -63,6 +63,15 @@ class Ezer_Case implements Ezer_IntCase
 	}
 	
 	/**
+	 * @param string $name
+	 * @param string $value
+	 */
+	public function addVariable($name, $value)
+	{
+		$this->variables[$name] = $value;
+	}
+	
+	/**
 	 * @return array
 	 */
 	public function getVariables()
