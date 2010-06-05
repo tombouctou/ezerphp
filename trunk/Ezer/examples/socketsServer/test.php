@@ -3,7 +3,7 @@ ini_set('max_execution_time', 0);
 
 require_once 'bootstrap.php';
 
-$config = new Ezer_Config('config.xml');
+$config = Ezer_Config::createFromPath('config.xml');
 
 $server = new SocketCountServer();
 
