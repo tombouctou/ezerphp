@@ -58,18 +58,3 @@ $activity->setArgs(array('hello', 'bye'));
 $activity->setContainer($sequence, 2);
 $activity->save();
 
-
-// insert case
-
-$variables = array(
-	'hello' => 'Hi Tan-Tan',
-	'bye' => 'Goodbye Johnathan'
-);
-
-$case = new Ezer_PropelCase();
-$case->setProcessId($process->getId());
-$case->setPriority(1);
-$case->setStatus(Ezer_IntStep::STEP_STATUS_ACTIVE);
-$case->setVariables($variables);
-$case->save();
-
