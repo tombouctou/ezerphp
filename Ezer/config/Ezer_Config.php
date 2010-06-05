@@ -43,12 +43,56 @@ class Ezer_Config extends ArrayObject
 	public $type = self::CLASS_TYPE;
 	protected $keys;
 
-	public function __construct($xml)
+	/**
+	 * @param DOMNode $xml
+	 * @return Ezer_Config
+	 */
+	public static function createFromNode(DOMNode $xml)
 	{
-		if(is_a($xml, 'DOMNode'))
-			$this->loadNode($xml);
-		elseif(file_exists($xml))
-			$this->loadFile($xml);
+		$instance = new Ezer_Config();
+		$instance->loadNode($xml);
+			
+		return $instance;
+	}
+	
+	/**
+	 * @param string $xml file path
+	 * @return Ezer_Config
+	 */
+	public static function createFromPath($xml)
+	{
+		$instance = new Ezer_Config();
+		if(file_exists($xml))
+			$instance->loadFile($xml);
+			
+		return $instance;
+	}
+	
+	/**
+	 * @param array $arr
+	 * @return Ezer_Config
+	 */
+	public static function createFromArray(array $arr)
+	{
+		$instance = new Ezer_Config();
+		foreach($arr as $key => $value)
+		{
+			$instance->keys[] = $key;
+			
+			if(is_array($value))
+				$value = Ezer_Config::createFromArray($value);
+				
+			$instance[$key] = $value;
+		}
+			
+		return $instance;
+	}
+	
+	public function saveXml($path)
+	{
+		$xml = new DOMDocument();
+		$xml = $this->loadXmlElement($xml, $this->toArray());
+		$xml->save($path);
 	}
 	
 	public function __get($name)
@@ -62,6 +106,9 @@ class Ezer_Config extends ArrayObject
 	public function toArray()
 	{
 		$ret = array();
+		if(!is_array($this->keys) || !count($this->keys))
+			return $ret;
+			
 		foreach($this->keys as $key)
 		{
 			$value = $this[$key];
@@ -73,18 +120,56 @@ class Ezer_Config extends ArrayObject
 		return $ret;
 	}
 
+	/**
+	 * @param DOMDocument $document
+	 * @param DOMElement $element
+	 * @param array $arr
+	 * @return DOMElement
+	 */
+	public function loadXmlElement(DOMDocument $document, array $arr, DOMElement $element = null)
+	{
+		if(!$element)
+			$element = $document;
+			
+		foreach($arr as $key => $value)
+		{
+			$createValue = $value;
+			if(is_array($value))
+				$createValue = '';
+
+			$createName = $key;							
+			if(is_numeric($key))
+				$createName = 'item';
+			
+			$subElement = $document->createElement($createName, $createValue);
+				
+			if(is_array($value))
+				$subElement = $this->loadXmlElement($document, $value, $subElement);
+			
+			if(is_numeric($key))
+			{
+				$attrElement = $document->createAttribute('index');
+				$subElement->appendChild($attrElement);
+				$subElement->setAttribute('index', $key);
+			}
+				
+			$element->appendChild($subElement);
+		}
+		return $element;
+	}
+
 	public function getKeys()
 	{
 		return $this->keys;
 	}
 
-	private function loadNode(DOMNode $node)
+	protected function loadNode(DOMNode $node)
 	{
 		$this->entityName = $this->replaceSpecialChars($node->nodeName);
 		$this->parseNode($node);
 	}
 
-	private function loadFile($configFilePath)
+	protected function loadFile($configFilePath)
 	{
 		$loaded = false;
 		$doc = new DOMDocument();
@@ -101,7 +186,7 @@ class Ezer_Config extends ArrayObject
 		$this->parseNode($root);
 	}
 
-	private function convertToArray()
+	protected function convertToArray()
 	{
 		$copy = array();
 		$arr = (array) $this;
@@ -117,7 +202,7 @@ class Ezer_Config extends ArrayObject
 		$this->type = self::ARRAY_TYPE;
 	}
 
-	private function parseNode(DOMNode $node)
+	protected function parseNode(DOMNode $node)
 	{
 		if(!$node->hasChildNodes() && !$node->hasAttributes())
 			return;
@@ -160,18 +245,18 @@ class Ezer_Config extends ArrayObject
 		}
 	}
 
-	private function getNodeValue(DOMNode $node)
+	protected function getNodeValue(DOMNode $node)
 	{
 		if($node->hasAttributes())
-			return new Ezer_Config($node);
+			return Ezer_Config::createFromNode($node);
 	
 		if($node->childNodes->length > 1 || $node->firstChild->nodeType != Ezer_Config::TEXT_NODE_TYPE)
-			return new Ezer_Config($node);
+			return Ezer_Config::createFromNode($node);
 			
 		return $this->getTextValue($node);
 	}
 
-	private function getChildNodesOfType(DOMNode $node, $type)
+	protected function getChildNodesOfType(DOMNode $node, $type)
 	{
 		$children = array();
 		$iCount = 0;
@@ -187,14 +272,14 @@ class Ezer_Config extends ArrayObject
 		return $children;
 	}
 
-	private function replaceSpecialChars($value)
+	protected function replaceSpecialChars($value)
 	{
 		//Replace any non-word characters with an underscore
 //		echo "$value: " . preg_replace('/[-]/', '_', $value) . "\n";
 		return preg_replace('/[-]/', '_', $value); //Convert non-word characters, hyphens and dots to underscores
 	}
 
-	private function getTextValue(DOMNode $node)
+	protected function getTextValue(DOMNode $node)
 	{
 		if($node->hasChildNodes())
 		{
