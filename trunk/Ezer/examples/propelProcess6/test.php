@@ -1,5 +1,6 @@
 <?php
 ini_set('max_execution_time', 0);
+chdir(dirname(__FILE__));
 
 require_once 'bootstrap.php';
 

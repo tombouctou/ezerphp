@@ -1,4 +1,4 @@
-<process identifier="HelloWorld">
+<process identifier="AsyncHelloWorld">
 	<variables>
 		<variable name="firstCount" value="2" />
 		<variable name="secondCount" value="2" />

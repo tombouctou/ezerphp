@@ -1,0 +1,2 @@
+<?xml version="1.0"?>
+<process-instance><status>4</status><vars><hello>Hi Tan-Tan</hello><bye>Goodbye Johnathan</bye></vars><process><name>HelloWorld</name><vars><item index="0"><name>hello</name><value></value></item><item index="1"><name>bye</name><value></value></item></vars></process><steps></steps></process-instance>
