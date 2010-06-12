@@ -1,4 +1,4 @@
-<process name="HelloWorld">
+<process name="AsyncHelloWorld">
 
 	<!-- autoload makes imports not needed  
 	<import>activities\CountActivity.php</import>
