@@ -31,6 +31,10 @@ require_once 'Ezer_Sequence.php';
 class Ezer_Variable
 {
 	public $id;
+	
+	/**
+	 * @var array<Ezer_Variable>
+	 */
 	public $parts = array();
 	
 	protected $name;

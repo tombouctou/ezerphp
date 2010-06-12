@@ -116,6 +116,11 @@ class Ezer_AssignStepFromAttribute extends Ezer_AssignStepCopyAttribute
 	{
 		return $this->value;
 	}
+	
+	public function setValue($value)
+	{
+		$this->value = $value;
+	}
 }
 
 /**

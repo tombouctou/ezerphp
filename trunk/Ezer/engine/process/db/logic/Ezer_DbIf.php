@@ -20,40 +20,37 @@
 
 
 /**
- * Purpose:     Stores a single instance for the execution of a sequence for a specified case
+ * Purpose:     Loads a sequense from DB
  * @author Tan-Tan
  * @package Engine
- * @subpackage Process.Case
+ * @subpackage Process.Logic.DB
  */
-class Ezer_DbElseInstance extends Ezer_ElseInstance
+class Ezer_DbIf extends Ezer_If implements Ezer_IntIf
 {
 	/**
-	 * @var Ezer_IntElseInstance
+	 * @var Ezer_IntSequence
 	 */
-	protected $db_instance;
+	protected $dbImpl;
 	
-	/**
-	 * @param Ezer_IntElseInstance $db_instance
-	 * @param Ezer_ScopeInstance $case
-	 * @param Ezer_Else $process
-	 */
-	public function __construct(Ezer_IntElseInstance $db_instance, Ezer_ScopeInstance &$scope_instance, Ezer_Else $else)
+	public function __construct(Ezer_IntIf $if)
 	{
-		$this->db_instance = $db_instance;
-		parent::__construct($this->db_instance->getId(), $scope_instance, $else);
+		$this->dbImpl = $if;
+		parent::__construct($if->getId());
+		$this->load($if);
+		Ezer_DbStepContainerUtil::load($this, $if);
 	}
 	
-	public function persist()
+	public function load(Ezer_IntIf $if)
 	{
-		$this->db_instance->setStatus($this->getStatus());
-		$this->db_instance->setContainer($this->scope_instance);
-		$this->db_instance->persist();
+		$this->setName($if->getName());
+		$this->setCondition($if->getCondition());
+	}
 	
-		if($this->step_instances && is_array($this->step_instances))
-		{
-			foreach($this->step_instances as $index => $step_instance)
-				$this->step_instances[$index]->persist();
-		}
+	public function &createInstance(Ezer_ScopeInstance &$scope_instance)
+	{
+		$dbInstance = $this->dbImpl->createInstance($scope_instance);
+		$ret = new Ezer_DbIfInstance($dbInstance, $scope_instance, $this);
+		return $ret;
 	}
 }
 

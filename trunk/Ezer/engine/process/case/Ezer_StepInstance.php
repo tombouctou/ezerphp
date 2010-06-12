@@ -52,7 +52,7 @@ abstract class Ezer_StepInstance implements Ezer_IntStepInstance
 	protected $progress = 0;
 	
 	/**
-	 * @var Ezer_StepContainerInstance
+	 * @var Ezer_ScopeInstance
 	 */
 	protected $scope_instance;
 	

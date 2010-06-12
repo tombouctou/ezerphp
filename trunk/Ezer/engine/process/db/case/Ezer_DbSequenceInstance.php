@@ -34,8 +34,8 @@ class Ezer_DbSequenceInstance extends Ezer_SequenceInstance
 	
 	/**
 	 * @param Ezer_IntSequenceInstance $db_instance
-	 * @param Ezer_Case $case
-	 * @param Ezer_BusinessProcess $process
+	 * @param Ezer_ScopeInstance $case
+	 * @param Ezer_Sequence $sequence
 	 */
 	public function __construct(Ezer_IntSequenceInstance $db_instance, Ezer_ScopeInstance &$scope_instance, Ezer_Sequence $sequence)
 	{

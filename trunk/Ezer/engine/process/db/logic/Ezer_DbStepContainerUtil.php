@@ -58,7 +58,19 @@ class Ezer_DbStepContainerUtil
 					break;
 			
 				case Ezer_IntStep::STEP_TYPE_IF:
-					$stepContainer->addStep(new Ezer_DbIf($step));
+					if($stepContainer instanceof Ezer_If)
+					{
+						$stepContainer->addElseIf(new Ezer_DbIf($step));
+					}
+					else
+					{
+						$stepContainer->addStep(new Ezer_DbIf($step));
+					}
+					break;
+			
+				case Ezer_IntStep::STEP_TYPE_ELSE:
+					if($stepContainer instanceof Ezer_If)
+						$stepContainer->setElse(new Ezer_DbElse($step));
 					break;
 			
 //				case Ezer_IntStep::STEP_TYPE_FOREACH:

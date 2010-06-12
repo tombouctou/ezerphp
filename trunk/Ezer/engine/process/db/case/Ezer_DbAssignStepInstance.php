@@ -36,8 +36,8 @@ class Ezer_DbAssignStepInstance extends Ezer_AssignStepInstance
 	
 	/**
 	 * @param Ezer_IntAssignStepInstance $db_instance
-	 * @param Ezer_Case $case
-	 * @param Ezer_BusinessProcess $process
+	 * @param Ezer_ScopeInstance $case
+	 * @param Ezer_AssignStep $step
 	 */
 	public function __construct(Ezer_IntAssignStepInstance $db_instance, Ezer_ScopeInstance &$scope_instance, Ezer_AssignStep $step)
 	{

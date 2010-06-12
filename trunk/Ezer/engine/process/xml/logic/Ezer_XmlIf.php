@@ -47,7 +47,7 @@ class Ezer_XmlElse extends Ezer_Else
  * @package Engine
  * @subpackage Process.Logic.XML
  */
-class Ezer_XmlIf extends Ezer_If
+class Ezer_XmlIf extends Ezer_If implements Ezer_IntIf
 {
 	public function __construct(DOMElement $element)
 	{

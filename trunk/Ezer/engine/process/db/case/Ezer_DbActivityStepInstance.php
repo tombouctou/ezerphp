@@ -35,8 +35,8 @@ class Ezer_DbActivityStepInstance extends Ezer_ActivityStepInstance
 	
 	/**
 	 * @param Ezer_IntActivityStepInstance $db_instance
-	 * @param Ezer_Case $case
-	 * @param Ezer_BusinessProcess $process
+	 * @param Ezer_ScopeInstance $case
+	 * @param Ezer_ActivityStep $step
 	 */
 	public function __construct(Ezer_IntActivityStepInstance $db_instance, Ezer_ScopeInstance &$scope_instance, Ezer_ActivityStep $step)
 	{
