@@ -35,6 +35,15 @@ all of them offering important modules on the way to well orgenized PHP applicat
 === Since 1.1.0 ===
   * Support DB persistence over propel ORM 
 
+=== Since 1.1.1 ===
+  * Support XML persistence for process instances
+
+=== Since 1.1.2 ===
+  * Support DB persistence for process instances
+
+=== Since 1.1.3 ===
+  * Full DB Support
+
   
 I tried to supply an extendable core framework with simple examples.
 
