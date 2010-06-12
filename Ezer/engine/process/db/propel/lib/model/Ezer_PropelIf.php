@@ -12,23 +12,38 @@
  *
  * @package    lib.model
  */
-class Ezer_PropelSequence extends Ezer_PropelStepContainer implements Ezer_IntSequence 
+class Ezer_PropelIf extends Ezer_PropelStepContainer implements Ezer_IntIf 
 {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->dataObject = new Ezer_PropelSequenceData();
-		$this->setType(Ezer_IntStep::STEP_TYPE_SEQUENCE);
+		$this->dataObject = new Ezer_PropelIfData();
+		$this->setType(Ezer_IntStep::STEP_TYPE_IF);
 	}
-
+	
+	/**
+	 * @param string $condition php code
+	 */
+	public function setCondition($condition)
+	{
+		$this->dataObject->setCondition($condition);
+	}
+	
+	/**
+	 * @return string $condition php code
+	 */
+	public function getCondition()
+	{
+		return $this->dataObject->getCondition();
+	}
 	
 	/**
 	 * @param Ezer_ScopeInstance $scope_instance
-	 * @return Ezer_PropelSequenceInstance
+	 * @return Ezer_PropelIfInstance
 	 */
 	public function &createInstance(Ezer_ScopeInstance $scope_instance)
 	{
-		$ret = new Ezer_PropelSequenceInstance();
+		$ret = new Ezer_PropelIfInstance();
 		$ret->setContainer($scope_instance);
 		$ret->setStepId($this->getId());
 		$ret->setName($this->getName());

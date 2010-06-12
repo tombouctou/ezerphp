@@ -20,12 +20,40 @@
 
 
 /**
- * Purpose:     Stores a single instance for the execution of a sequence for a specified case
+ * Purpose:     Stores a single instance for the execution of a flow for a specified case
  * @author Tan-Tan
  * @package Engine
  * @subpackage Process.Case
  */
 class Ezer_DbFlowInstance extends Ezer_FlowInstance
 {
+	/**
+	 * @var Ezer_IntFlowInstance
+	 */
+	protected $db_instance;
+	
+	/**
+	 * @param Ezer_IntFlowInstance $db_instance
+	 * @param Ezer_ScopeInstance $case
+	 * @param Ezer_Flow $flow
+	 */
+	public function __construct(Ezer_IntFlowInstance $db_instance, Ezer_ScopeInstance &$scope_instance, Ezer_Flow $flow)
+	{
+		$this->db_instance = $db_instance;
+		parent::__construct($this->db_instance->getId(), $scope_instance, $flow);
+	}
+	
+	public function persist()
+	{
+		$this->db_instance->setStatus($this->getStatus());
+		$this->db_instance->setContainer($this->scope_instance);
+		$this->db_instance->persist();
+	
+		if($this->step_instances && is_array($this->step_instances))
+		{
+			foreach($this->step_instances as $index => $step_instance)
+				$this->step_instances[$index]->persist();
+		}
+	}
 }
 

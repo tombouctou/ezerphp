@@ -52,9 +52,16 @@ class Ezer_Else extends Ezer_SingleStepContainer
  * @package Engine
  * @subpackage Process.Logic
  */
-class Ezer_If extends Ezer_SingleStepContainer
+class Ezer_If extends Ezer_SingleStepContainer implements Ezer_IntIf
 {
+	/**
+	 * @var Ezer_Else
+	 */
 	public $else = null;
+	
+	/**
+	 * @var array
+	 */
 	public $elseifs = array();
 	
 	protected $condition = null;
@@ -69,9 +76,9 @@ class Ezer_If extends Ezer_SingleStepContainer
 		// overwrite any flow definition
 		$step->in_flows = array();
 		$step->out_flows = array();
-		
+				
 		if(count($this->steps))
-			throw new Ezer_SyntaxException('If object can contain only on step');
+			throw new Ezer_SyntaxException('If object can contain only one step [' . $step->getName() . ']');
 			
 		parent::addStep($step);
 	}
@@ -79,6 +86,21 @@ class Ezer_If extends Ezer_SingleStepContainer
 	public function getCondition()
 	{
 		return $this->condition;
+	}
+	
+	public function setCondition($condition)
+	{
+		$this->condition = $condition;
+	}
+	
+	public function addElseIf(Ezer_If $elseIf)
+	{
+		$this->elseifs[] = $elseIf;
+	}
+	
+	public function setElse(Ezer_Else $else)
+	{
+		$this->else = $else;
 	}
 }
 

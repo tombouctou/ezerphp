@@ -77,6 +77,9 @@ class Ezer_PropelStepPeer extends BaseEzer_PropelStepPeer {
 		
 			case Ezer_IntStep::STEP_TYPE_IF:
 				return new Ezer_PropelIf();
+		
+			case Ezer_IntStep::STEP_TYPE_ELSE:
+				return new Ezer_PropelElse();
 			
 //			case Ezer_IntStep::STEP_TYPE_FOREACH:
 //				return new Ezer_PropelForeach();
@@ -151,6 +154,7 @@ class Ezer_PropelStepPeer extends BaseEzer_PropelStepPeer {
 		$criteria->add(Ezer_PropelStepPeer::STATUS, Ezer_IntStep::STEP_STATUS_ACTIVE);
 		$criteria->add(Ezer_PropelStepPeer::CONTAINER_ID, $containerId);
 		$criteria->add(Ezer_PropelStepPeer::CONTAINER_TYPE, $containerType);
+		$criteria->addAscendingOrderByColumn(Ezer_PropelStepPeer::ORDER);
 
 		return self::doSelect($criteria, $con);
 	}

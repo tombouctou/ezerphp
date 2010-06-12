@@ -12,23 +12,23 @@
  *
  * @package    lib.model
  */
-class Ezer_PropelSequence extends Ezer_PropelStepContainer implements Ezer_IntSequence 
+class Ezer_PropelElse extends Ezer_PropelStepContainer implements Ezer_IntElse 
 {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->dataObject = new Ezer_PropelSequenceData();
-		$this->setType(Ezer_IntStep::STEP_TYPE_SEQUENCE);
+		$this->dataObject = new Ezer_PropelElseData();
+		$this->setType(Ezer_IntStep::STEP_TYPE_ELSE);
 	}
 
 	
 	/**
 	 * @param Ezer_ScopeInstance $scope_instance
-	 * @return Ezer_PropelSequenceInstance
+	 * @return Ezer_PropelElseInstance
 	 */
 	public function &createInstance(Ezer_ScopeInstance $scope_instance)
 	{
-		$ret = new Ezer_PropelSequenceInstance();
+		$ret = new Ezer_PropelElseInstance();
 		$ret->setContainer($scope_instance);
 		$ret->setStepId($this->getId());
 		$ret->setName($this->getName());
