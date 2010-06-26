@@ -29,12 +29,30 @@
  */
 class Ezer_ScopeInstance extends Ezer_StepContainerInstance implements Ezer_IntScopeInstance
 {
+	/**
+	 * @var array
+	 */
 	protected $variables = array();
 	
-	public function __construct($id, array $variables, Ezer_ScopeInstance &$scope_instance, Ezer_Scope $scope)
+	/**
+	 * @var Ezer_Scope
+	 */
+	protected $scope = array();
+	
+	public function __construct($id, array $variables, Ezer_ScopeInstance &$scope_instance, Ezer_Scope $scope = null)
 	{
-		parent::__construct($id, $this, $scope);
+		parent::__construct($id, $scope_instance, $scope);
 		$this->variables = $variables;
+		$this->scope = $scope;
+	}
+	
+	/**
+	 * @return Ezer_ScopeInstance
+	 */
+	public function &spawn()
+	{
+		$scope_instance = $this->scope->spawn($this);
+		return $scope_instance;
 	}
 	
 	public function getValues(array $args = null)
@@ -123,6 +141,39 @@ class Ezer_ScopeInstance extends Ezer_StepContainerInstance implements Ezer_IntS
 		return true;
 	}
 	
+	private function addValue(&$var, Ezer_AssignStepToAttribute $to, $value)
+	{
+		$variable = $to->getVariable();
+	
+		if($to->hasPart())
+		{
+			$part = $to->getPart();
+			
+			if($part->hasVariable())
+			{
+				$variable = $part->getVariable();
+				
+				if(!isset($var[$variable]))
+					$var[$variable] = null;
+					
+				return $this->addValue($var[$variable], $part, $value);
+			}
+			elseif($part->hasPart() && is_array($var))
+			{
+				$all_set = true;
+				
+				foreach($var as &$set_var)
+					if(!$this->addValue($set_var, $part, $value))
+						$all_set = false;
+						
+				return $all_set;
+			}
+		}
+			
+		$var = $value;
+		return true;
+	}
+	
 	private function setValueByPath(&$var, array $path, $value)
 	{
 		$current = array_pop($path);
@@ -150,6 +201,18 @@ class Ezer_ScopeInstance extends Ezer_StepContainerInstance implements Ezer_IntS
 	{
 		$path = array_reverse(explode('/', $variable_path));
 		return $this->setValueByPath($this->variables, $path, $value);
+	}
+	
+	public function addVariable(Ezer_AssignStepToAttribute $to, $value)
+	{
+		if($this->setVariable($to, $value))
+			return true;
+		
+		$variable = $to->getVariable();
+		if(!isset($this->variables[$variable]))
+			$this->variables[$variable] = null;
+			
+		return $this->addValue($this->variables[$variable], $to, $value);
 	}
 	
 	public function setVariable(Ezer_AssignStepToAttribute $to, $value)
@@ -182,9 +245,29 @@ class Ezer_ScopeInstance extends Ezer_StepContainerInstance implements Ezer_IntS
 	/**
 	 * @return array
 	 */
-	public function getVariables()
+	public function getVariables(array $arr = null)
 	{
-		return $this->variables;
+		if(is_null($arr))
+			$arr = $this->variables;
+			
+		$ret = array();
+		foreach($arr as $key => $value)
+		{
+			if(is_array($value))
+			{
+				$ret[$key] = $this->getVariables($value);
+			}
+			elseif(is_object($value))
+			{
+				$ret[$key] = clone $value;
+			}
+			else
+			{
+				$ret[$key] = $value;
+			}
+		}
+		
+		return $ret;
 	}
 	
 	/**

@@ -47,6 +47,11 @@ class Ezer_StepInstanceStatus
 abstract class Ezer_StepInstance implements Ezer_IntStepInstance
 {
 	/**
+	 * @var string
+	 */
+	protected $id;
+	
+	/**
 	 * @var int
 	 */
 	protected $progress = 0;
@@ -88,16 +93,30 @@ abstract class Ezer_StepInstance implements Ezer_IntStepInstance
 		return null;
 	}
 	
-	public function __construct($id, Ezer_StepContainerInstance &$scope_instance, Ezer_Step $step)
+	public function __construct($id, Ezer_StepContainerInstance &$scope_instance, Ezer_Step $step = null)
 	{
 		$this->id = $id;
-		$this->max_retries = $step->getMaxRetries();
 		$this->attempts = 0;
-		$this->step = $step;
 		$this->scope_instance = &$scope_instance;
 		
+		if($step)
+		{
+			$this->max_retries = $step->getMaxRetries();
+			$this->step = $step;
+		}
+		
 		if($this !== $scope_instance)
+		{
+//			echo "Adding $id [" . get_class($this) . "] to " . $scope_instance->getId() . "[" . get_class($scope_instance) . "]\n";
 			$this->scope_instance->step_instances[] = &$this;
+			
+			$parent_scope_instance = $scope_instance->getScopeInstance();
+			if($parent_scope_instance)
+			{
+//				echo "Adding $id [" . get_class($this) . "] to " . $parent_scope_instance->getId() . "[" . get_class($parent_scope_instance) . "]\n";
+				$parent_scope_instance->step_instances[] = &$this;
+			}
+		}
 			
 		$this->setStatus(Ezer_StepInstanceStatus::LOADED);
 	}	
@@ -135,7 +154,15 @@ abstract class Ezer_StepInstance implements Ezer_IntStepInstance
 	
 	public function getStepId()
 	{
+		if(!$this->step)
+			return null;
+			
 		return $this->step->getId();
+	}
+	
+	public function &getScopeInstance()
+	{
+		return $this->scope_instance;
 	}
 	
 	/**
@@ -143,13 +170,13 @@ abstract class Ezer_StepInstance implements Ezer_IntStepInstance
 	 */
 	public function flow($step_id = null)
 	{
-		if(is_null($step_id) && !$this->step->getInFlowsCount())
+		if(is_null($step_id) && (!$this->step || !$this->step->getInFlowsCount()))
 		{
 			$this->setStatus(Ezer_StepInstanceStatus::AVAILABLE);
 			return true;
 		}
 
-		if(!$this->step->hasInFlow($step_id))
+		if(!$this->step || !$this->step->hasInFlow($step_id))
 		{
 			return false;
 		}
@@ -160,7 +187,7 @@ abstract class Ezer_StepInstance implements Ezer_IntStepInstance
 			return true;
 		}
 			
-		if($this->step->getJoinPolicy() == Ezer_StepJoinPolicy::JOIN_OR || count($this->flowed_in) >= $this->step->getInFlowsCount())
+		if($this->step && ($this->step->getJoinPolicy() == Ezer_StepJoinPolicy::JOIN_OR || count($this->flowed_in) >= $this->step->getInFlowsCount()))
 		{
 //			echo get_class($this) . "(" . $this->getName() . ") is available\n";
 			$this->setStatus(Ezer_StepInstanceStatus::AVAILABLE);
@@ -222,16 +249,33 @@ abstract class Ezer_StepInstance implements Ezer_IntStepInstance
 	
 	public function getName()
 	{
+		if(!$this->step)
+			return null;
+			
 		return $this->step->getName();
 	}
 	
 	public function getOutFlows()
 	{
+		if(!$this->step)
+			return 0;
+			
 		return $this->step->getOutFlows();
+	}
+	
+	public function getInFlowsCount()
+	{
+		if(!$this->step)
+			return 0;
+			
+		return $this->step->getInFlowsCount();
 	}
 	
 	public function getPriority()
 	{
+		if(!$this->step)
+			return 0;
+			
 		return min(1, max(10, $this->step->getPriority())); 
 	}
 	
