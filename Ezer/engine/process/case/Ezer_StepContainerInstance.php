@@ -34,7 +34,7 @@ abstract class Ezer_StepContainerInstance extends Ezer_StepInstance implements E
 	 * @param Ezer_ScopeInstance $scope_instance
 	 * @param Ezer_StepContainer $step_container
 	 */
-	public function __construct($id, Ezer_ScopeInstance &$scope_instance, Ezer_StepContainer $step_container)
+	public function __construct($id, Ezer_ScopeInstance &$scope_instance, Ezer_StepContainer $step_container = null)
 	{
 		parent::__construct($id, $scope_instance, $step_container);
 	}
@@ -85,15 +85,19 @@ abstract class Ezer_StepContainerInstance extends Ezer_StepInstance implements E
 	{
 		parent::start();
 		
-		foreach($this->step->steps as &$step)
+		if($this->step)
 		{
-			$step_instance = &$step->createInstance($this->scope_instance);
-			$this->step_instances[] = &$step_instance;
-			
-			if($step->getInFlowsCount())
-				continue;
-				
-			$step_instance->flow();
+			foreach($this->step->steps as &$step)
+			{
+				$step_instance = &$step->createInstance($this->scope_instance);
+				$this->step_instances[] = &$step_instance;
+			}
+		}
+		
+		foreach($this->step_instances as &$step_instance)
+		{
+			if(!$step_instance->getInFlowsCount())
+				$step_instance->flow();
 		}
 	}
 }
