@@ -46,4 +46,17 @@ class Ezer_PropelBusinessProcess extends Ezer_PropelScope implements Ezer_IntBus
 		return $ret;
 	}
 	
+	public function &spawn(Ezer_ScopeInstance $scope_instance)
+	{
+		$ret = new Ezer_PropelScopeInstance();
+		$ret->setProcessId($this->getId());
+		$ret->setContainer($scope_instance);
+		$ret->setStepId($this->getId());
+		$ret->setName($this->getName());
+		$ret->setVariables($scope_instance->getVariables());
+		$ret->save();
+		
+		return $ret;
+	}
+	
 } // Ezer_PropelBusinessProcess

@@ -73,10 +73,10 @@ class Ezer_DbStepContainerUtil
 						$stepContainer->setElse(new Ezer_DbElse($step));
 					break;
 			
-//				case Ezer_IntStep::STEP_TYPE_FOREACH:
-//					$stepContainer->addStep(new Ezer_DbForeach($step));
-//					break;
-//			
+				case Ezer_IntStep::STEP_TYPE_FOREACH:
+					$stepContainer->addStep(new Ezer_DbForeach($step));
+					break;
+			
 //				case Ezer_IntStep::STEP_TYPE_REPEAT_UNTIL:
 //					$stepContainer->addStep(new Ezer_DbRepeatUntil($step));
 //					break;

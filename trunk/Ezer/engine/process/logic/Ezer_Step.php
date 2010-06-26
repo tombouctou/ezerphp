@@ -57,6 +57,10 @@ abstract class Ezer_Step implements Ezer_IntStep
 		$this->id = $id;
 	}
 
+	/**
+	 * @param Ezer_ScopeInstance $scope_instance
+	 * @return Ezer_StepInstance
+	 */
 	public abstract function &createInstance(Ezer_ScopeInstance &$scope_instance);
 
 	/**

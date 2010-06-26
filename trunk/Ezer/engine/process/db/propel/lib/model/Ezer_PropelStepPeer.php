@@ -81,9 +81,9 @@ class Ezer_PropelStepPeer extends BaseEzer_PropelStepPeer {
 			case Ezer_IntStep::STEP_TYPE_ELSE:
 				return new Ezer_PropelElse();
 			
-//			case Ezer_IntStep::STEP_TYPE_FOREACH:
-//				return new Ezer_PropelForeach();
-//		
+			case Ezer_IntStep::STEP_TYPE_FOREACH:
+				return new Ezer_PropelForeach();
+		
 //			case Ezer_IntStep::STEP_TYPE_REPEAT_UNTIL:
 //				return new Ezer_PropelRepeatUntil();
 //		

@@ -20,36 +20,37 @@
 
 
 /**
- * Purpose:     Loads a scope from DB
+ * Purpose:     Loads a sequense from DB
  * @author Tan-Tan
  * @package Engine
  * @subpackage Process.Logic.DB
  */
-class Ezer_DbScope extends Ezer_Scope
+class Ezer_DbForeach extends Ezer_Foreach implements Ezer_IntForeach
 {
-	public function __construct(Ezer_IntScope $scope)
+	/**
+	 * @var Ezer_IntForeach
+	 */
+	protected $dbImpl;
+	
+	public function __construct(Ezer_IntForeach $foreach)
 	{
-		parent::__construct($scope->getId());
-		$this->load($scope);
-		Ezer_DbStepContainerUtil::load($this, $scope);
+		$this->dbImpl = $foreach;
+		parent::__construct($foreach->getId());
+		$this->load($foreach);
+		Ezer_DbStepContainerUtil::load($this, $foreach);
 	}
 	
-	public function load(Ezer_IntScope $process)
+	public function load(Ezer_IntForeach $foreach)
 	{
-		$variables = $process->getVariables();
-		foreach($variables as $variable)
-			$this->addVariable($variable);
+		$this->setName($foreach->getName());
+		$this->setArg($foreach->getArg());
+		$this->setOrderType($foreach->getOrderType());
 	}
 	
-	public function addVariable(Ezer_Variable $variable)
-	{
-		$this->variables[$variable->getName()] = $variable;
-	}
-	
-	public function &spawn(Ezer_ScopeInstance &$scope_instance)
+	public function &createInstance(Ezer_ScopeInstance &$scope_instance)
 	{
 		$dbInstance = $this->dbImpl->createInstance($scope_instance);
-		$ret = new Ezer_DbScopeInstance($dbInstance, $scope_instance, $this);
+		$ret = new Ezer_DbForeachInstance($dbInstance, $scope_instance, $this);
 		return $ret;
 	}
 }
