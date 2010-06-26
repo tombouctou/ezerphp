@@ -40,6 +40,12 @@ class Ezer_Scope extends Ezer_SingleStepContainer implements Ezer_IntScope
 		return $ret;
 	}
 	
+	public function &spawn(Ezer_ScopeInstance &$scope_instance)
+	{
+		$ret = new Ezer_ScopeInstance($scope_instance->getVariables(), $scope_instance, $this);
+		return $ret;
+	}
+	
 	public function getName()
 	{
 		return $this->name;

@@ -66,5 +66,12 @@ class Ezer_DbBusinessProcess extends Ezer_BusinessProcess
 		$ret = new Ezer_DbBusinessProcessInstance($dbInstance, $case, $this);
 		return $ret;
 	}
+	
+	public function &spawn(Ezer_ScopeInstance &$scope_instance)
+	{
+		$dbInstance = $this->dbImpl->spawn($scope_instance);
+		$ret = new Ezer_DbScopeInstance($dbInstance, $scope_instance);
+		return $ret;
+	}
 }
 
