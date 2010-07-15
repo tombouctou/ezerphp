@@ -100,6 +100,9 @@ Additional process example added, called "Async Set", shows how to set a variabl
 === Flow process ===
 Demonstrate how to define concurrent execution of few steps.
 
+=== Foreach process ===
+Demonstrate how to define foreach flows, serial or parallel.
+
 === Propel process ===
 Demonstrate how to save process definitions and case definitions in mySql DB over propel ORM.
 
