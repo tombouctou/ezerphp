@@ -28,6 +28,9 @@
  */
 class Ezer_ActivityStepInstance extends Ezer_StepInstance
 {
+	/**
+	 * @var Ezer_Activity
+	 */
 	protected $activity;
 	
 	public function __construct($id, Ezer_ScopeInstance &$scope_instance, Ezer_ActivityStep $step)
@@ -46,7 +49,7 @@ class Ezer_ActivityStepInstance extends Ezer_StepInstance
 	
 	protected function execute()
 	{
-		return $this->activity->execute($this->scope_instance->getValues($this->step->getArgs()));
+		return $this->activity->executeOnServer($this->scope_instance->getValues($this->step->getArgs()), $this->scope_instance);
 	}
 	
 	public function shouldRunOnServer()

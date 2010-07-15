@@ -36,6 +36,33 @@ class Ezer_StepInstanceStatus
 	const HANDLED = 5;
 	const DONE = 6;
 	const FAILED = 7;
+	
+	public static function getName($status)
+	{
+		switch($status)
+		{
+			case self::LOADED:
+				return "Loaded";
+				
+			case self::AVAILABLE:
+				return "Available";
+				
+			case self::QUEUED:
+				return "Queued";
+				
+			case self::STARTED:
+				return "Started";
+				
+			case self::HANDLED:
+				return "Handled";
+				
+			case self::DONE:
+				return "Done";
+				
+			case self::FAILED:
+				return "Failed";
+		}
+	}
 }
 
 /**
@@ -136,13 +163,14 @@ abstract class Ezer_StepInstance implements Ezer_IntStepInstance
 	
 	public function setStatus($status)
 	{
-//		if(get_class($this) == 'Ezer_ActivityStepInstance')
-//		{
-//			$trace = debug_backtrace(false);
-//			foreach($trace as $tr)
-//				echo $tr['file'] . ': ' . $tr['line'] . ': ' . $tr['function'] . "\n";
-//		}
-//		echo "setStatus (" . get_class($this) . ", " . $this->getName() . ", $status)\n";
+		if($status == Ezer_StepInstanceStatus::FAILED)
+		{
+			$trace = debug_backtrace(false);
+			foreach($trace as $tr)
+				Ezer_Log::debug($tr['file'] . ': ' . $tr['line'] . ': ' . $tr['function']);
+		}
+		Ezer_Log::debug("Status changed " . get_class($this) . "[" . $this->getName() . "] status " . Ezer_StepInstanceStatus::getName($status));
+		
 		$this->status = $status;
 		$this->persist();
 	}
@@ -281,7 +309,8 @@ abstract class Ezer_StepInstance implements Ezer_IntStepInstance
 	
 	public function failed($err)
 	{
-//		echo get_class($this) . " failed($err)\n";
+		Ezer_Log::err(get_class($this) . " [" . $this->getName() . "] failed ($err)");
+		
 		$this->setStatus(Ezer_StepInstanceStatus::FAILED);
 	}
 	
@@ -295,9 +324,19 @@ abstract class Ezer_StepInstance implements Ezer_IntStepInstance
 	 * @param $variable_path string separated by / to the variable and part that should be set
 	 * @param $value the new value
 	 */
-	public function setVariable($variable_path, $value)
+	public function setVariableByPath($variable_path, $value)
 	{
 		$this->scope_instance->setVariableByPath($variable_path, $value);
+	}
+	
+	public function setVariable(Ezer_AssignStepToAttribute $to, $value)
+	{
+		$this->scope_instance->setVariable($to, $value);
+	}
+	
+	public function addVariable(Ezer_AssignStepToAttribute $to, $value)
+	{
+		$this->scope_instance->addVariable($to, $value);
 	}
 	
 	public function persist()

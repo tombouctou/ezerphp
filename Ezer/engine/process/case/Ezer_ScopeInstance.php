@@ -220,7 +220,7 @@ class Ezer_ScopeInstance extends Ezer_StepContainerInstance implements Ezer_IntS
 		$variable = $to->getVariable();
 		if(!isset($this->variables[$variable]))
 			return false;
-			
+		
 		return $this->setValue($this->variables[$variable], $to, $value);
 	}
 	

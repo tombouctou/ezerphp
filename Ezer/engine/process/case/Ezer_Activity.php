@@ -30,6 +30,8 @@
 interface Ezer_Activity
 {
 	public function execute(array $args);
+	public function setVariable($variable_path, $value);
+	public function log($text);
 }
 
 /**
@@ -40,7 +42,14 @@ interface Ezer_Activity
  */
 abstract class Ezer_AsynchronousActivity implements Ezer_Activity
 {
+	/**
+	 * @var array
+	 */
 	private $args;
+	
+	/**
+	 * @var Ezer_BusinessProcessHandler
+	 */
 	private $worker = null;
 
 	public function setArgs(array $args)
@@ -59,13 +68,13 @@ abstract class Ezer_AsynchronousActivity implements Ezer_Activity
 	 * @param $variable_path string separated by / to the variable and part that should be set
 	 * @param $value the new value
 	 */
-	protected function setVariable($variable_path, $value)
+	public function setVariable($variable_path, $value)
 	{
 		if($this->worker)
 			$this->worker->setVariable($variable_path, $value);
 	}
 	
-	protected function log($text)
+	public function log($text)
 	{
 		if($this->worker)
 			$this->worker->log($text);
@@ -86,6 +95,42 @@ abstract class Ezer_AsynchronousActivity implements Ezer_Activity
  */
 abstract class Ezer_SynchronousActivity implements Ezer_Activity
 {
+	/**
+	 * @var Ezer_StepInstance
+	 */
+	private $step_instance;
+	
+	/**
+	 * @param array $args
+	 * @param Ezer_ScopeInstance $scope_instance
+	 * @return bool
+	 */
+	public function executeOnServer(array $args, Ezer_StepInstance $step_instance = null)
+	{
+		$this->step_instance = $step_instance;
+		return $this->execute($args);
+	}
+	
+	public function setVariable($to, $value)
+	{
+		if($this->step_instance)
+			return $this->step_instance->setVariable($to, $value);
+			
+		return false;
+	}
+	
+	public function addVariable($to, $value)
+	{
+		if($this->step_instance)
+			return $this->step_instance->addVariable($to, $value);
+			
+		return false;
+	}
+	
+	public function log($text)
+	{
+		Ezer_Log::log($text);
+	}
 }
 
 /**

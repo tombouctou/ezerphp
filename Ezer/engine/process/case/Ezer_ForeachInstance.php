@@ -52,7 +52,7 @@ class Ezer_ForeachInstance extends Ezer_StepContainerInstance
 	
 	public function startStep($item)
 	{
-		$var = new Ezer_AssignStepToAttribute('item');
+		$var = new Ezer_AssignStepToAttribute(Ezer_IntForeach::ITERATED_ITEM);
 		
 		$scope_instance = $this->scope_instance->spawn();
 		$scope_instance->addVariable($var, $item);
