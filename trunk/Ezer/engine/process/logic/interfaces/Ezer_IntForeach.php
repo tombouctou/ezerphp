@@ -1,6 +1,8 @@
 <?php
 interface Ezer_IntForeach extends Ezer_IntStepContainer
 {
+	const ITERATED_ITEM = 'item';
+	
 	const TYPE_PARALLEL = 1;
 	const TYPE_SERIAL = 2;
 	

@@ -79,7 +79,7 @@ class Ezer_BusinessProcessWorkerTask extends Ezer_BusinessProcessServerTask
  * @package Engine
  * @subpackage Process
  */
-class Ezer_BusinessProcessServer extends Ezer_SocketServer
+class Ezer_BusinessProcessServer extends Ezer_SocketServer implements Ezer_Logger
 {
 	private $logic_persistance;
 	private $logic_processes;
@@ -93,6 +93,8 @@ class Ezer_BusinessProcessServer extends Ezer_SocketServer
 		
 		$this->logic_persistance = $logic_persistance;
 		$this->loadLogics();
+		
+		Ezer_Log::setLogger($this);
 	}
 	
 	public function addCasePersistance(Ezer_ProcessCasePersistance $case_persistance)
@@ -157,7 +159,7 @@ class Ezer_BusinessProcessServer extends Ezer_SocketServer
 	{
 		$process_instance = &$this->process_instances[$task->process_instance_index];
 		$step_instance = &$process_instance->step_instances[$task->step_index];
-		$step_instance->setVariable($variable_path, $value);
+		$step_instance->setVariableByPath($variable_path, $value);
 	}
 	
 	public function taskFailed($task, $err)
@@ -165,7 +167,7 @@ class Ezer_BusinessProcessServer extends Ezer_SocketServer
 		$process_instance = &$this->process_instances[$task->process_instance_index];
 		$step_instance = &$process_instance->step_instances[$task->step_index];
 		$step_instance->failed($err);
-		echo "Step " . $step_instance->getName() . " failed: $err\n";
+		$this->log("Step " . $step_instance->getName() . " failed: $err");
 	}
 	
 	public function taskDone($task)
@@ -237,7 +239,7 @@ class Ezer_BusinessProcessServer extends Ezer_SocketServer
 	
 	protected function kick()
 	{
-		$this->writeToAll('kicked');
+//		$this->writeToAll('kicked');
 	}
 	
 	protected function isAlive()
@@ -256,6 +258,11 @@ class Ezer_BusinessProcessServer extends Ezer_SocketServer
 	{
 		$this->writeToAll("new socket connected");
 		return new Ezer_SocketClient($client_sock);
+	}
+	
+	public function log($text)
+	{
+		$this->writeToAll($text);
 	}
 	
 	public function writeToAll($text)
