@@ -10,9 +10,49 @@
 	min-height: 300px;
 }
 
-.processes{
+
+.processes li{
+	padding: 3px 0 2px 16px;
 }
 
-.processes .process{
+.processes span.process, .processes span.step{
+	padding: 1px 0 1px 16px;
+	display: block;
 	cursor: pointer;
+}
+
+.processes span.process{
+	background: url(images/process.gif) 0 0 no-repeat;
+}
+
+.processes li.expandable span.process{
+	background: url(images/process-closed.gif) 0 0 no-repeat;
+}
+
+.processes span.activity-step{
+	background: url(images/activity-step.gif) 0 0 no-repeat;
+}
+	
+.processes span.assign-step{
+	background: url(images/assign-step.gif) 0 0 no-repeat;
+}
+	
+.processes span.else-step{
+	background: url(images/else-step.gif) 0 0 no-repeat;
+}
+	
+.processes span.flow{
+	background: url(images/flow.gif) 0 0 no-repeat;
+}
+	
+.processes span.if{
+	background: url(images/if.gif) 0 0 no-repeat;
+}
+	
+.processes span.scope{
+	background: url(images/scope.gif) 0 0 no-repeat;
+}
+	
+.processes span.sequence{
+	background: url(images/sequence.gif) 0 0 no-repeat;
 }
