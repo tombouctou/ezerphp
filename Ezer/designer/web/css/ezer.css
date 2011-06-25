@@ -9,3 +9,10 @@
 .main .menu .menu-item{
 	min-height: 300px;
 }
+
+.processes{
+}
+
+.processes .process{
+	cursor: pointer;
+}

@@ -1,7 +1,9 @@
 
 var Ezer = {
 	$menu: null,
+	
 	$processMenu: null,
+	$processTree: null,
 	$operatorsMenu: null,
 	$phpActionsMenu: null,
 	$wsdlActionsMenu: null,
@@ -68,17 +70,30 @@ var Ezer = {
 		
 		this.$processMenu.empty();
 		
-		var $tree = $('<ul class="filetree"></ul>');
-		this.$processMenu.append($tree);
+		this.$processTree = $('<ul class="filetree processes"></ul>');
+		this.$processMenu.append(this.$processTree);
 		
 		for(var i = 0; i < this.processes.length; i++){
-			var process = this.processes[i];
-			var $processName = $('<span class="folder">' + process.name + '</span>');
-			var $processTree = $('<li id="proc' + process.id + '"></li>');
-			$processTree.append($processName);
-			$tree.append($processTree);
+			this.loadProcess(this.processes[i]);
 		}
 		
-		$tree.treeview();
+		this.$processTree.treeview();
+	},
+	
+	loadProcess: function(process){
+		
+		var scope = this;
+		var $processName = $('<span class="folder process">' + process.name + '</span>');
+		var $processItem = $('<li id="proc' + process.id + '"></li>');
+		$processItem.append($processName);
+		this.$processTree.append($processItem);
+		
+		$processName.click(function(){
+			scope.paintProcess(process);
+		});
+	},
+	
+	paintProcess: function(process){
+		alert(process.name);
 	}
 };
