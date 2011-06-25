@@ -78,9 +78,13 @@ class Ezer_BusinessProcessHandlerMessages
  */
 class Ezer_BusinessProcessClient extends Ezer_ThreadClient
 {
-	public function __construct(Ezer_BusinessProcessServer $server, $php_exe)
+	public function __construct(Ezer_BusinessProcessServer $server, $php_exe, $handlerPath = null)
 	{
-		parent::__construct($server, dirname(__FILE__) . '/Ezer_BusinessProcessHandler.php', $php_exe);
+		if(is_null($handlerPath))
+			$handlerPath = dirname(__FILE__) . '/Ezer_BusinessProcessHandler.php';
+			
+		Ezer_Log::log("Handler Path [$handlerPath]");
+		parent::__construct($server, $handlerPath, $php_exe);
 	}
 
 	public function request(Ezer_BusinessProcessWorkerTask $task)
