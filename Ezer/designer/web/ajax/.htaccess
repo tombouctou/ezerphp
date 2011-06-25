@@ -1,0 +1,8 @@
+
+# IE8 download compatiblity
+DirectoryIndex index.php
+RedirectMatch permanent ^/ajax/service/(.+?)/?$ /ajax/index.php/service/$1
+RewriteEngine on
+
+#RewriteRule ^p/[0-9]+/sp/[0-9]+/content/(.*)$ /content/$1 [L]
+

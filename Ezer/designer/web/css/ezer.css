@@ -1,0 +1,11 @@
+@CHARSET "ISO-8859-1";
+
+.main{
+}
+
+.main .menu{
+}
+
+.main .menu .menu-item{
+	min-height: 300px;
+}
