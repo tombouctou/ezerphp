@@ -79,7 +79,7 @@ class Ezer_BusinessProcessWorkerTask extends Ezer_BusinessProcessServerTask
  * @package Engine
  * @subpackage Process
  */
-class Ezer_BusinessProcessServer extends Ezer_SocketServer implements Ezer_Logger
+class Ezer_BusinessProcessServer extends Ezer_SocketServer
 {
 	private $logic_persistance;
 	private $logic_processes;
@@ -93,8 +93,6 @@ class Ezer_BusinessProcessServer extends Ezer_SocketServer implements Ezer_Logge
 		
 		$this->logic_persistance = $logic_persistance;
 		$this->loadLogics();
-		
-		Ezer_Log::setLogger($this);
 	}
 	
 	public function addCasePersistance(Ezer_ProcessCasePersistance $case_persistance)
@@ -167,7 +165,7 @@ class Ezer_BusinessProcessServer extends Ezer_SocketServer implements Ezer_Logge
 		$process_instance = &$this->process_instances[$task->process_instance_index];
 		$step_instance = &$process_instance->step_instances[$task->step_index];
 		$step_instance->failed($err);
-		$this->log("Step " . $step_instance->getName() . " failed: $err");
+		$this->writeToAll("Step " . $step_instance->getName() . " failed: $err");
 	}
 	
 	public function taskDone($task)
@@ -260,14 +258,9 @@ class Ezer_BusinessProcessServer extends Ezer_SocketServer implements Ezer_Logge
 		return new Ezer_SocketClient($client_sock);
 	}
 	
-	public function log($text)
-	{
-		$this->writeToAll($text);
-	}
-	
 	public function writeToAll($text)
 	{
-		echo "$text\n";
+		Ezer_Log::log($text);
 		parent::writeToAll("$text\r\n");
 	}
 }
