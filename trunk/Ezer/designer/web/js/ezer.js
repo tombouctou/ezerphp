@@ -47,6 +47,9 @@ var Ezer = {
 		this.$menu.append(this.$wsdlActionsMenu);
 				
 		this.loadProcessMenu();
+		this.loadOperatorsMenu();
+		this.loadPhpActionsMenu();
+		this.loadWsdlActionsMenu();
 		this.$menu.accordion();
 	},
 	
@@ -64,13 +67,29 @@ var Ezer = {
 				scope.loadProcesses();
 			},
 		});
+		
+		// TODO - add new process button
+	},
+	
+	loadOperatorsMenu: function(){
+		// TODO - list all available operators such as if, else, foreach, etc.
+	},
+	
+	loadPhpActionsMenu: function(){
+		// TODO - list all PHP available actions
+		// TODO - add new source folder button
+	},
+	
+	loadWsdlActionsMenu: function(){
+		// TODO - list all WSDL available actions
+		// TODO - add new WSDL URL or file button		
 	},
 	
 	loadProcesses: function(){
 		
 		this.$processMenu.empty();
 		
-		this.$processTree = $('<ul class="filetree processes"></ul>');
+		this.$processTree = $('<ul class="processes"></ul>');
 		this.$processMenu.append(this.$processTree);
 		
 		for(var i = 0; i < this.processes.length; i++){
@@ -83,14 +102,16 @@ var Ezer = {
 	loadProcess: function(process){
 		
 		var scope = this;
-		var $processName = $('<span class="folder process">' + process.name + '</span>');
-		var $processItem = $('<li id="proc' + process.id + '"></li>');
+		var $processName = $('<span class="process">' + process.name + '</span>');
+		var $processItem = $('<li id="proc' + process.id + '" class="expandable"></li>');
 		$processItem.append($processName);
 		this.$processTree.append($processItem);
 		
 		$processName.click(function(){
 			scope.paintProcess(process);
 		});
+		
+		// TODO - load all process children and add them to the tree
 	},
 	
 	paintProcess: function(process){
