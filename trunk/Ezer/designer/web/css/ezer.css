@@ -7,7 +7,6 @@
 }
 
 .main .menu .menu-item{
-	min-height: 300px;
 }
 
 
@@ -15,44 +14,48 @@
 	padding: 3px 0 2px 16px;
 }
 
-.processes span.process, .processes span.step{
+.processes span.BusinessProcess, .processes span.step{
 	padding: 1px 0 1px 16px;
 	display: block;
 	cursor: pointer;
 }
 
-.processes span.process{
+.processes span.BusinessProcess{
 	background: url(images/process.gif) 0 0 no-repeat;
 }
 
-.processes li.expandable span.process{
+.processes li.expandable span.BusinessProcess{
 	background: url(images/process-closed.gif) 0 0 no-repeat;
 }
 
-.processes span.activity-step{
+.processes span.ActivityStep{
 	background: url(images/activity-step.gif) 0 0 no-repeat;
 }
 	
-.processes span.assign-step{
+.processes span.AssignStep{
 	background: url(images/assign-step.gif) 0 0 no-repeat;
 }
 	
-.processes span.else-step{
+.processes span.ElseStep{
 	background: url(images/else-step.gif) 0 0 no-repeat;
 }
 	
-.processes span.flow{
+.processes span.Flow{
 	background: url(images/flow.gif) 0 0 no-repeat;
 }
-	
-.processes span.if{
+
+.processes span.Foreach{
+	background: url(images/foreach.gif) 0 0 no-repeat;
+}
+
+.processes span.If{
 	background: url(images/if.gif) 0 0 no-repeat;
 }
 	
-.processes span.scope{
+.processes span.Scope{
 	background: url(images/scope.gif) 0 0 no-repeat;
 }
 	
-.processes span.sequence{
+.processes span.Sequence{
 	background: url(images/sequence.gif) 0 0 no-repeat;
 }
