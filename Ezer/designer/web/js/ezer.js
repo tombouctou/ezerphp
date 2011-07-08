@@ -1,6 +1,7 @@
 
 var Ezer = {
 	$menu: null,
+	$canvas: null,
 	
 	$processMenu: null,
 	$processTree: null,
@@ -8,63 +9,84 @@ var Ezer = {
 	$phpActionsMenu: null,
 	$wsdlActionsMenu: null,
 	
-	processes: null,
+	steps: {},
 	
 	startX: 300,
 	startY: 0,
 	
 	load: function($main){
 		
-		$main.height($(window).height() - 20);
 		$main.css('width', '100%');
 //		$main.css('border', '1px solid blue');
 		
-		this.$menu = $('<div class="menu" id="dvMenu"></div>');
-		$main.append(this.$menu);
-		this.$menu.height($main.height());
-		this.$menu.css('width', this.startX + 'px');
-//		this.$menu.css('border', '1px solid red');
+		var $table = $('<table></table>');
+		$main.append($table);
+		var $tr = $('<tr></tr>');
+		$table.append($tr);
+		
+		Ezer.$menu = $('<td class="menu" id="tdMenu"></td>');
+		$main.append(Ezer.$menu);
+		//Ezer.$menu.height($main.height());
+		Ezer.$menu.css('width', Ezer.startX + 'px');
+//		Ezer.$menu.css('border', '1px solid red');
 
-		this.loadMenu();
+		Ezer.loadMenu();
+		
+		Ezer.$canvas = $('<td class="canvas" id="tdCanvas"></td>');
+		$main.append(Ezer.$canvas);
+		Ezer.$canvas.css('width', ($main.width() - Ezer.startX - 100) + 'px');
+		Ezer.$canvas.css('border', '1px solid red');
+		
 	},
 	
 	loadMenu: function(){
 		
-		this.$processMenu = $('<div class="menu-item"></div>');
-		this.$menu.append('<h3><a href="#">Process Browser</a></h3>');
-		this.$menu.append(this.$processMenu);
+		var height = $(window).height() - 230;
+
+		Ezer.$processMenu = $('<div class="menu-item"></div>');
+		Ezer.$processMenu.css('min-height', height + 'px');
+		Ezer.$menu.append('<h3><a href="#">Process Browser</a></h3>');
+		Ezer.$menu.append(Ezer.$processMenu);
 		
-		this.$operatorsMenu = $('<div class="menu-item"></div>');
-		this.$menu.append('<h3><a href="#">Operators</a></h3>');
-		this.$menu.append(this.$operatorsMenu);
+		Ezer.$operatorsMenu = $('<div class="menu-item"></div>');
+//		Ezer.$operatorsMenu.css('min-height', height + 'px');
+		Ezer.$menu.append('<h3><a href="#">Operators</a></h3>');
+		Ezer.$menu.append(Ezer.$operatorsMenu);
 		
-		this.$phpActionsMenu = $('<div class="menu-item"></div>');
-		this.$menu.append('<h3><a href="#">PHP Actions</a></h3>');
-		this.$menu.append(this.$phpActionsMenu);
+		Ezer.$phpActionsMenu = $('<div class="menu-item"></div>');
+//		Ezer.$phpActionsMenu.css('min-height', height + 'px');
+		Ezer.$menu.append('<h3><a href="#">PHP Actions</a></h3>');
+		Ezer.$menu.append(Ezer.$phpActionsMenu);
 		
-		this.$wsdlActionsMenu = $('<div class="menu-item"></div>');
-		this.$menu.append('<h3><a href="#">WSDL Actions</a></h3>');
-		this.$menu.append(this.$wsdlActionsMenu);
+		Ezer.$wsdlActionsMenu = $('<div class="menu-item"></div>');
+//		Ezer.$wsdlActionsMenu.css('min-height', height + 'px');
+		Ezer.$menu.append('<h3><a href="#">WSDL Actions</a></h3>');
+		Ezer.$menu.append(Ezer.$wsdlActionsMenu);
 				
-		this.loadProcessMenu();
-		this.loadOperatorsMenu();
-		this.loadPhpActionsMenu();
-		this.loadWsdlActionsMenu();
-		this.$menu.accordion();
+		Ezer.loadProcessMenu();
+		Ezer.loadOperatorsMenu();
+		Ezer.loadPhpActionsMenu();
+		Ezer.loadWsdlActionsMenu();
+		Ezer.$menu.accordion();
 	},
 	
 	loadProcessMenu: function(){
-		var scope = this;
-		
 		$.ajax({
-			url: 'ajax/service/process/list',
+			url: 'ajax/index.php/service/process/list',
 			dataType: 'json',
+			
 			error: function(jqXHR, textStatus, errorThrown){
+				
 				alert("Loading process list " + errorThrown);
 			},
+			
 			success: function(data, textStatus, jqXHR){
-				scope.processes = data;
-				scope.loadProcesses();
+				
+				for(var i = 0; i < data.length; i++){
+					Ezer.steps['step.' + data[i].id] = data[i];
+				}
+				
+				Ezer.loadProcesses();
 			},
 		});
 		
@@ -87,31 +109,86 @@ var Ezer = {
 	
 	loadProcesses: function(){
 		
-		this.$processMenu.empty();
+		Ezer.$processMenu.empty();
 		
-		this.$processTree = $('<ul class="processes"></ul>');
-		this.$processMenu.append(this.$processTree);
+		Ezer.$processTree = $('<ul class="processes"></ul>');
+		Ezer.$processMenu.append(Ezer.$processTree);
 		
-		for(var i = 0; i < this.processes.length; i++){
-			this.loadProcess(this.processes[i]);
+		var containerIds = new Array();
+		for(var i in Ezer.steps){
+			Ezer.loadProcess(Ezer.steps[i]);			
+			containerIds.push(Ezer.steps[i].id);
 		}
 		
-		this.$processTree.treeview();
+		Ezer.$processTree.treeview();
+		Ezer.loadChildren(containerIds);
+	},
+	
+	loadChildren: function(containerIds){
+		$.ajax({
+			url: 'ajax/index.php/service/step/list',
+			type: 'POST',
+			dataType: 'json',
+			data: {
+				filter: {
+					ContainerId: {In: containerIds.join(',')}
+				}
+			}, 
+			error: function(jqXHR, textStatus, errorThrown){
+				alert("Loading step list " + errorThrown);
+			},
+			success: function(data, textStatus, jqXHR){
+				
+				if(!data.length)
+					return;
+					
+				for(var i = 0; i < data.length; i++){
+					Ezer.steps['step.' + data[i].id] = data[i];
+				}
+				
+				Ezer.loadSteps(data);
+			},
+		});
 	},
 	
 	loadProcess: function(process){
 		
-		var scope = this;
-		var $processName = $('<span class="process">' + process.name + '</span>');
-		var $processItem = $('<li id="proc' + process.id + '" class="expandable"></li>');
-		$processItem.append($processName);
-		this.$processTree.append($processItem);
+		var $processName = Ezer.loadStep(Ezer.$processTree, process);
 		
 		$processName.click(function(){
-			scope.paintProcess(process);
+			Ezer.paintProcess(process);
 		});
+	},
+	
+	loadStep: function($parentNode, step){
 		
-		// TODO - load all process children and add them to the tree
+		var $processName = $('<span class="' + step.objectType + '">' + step.name + '</span>');
+		step.$containerItem = $('<li class="expandable"></li>');
+		step.$containerItem.append($processName);
+		$parentNode.append(step.$containerItem);
+		
+		return $processName;
+	},
+	
+	loadSteps: function(steps){
+		
+		var containerIds = new Array();
+		for(var i in steps){
+			var stepId = steps[i].id;
+			var parentId = steps[i].containerId;
+			
+			var $parentNode = Ezer.steps['step.' + parentId].$containerItem;
+			var $processName = Ezer.loadStep($parentNode, Ezer.steps['step.' + stepId]);
+			
+			$processName.click(function(){
+				// TODO focus the step
+			});
+			
+			containerIds.push(stepId);
+		}
+		
+		Ezer.$processTree.treeview();
+		Ezer.loadChildren(containerIds);
 	},
 	
 	paintProcess: function(process){
