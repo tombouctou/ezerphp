@@ -12,7 +12,7 @@
  *
  * @package    lib.model
  */
-class Ezer_PropelStepInstancePeer extends BaseEzer_PropelStepInstancePeer {
+class Ezer_PropelStepInstancePeer extends BaseEzer_PropelStepInstancePeer implements Ezer_IntPeer {
 
 	/**
 	 * The returned array will contain objects of the default type or

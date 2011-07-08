@@ -12,7 +12,7 @@
  *
  * @package    lib.model
  */
-class Ezer_PropelCasePeer extends BaseEzer_PropelCasePeer {
+class Ezer_PropelCasePeer extends BaseEzer_PropelCasePeer implements Ezer_IntPeer {
 
 
 	/**
