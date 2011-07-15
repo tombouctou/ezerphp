@@ -67,7 +67,9 @@ var Ezer = {
 		Ezer.loadOperatorsMenu();
 		Ezer.loadPhpActionsMenu();
 		Ezer.loadWsdlActionsMenu();
-		Ezer.$menu.accordion();
+		Ezer.$menu.accordion({
+			fillSpace: true			
+		});
 	},
 	
 	loadProcessMenu: function(){
@@ -163,7 +165,7 @@ var Ezer = {
 	loadStep: function($parentNode, step){
 		
 		var $processName = $('<span class="' + step.objectType + '">' + step.name + '</span>');
-		step.$containerItem = $('<li class="expandable"></li>');
+		step.$containerItem = $('<li></li>');
 		step.$containerItem.append($processName);
 		$parentNode.append(step.$containerItem);
 		
