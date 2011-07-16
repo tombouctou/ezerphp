@@ -3,6 +3,8 @@ var Ezer = {
 	$menu: null,
 	$canvas: null,
 	
+	workflow: null,
+	
 	$processMenu: null,
 	$processTree: null,
 	$operatorsMenu: null,
@@ -30,13 +32,14 @@ var Ezer = {
 		Ezer.$menu.css('width', Ezer.startX + 'px');
 //		Ezer.$menu.css('border', '1px solid red');
 
-		Ezer.loadMenu();
-		
 		Ezer.$canvas = $('<td class="canvas" id="tdCanvas"></td>');
 		$main.append(Ezer.$canvas);
 		Ezer.$canvas.css('width', ($main.width() - Ezer.startX - 100) + 'px');
 		Ezer.$canvas.css('border', '1px solid red');
 		
+		Ezer.workflow = new Ezer.draw2d.View("tdCanvas");
+		
+		Ezer.loadMenu();
 	},
 	
 	loadMenu: function(){
@@ -86,10 +89,11 @@ var Ezer = {
 				
 				for(var i = 0; i < data.length; i++){
 					Ezer.steps['step.' + data[i].id] = data[i];
+					Ezer.steps['step.' + data[i].id].children = new Array();
 				}
 				
 				Ezer.loadProcesses();
-			},
+			}
 		});
 		
 		// TODO - add new process button
@@ -146,6 +150,7 @@ var Ezer = {
 					
 				for(var i = 0; i < data.length; i++){
 					Ezer.steps['step.' + data[i].id] = data[i];
+					Ezer.steps['step.' + data[i].id].children = new Array();
 				}
 				
 				Ezer.loadSteps(data);
@@ -179,6 +184,7 @@ var Ezer = {
 			var stepId = steps[i].id;
 			var parentId = steps[i].containerId;
 			
+			Ezer.steps['step.' + parentId].children.push('step.' + stepId);
 			var $parentNode = Ezer.steps['step.' + parentId].$containerItem;
 			var $processName = Ezer.loadStep($parentNode, Ezer.steps['step.' + stepId]);
 			
@@ -193,7 +199,11 @@ var Ezer = {
 		Ezer.loadChildren(containerIds);
 	},
 	
+	getStep: function(stepIndex){
+		return Ezer.steps[stepIndex];
+	},
+	
 	paintProcess: function(process){
-		alert(process.name);
+		new Ezer.draw2d.Process(Ezer.workflow, process);
 	}
 };
