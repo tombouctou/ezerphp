@@ -20,6 +20,14 @@ class Ezer_PropelForeach extends Ezer_PropelStepContainer implements Ezer_IntFor
 		$this->dataObject = new Ezer_PropelForeachData();
 		$this->setType(Ezer_IntStep::STEP_TYPE_FOREACH);
 	}
+	
+	public function getCustomFields()
+	{
+		return array(
+			'orderType',
+			'arg',
+		);
+	}
 
 	/**
 	 * @param Ezer_ScopeInstance $scope_instance

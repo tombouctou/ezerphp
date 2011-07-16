@@ -21,6 +21,13 @@ class Ezer_PropelIf extends Ezer_PropelStepContainer implements Ezer_IntIf
 		$this->setType(Ezer_IntStep::STEP_TYPE_IF);
 	}
 	
+	public function getCustomFields()
+	{
+		return array(
+			'condition',
+		);
+	}
+	
 	/**
 	 * @param string $condition php code
 	 */
