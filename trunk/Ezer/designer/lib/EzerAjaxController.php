@@ -16,11 +16,11 @@ class EzerAjaxController
 	}
 
 	/**
-	 * @param BaseObject $objects
+	 * @param Ezer_IntObject $objects
 	 * @param array $columns
 	 * @return stdClass
 	 */
-	protected function toObject(BaseObject $object, array $columns)
+	protected function toObject(Ezer_IntObject $object, array $columns)
 	{
 		$matches = null;
 		if(!preg_match('/^Ezer_Propel(.+)$/', get_class($object), $matches))
@@ -37,6 +37,24 @@ class EzerAjaxController
 			$getter = "get{$column}";
 			$stdClass->$column = $object->$getter();
 		}
+		
+		$customFields = $object->getCustomFields();
+		foreach($customFields as $customField => $customGetter)
+		{
+			if(is_numeric($customField))
+				$customField = $customGetter;
+				
+			$getter = "get{$customGetter}";
+			$value = $object->$getter();
+			if($value instanceof Ezer_IntObject)
+			{
+				$attributePeer = $value->getPeer();
+				$attributeColumns = $attributePeer->getFieldNames(BasePeer::TYPE_STUDLYPHPNAME);
+				$value = $this->toObject($value, $attributeColumns);
+			}
+			$stdClass->$customField = $value;
+		}
+		
 		return $stdClass;
 	}
 }
