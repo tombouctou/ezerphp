@@ -21,6 +21,14 @@ class Ezer_PropelActivityStep extends Ezer_PropelStep implements Ezer_IntActivit
 		$this->setType(Ezer_IntStep::STEP_TYPE_ACTIVITY);
 	}
 	
+	public function getCustomFields()
+	{
+		return array(
+			'args',
+			'className' => 'class',
+		);
+	}
+	
 	/**
 	 * @return array<string>
 	 */

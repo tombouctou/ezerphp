@@ -21,6 +21,13 @@ class Ezer_PropelScope extends Ezer_PropelStepContainer implements Ezer_IntScope
 		$this->setType(Ezer_IntStep::STEP_TYPE_SCOPE);
 	}
 	
+	public function getCustomFields()
+	{
+		return array(
+			'variables',
+		);
+	}
+	
 	/**
 	 * @return array<Ezer_Variable>
 	 */

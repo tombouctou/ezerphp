@@ -20,6 +20,13 @@ class Ezer_PropelAssignStep extends Ezer_PropelStep implements Ezer_IntAssignSte
 		$this->dataObject = new Ezer_PropelAssignStepData();
 		$this->setType(Ezer_IntStep::STEP_TYPE_ASSIGN);
 	}
+	
+	public function getCustomFields()
+	{
+		return array(
+			'copies',
+		);
+	}
 		
 	/**
 	 * @return array<Ezer_AssignStepCopy>

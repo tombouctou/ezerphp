@@ -12,12 +12,17 @@
  *
  * @package    lib.model
  */
-abstract class Ezer_PropelStep extends BaseEzer_PropelStep implements Ezer_IntStep
+abstract class Ezer_PropelStep extends BaseEzer_PropelStep implements Ezer_IntStep, Ezer_IntObject
 {
 	/**
 	 * @var Ezer_PropelData
 	 */
 	protected $dataObject = null;
+	
+	public function getCustomFields()
+	{
+		return array();
+	}
 
 	/**
 	 * Hydrates (populates) the object variables with values from the database resultset.
