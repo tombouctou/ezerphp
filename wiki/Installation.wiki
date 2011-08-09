@@ -4,5 +4,10 @@
 You can download the code using the [http://code.google.com/p/ezerphp/downloads/list downloads page], or you can check it out using the instructions in the [http://code.google.com/p/ezerphp/source/checkout source page].
 
 == Install the code ==
-Once you have the code, just throw it under any folder you choose.
-e.g. C:\My\Ezer\Server or /opt/ezer/app.
+Once you have the code, just throw it under any folder you choose, e.g. C:\My\Ezer\Server or /opt/ezer/server.
+
+== Configuring the server ==
+1. Create your own application folder need the server folder we created already, e.g. C:\My\Ezer\App or /opt/ezer/app.
+2. Copy the content of one of the examples from the examples folder to your application folder, e.g. 
+    * xcopy /Y /S /R C:\My\Ezer\Server\examples\syncProcess1\* C:\My\Ezer\App
+    * rsync -avC /opt/ezer/server/examples/syncProcess1/ /opt/ezer/app
