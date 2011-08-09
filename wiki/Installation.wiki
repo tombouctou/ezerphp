@@ -7,14 +7,14 @@ You can download the code using the [http://code.google.com/p/ezerphp/downloads/
 Once you have the code, just throw it under any folder you choose, e.g. C:\My\Ezer\Server or /opt/ezer/server.
 
 == Configuring the server ==
-1. Create your own application folder need the server folder we created already, e.g. C:\My\Ezer\App or /opt/ezer/app.
-2. Copy the content of one of the examples from the examples folder to your application folder, e.g. 
+  # Create your own application folder need the server folder we created already, e.g. C:\My\Ezer\App or /opt/ezer/app.
+  # Copy the content of one of the examples from the examples folder to your application folder, e.g. 
     * xcopy /Y /S /R C:\My\Ezer\Server\examples\syncProcess1\`*` C:\My\Ezer\App
     * rsync -avC /opt/ezer/server/examples/syncProcess1/ /opt/ezer/app
-3. Edit the bootstrap.php to verify that the require_once statement is pointing to the correct path of engine/infra/Ezer_Autoloader.php file.
-4. Make sure that the Ezer_Autoloader::setClassMapFilePath is pointing to existing folder.
-5. Create XML configuration file:
-  * For XML persistence:
+  # Edit the bootstrap.php to verify that the require_once statement is pointing to the correct path of engine/infra/Ezer_Autoloader.php file.
+  # Make sure that the Ezer_Autoloader::setClassMapFilePath is pointing to existing folder.
+  # Create XML configuration file:
+    * For XML persistence:
     <config>
       <phpExe>
         C:\xampp\php\php.exe // path to the php exec
@@ -29,10 +29,10 @@ Once you have the code, just throw it under any folder you choose, e.g. C:\My\Ez
         cases // path (could be relative) to the folder where the case XML files are saved.
       </casesPath>
     </config>
-6. Create run.php script that includes:
-  * ini_set('max_execution_time', 0); // Enable the script to run forever.
-  * require_once 'bootstrap.php'; // Loads the classes auto loader
-  * $config = Ezer_Config::createFromPath('config.xml'); // Loads the configuration file
-  * $server = new Ezer_BusinessProcessServer(...); // Instantiate new server
-  * $server->addCasePersistance(...);
-  * $server->run();
+  # Create run.php script that includes:
+    * ini_set('max_execution_time', 0); // Enable the script to run forever.
+    * require_once 'bootstrap.php'; // Loads the classes auto loader
+    * $config = Ezer_Config::createFromPath('config.xml'); // Loads the configuration file
+    * $server = new Ezer_BusinessProcessServer(...); // Instantiate new server
+    * $server->addCasePersistance(...);
+    * $server->run();
