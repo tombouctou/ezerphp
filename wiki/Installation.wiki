@@ -50,3 +50,5 @@ Once you have the code, just throw it under any folder you choose, e.g. C:\My\Ez
     * $server = new Ezer_BusinessProcessServer(...); // Instantiate new server
     * $server->addCasePersistance(...);
     * $server->run();
+  # Run the server from command line:
+*php run.php*
