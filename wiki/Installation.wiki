@@ -14,7 +14,7 @@ Once you have the code, just throw it under any folder you choose, e.g. C:\My\Ez
   # Edit the bootstrap.php to verify that the require_once statement is pointing to the correct path of engine/infra/Ezer_Autoloader.php file.
   # Make sure that the Ezer_Autoloader::setClassMapFilePath is pointing to existing folder.
   # Create XML configuration file:
-    * For XML persistence:
+    * For *XML* persistence:
     <config>
       <phpExe>
         C:\xampp\php\php.exe // path to the php exec
@@ -28,6 +28,20 @@ Once you have the code, just throw it under any folder you choose, e.g. C:\My\Ez
       <casesPath>
         cases // path (could be relative) to the folder where the case XML files are saved.
       </casesPath>
+    </config>
+    * For *Propel* (DB) persistence:
+    <config>
+      <phpExe>C:\xampp\php\php.exe</phpExe>
+      <database>
+        <datasources default="ezer">
+          <ezer adapter="mysql">
+            <connection phptype="mysql" database="ezer" hostspec="localhost"
+              user="root" password="root"
+              dsn="mysql:host=localhost;dbname=ezer;user=root;password=root;" />
+          </ezer>
+          <log ident="ezer" level="7" />
+        </datasources>
+      </database>
     </config>
   # Create run.php script that includes:
     * ini_set('max_execution_time', 0); // Enable the script to run forever.
