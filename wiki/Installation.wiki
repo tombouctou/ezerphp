@@ -13,8 +13,26 @@ Once you have the code, just throw it under any folder you choose, e.g. C:\My\Ez
     * rsync -avC /opt/ezer/server/examples/syncProcess1/ /opt/ezer/app
 3. Edit the bootstrap.php to verify that the require_once statement is pointing to the correct path of engine/infra/Ezer_Autoloader.php file.
 4. Make sure that the Ezer_Autoloader::setClassMapFilePath is pointing to existing folder.
-5. Create run.php script that includes:
+5. Create XML configuration file:
+  * For XML persistence:
+    <config>
+      <phpExe>
+        C:\xampp\php\php.exe // path to the php exec
+      </phpExe>
+      <logicPath>
+        logic // path (could be relative) to the folder where the logic XML files are saved.
+      </logicPath>
+      <instancePath>
+        instance // path (could be relative) to the folder where the case results XML files are saved.
+      </instancePath>
+      <casesPath>
+        cases // path (could be relative) to the folder where the case XML files are saved.
+      </casesPath>
+    </config>
+6. Create run.php script that includes:
   * ini_set('max_execution_time', 0); // Enable the script to run forever.
   * require_once 'bootstrap.php'; // Loads the classes auto loader
   * $config = Ezer_Config::createFromPath('config.xml'); // Loads the configuration file
   * $server = new Ezer_BusinessProcessServer(...); // Instantiate new server
+  * $server->addCasePersistance(...);
+  * $server->run();
