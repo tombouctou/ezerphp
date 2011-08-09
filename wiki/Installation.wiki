@@ -1,0 +1,4 @@
+= Installation instructions =
+
+== Get the code ==
+You can download the code using the [http://code.google.com/p/ezerphp/downloads/list downloads page], or you can check it out using the instructions in the [http://code.google.com/p/ezerphp/source/checkout source page].
