@@ -17,7 +17,7 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
  * For questions, help, comments, discussion, etc., please send
- * e-mail to tan-tan@simple.co.il
+ * e-mail to johnathan.kanarek@gmail.com
  */
 
 
