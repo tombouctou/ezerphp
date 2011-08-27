@@ -109,7 +109,7 @@ Demonstrate how to save process definitions and case definitions in mySql DB ove
 ----
 
 == Contact ==
-Please send your suggestions, bug reports and general feedback to [mailto:tan-tan@simple.co.il tan-tan@simple.co.il]
+Please send your suggestions, bug reports and general feedback to [mailto:johnathan.kanarek@gmail.com johnathan.kanarek@gmail.com]
 
 
 Enjoy,
