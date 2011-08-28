@@ -1,0 +1,1 @@
+phpdoc -c .\phpdoc.ini
